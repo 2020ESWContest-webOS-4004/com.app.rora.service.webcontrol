@@ -24,7 +24,7 @@ service.register("hello", function(message) {
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
-app.use(express.static('./js'));
+app.use(express.static('./public'));
 
 var server = app.listen(port, function(){
   console.log("Express server has started on port " + port + "");
