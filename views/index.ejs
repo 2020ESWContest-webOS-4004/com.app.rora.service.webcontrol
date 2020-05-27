@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Remote Controller for Connected Car by Rora</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script type="text/javascript" src="./webOS.js"></script>
+    <script type="text/javascript" src="./rc.js"></script>
+    <script></script>
+  </head>
+  <body>
+    <h1>Hello
+      <% if(name){ %>
+        <span class="name"><%= name %>!</span>
+      <% } else { %>
+        <span class="stranger">Stranger!</span>
+      <% } %>
+    </h1>
+    <input type="button" id="forward" onclick="forward();" value="Go">
+    <input type="button" id="forward" onclick="backward();" value="Back">
+    <input type="button" id="right" onclick="right();" value="Right">
+    <input type="button" id="left" onclick="left();" value="Left">
+    <input type="button" id="stop" onclick="stop();" value="Stop">
+  </body>
+</html>

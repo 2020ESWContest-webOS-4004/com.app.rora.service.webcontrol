@@ -2,7 +2,7 @@
   "name": "com.app.rora.webcontrol.service",
   "version": "1.0.0",
   "description": "Web controler service for ESSC",
-  "main": "web-service.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
