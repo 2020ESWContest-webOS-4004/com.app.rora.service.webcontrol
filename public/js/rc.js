@@ -1,5 +1,6 @@
 function forward(){
-    alert('hu');
+    var data = "hello";
+    socket.emit("forward", data);
 }
 
 function backward(){

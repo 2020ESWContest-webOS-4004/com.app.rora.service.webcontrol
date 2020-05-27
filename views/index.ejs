@@ -9,6 +9,11 @@
     <script></script>
   </head>
   <body>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script>
+      var socket = io();
+    </script>
     <h1>Hello
       <% if(name){ %>
         <span class="name"><%= name %>!</span>
@@ -16,8 +21,8 @@
         <span class="stranger">Stranger!</span>
       <% } %>
     </h1>
-    <input type="button" id="forward" onclick="forward();" value="Go">
-    <input type="button" id="forward" onclick="backward();" value="Back">
+    <input type="button" id="forward" onclick="forward()" value="Go">
+    <input type="button" id="backward" onclick="backward();" value="Back">
     <input type="button" id="right" onclick="right();" value="Right">
     <input type="button" id="left" onclick="left();" value="Left">
     <input type="button" id="stop" onclick="stop();" value="Stop">
