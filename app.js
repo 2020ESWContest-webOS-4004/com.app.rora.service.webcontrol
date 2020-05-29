@@ -8,40 +8,78 @@ var io = require('socket.io')(http);
 var router = require('./routes/main')(app);
 
 var port = 5555;
-var num = "0";
+var msg = "null";
 
-var service = new Service(pkgInfo.name); // Create service by service name on package.json
+var service = new Service(pkgInfo.name);
 var keepAlive;
 service.activityManager.create("keepAlive", function(activity){
   keepAlive = activity;
 });
 
-//var bridge = new WebOSServiceBridge();
-//bridge.call("luna://com.app.rora.carcontrol.service/forward", '{"speed":""}');
-//lunaAPI.init(service);
+io.on('connection', (socket) => {
+  socket.on('forward', (data) => {
+    service.call("luna://com.app.rora.service.carcontrol/forward", {"speed":""}, function(m){
+      msg = m.payload.returnValue;
+    });
+  });
+  
+  socket.on('backward', (data) => {
+    service.call("luna://com.app.rora.service.carcontrol/backward", {"speed":""}, function(m){
+      msg = m.payload.returnValue;
+    });
+  });
+
+  socket.on('right', (data) => {
+    service.call("luna://com.app.rora.service.carcontrol/right", {"speed":""}, function(m){
+      msg = m.payload.returnValue;
+    });
+  });
+
+  socket.on('left', (data) => {
+    service.call("luna://com.app.rora.service.carcontrol/left", {"speed":""}, function(m){
+      msg = m.payload.returnValue;
+    });
+  });
+
+  socket.on('stop', (data) => {
+    service.call("luna://com.app.rora.service.carcontrol/stop", {"speed":""}, function(m){
+      msg = m.payload.returnValue;
+    });
+  });
+});
 
 service.register("hello", function(message) {
   var name = message.payload.name ? message.payload.name : "World";
+  var result = "default";
+  service.call("luna://com.app.rora.service.carcontrol/forward", {"speed":""}, function(m){
+    result = "changed!";
+  });
+  message.respond({
+    returnValue: true,
+    Response: "msg : " + msg
+  });
+});
 
-    message.respond({
-        returnValue: true,
-        Response: "num : " + num + " !"
-    });
+service.register("example", function(message) {
+  service.call("luna://com.webos.service.connectionmanager/getstatus", {}, function(response) {
+      console.log(response.payload);
+      if(response.payload.isInternetConnectionAvailable == true) {
+          // ...
+          message.respond({
+              "returnValue": true
+          });
+      }
+      else{
+        message.respond({
+          "returnValue": false
+        });
+      }
+  });
 });
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 app.use(express.static('./public'));
-
-io.on('connection', (socket) => {
-  console.log('connected!!!');
-  socket.on('forward', (msg) => {
-    num = "5555";
-    service.call("luna://com.app.rora.carcontrol.service/forward", {"speed":""}, function(){
-      num = "99999!";
-    });
-  });
-});
 
 var server = http.listen(port, function(){
   console.log("Express server has started on port " + port + "");

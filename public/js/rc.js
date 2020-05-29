@@ -4,17 +4,21 @@ function forward(){
 }
 
 function backward(){
-    alert('backward');
+    var data = "hello";
+    socket.emit("backward", data);
 }
 
 function right(){
-    alert('right');
+    var data = "hello";
+    socket.emit("right", data);
 }
 
 function left(){
-    alert('left');
+    var data = "hello";
+    socket.emit("left", data);
 }
 
 function stop(){
-    alert('stop');
+    var data = "hello";
+    socket.emit("stop", data);
 }

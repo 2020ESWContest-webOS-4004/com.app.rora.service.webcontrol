@@ -1,5 +1,5 @@
 {
-  "name": "com.app.rora.webcontrol.service",
+  "name": "com.app.rora.service.webcontrol",
   "version": "1.0.0",
   "description": "Web controler service for ESSC",
   "main": "app.js",

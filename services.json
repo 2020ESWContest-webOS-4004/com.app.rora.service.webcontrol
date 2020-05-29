@@ -1,9 +1,9 @@
 {
-  "id": "com.app.rora.webcontrol.service",
+  "id": "com.app.rora.service.webcontrol",
   "description": "Web controler service for ESSC",
   "services": [
     {
-      "name": "com.app.rora.webcontrol.service"
+      "name": "com.app.rora.service.webcontrol"
     }
   ]
 }
