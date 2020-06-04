@@ -22,3 +22,8 @@ function stop(){
     var data = "hello";
     socket.emit("stop", data);
 }
+
+function reboot(){
+    var data = "hello";
+    socket.emit("reboot", data);
+}

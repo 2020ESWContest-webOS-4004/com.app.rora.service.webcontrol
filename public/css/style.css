@@ -1,0 +1,35 @@
+* {
+    font-family: sans-serif, "맑은 고딕";
+}
+
+div#app {
+    padding: 50px; 
+    margin: 30px auto; 
+    max-width: 600px; 
+    border: 1px solid #ccc; 
+    font-size: 11pt; 
+    text-align: left;
+}
+
+div #control { 
+    display: flex;
+}
+
+div h1 {
+    text-align: center;
+}
+
+div#app img {
+    width: 100px;
+}
+
+div input[type="button"] {
+    background-color: rgb(6, 26, 116);
+    border: none;
+    color: white;
+    padding: 30px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 10px;
+}

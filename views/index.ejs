@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Remote Controller for Connected Car by Rora</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="./css/style.css">
     <script type="text/javascript" src="./js/webOS.js"></script>
     <script type="text/javascript" src="./js/rc.js"></script>
     <script></script>
@@ -13,17 +13,22 @@
     <script>
       var socket = io();
     </script>
-    <h1>Hello
-      <% if(name){ %>
-        <span class="name"><%= name %>!</span>
-      <% } else { %>
-        <span class="stranger">Stranger!</span>
-      <% } %>
-    </h1>
-    <input type="button" id="forward" onclick="forward()" value="Go">
-    <input type="button" id="backward" onclick="backward();" value="Back">
-    <input type="button" id="right" onclick="right();" value="Right">
-    <input type="button" id="left" onclick="left();" value="Left">
-    <input type="button" id="stop" onclick="stop();" value="Stop">
+    <div id="app">
+      <img src="./media/logo_ESSC.jpg">
+      <h1>Hello
+        <% if(name){ %>
+          <span class="name"><%= name %>!</span>
+        <% } else { %>
+          <span class="stranger">Stranger!</span>
+        <% } %>
+      </h1>
+      <div id="control">
+        <input type="button" id="forward" onclick="forward()" value="Go">
+        <input type="button" id="backward" onclick="backward();" value="Back">
+        <input type="button" id="right" onclick="right();" value="Right">
+        <input type="button" id="left" onclick="left();" value="Left">
+        <input type="button" id="stop" onclick="stop();" value="Stop">
+      </div>
+    </div>
   </body>
 </html>

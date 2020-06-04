@@ -18,12 +18,14 @@ service.activityManager.create("keepAlive", function(activity){
 
 io.on('connection', (socket) => {
   socket.on('forward', (data) => {
+    service.call("luna://com.webos.service.tts/speak", {"text":"전진", "language": "ko-KR", "clear":true}, function(){msg = "forward"});
     service.call("luna://com.app.rora.service.carcontrol/forward", {"speed":""}, function(m){
       msg = m.payload.returnValue;
     });
   });
   
   socket.on('backward', (data) => {
+    service.call("luna://com.webos.service.tts/speak", {"text":"후진", "language": "ko-KR", "clear":true}, function(){msg = "backward"});
     service.call("luna://com.app.rora.service.carcontrol/backward", {"speed":""}, function(m){
       msg = m.payload.returnValue;
     });
@@ -42,38 +44,10 @@ io.on('connection', (socket) => {
   });
 
   socket.on('stop', (data) => {
+    service.call("luna://com.webos.service.tts/speak", {"text":"정지", "language": "ko-KR", "clear":true}, function(){msg = "stop"});
     service.call("luna://com.app.rora.service.carcontrol/stop", {"speed":""}, function(m){
       msg = m.payload.returnValue;
     });
-  });
-});
-
-service.register("hello", function(message) {
-  var name = message.payload.name ? message.payload.name : "World";
-  var result = "default";
-  service.call("luna://com.app.rora.service.carcontrol/forward", {"speed":""}, function(m){
-    result = "changed!";
-  });
-  message.respond({
-    returnValue: true,
-    Response: "msg : " + msg
-  });
-});
-
-service.register("example", function(message) {
-  service.call("luna://com.webos.service.connectionmanager/getstatus", {}, function(response) {
-      console.log(response.payload);
-      if(response.payload.isInternetConnectionAvailable == true) {
-          // ...
-          message.respond({
-              "returnValue": true
-          });
-      }
-      else{
-        message.respond({
-          "returnValue": false
-        });
-      }
   });
 });
 
@@ -82,5 +56,6 @@ app.set('view engine', 'ejs');
 app.use(express.static('./public'));
 
 var server = http.listen(port, function(){
+  service.call("luna://com.webos.service.tts/speak", {"text":"JAVIS 서비스가 시작되었습니다.", "language": "ko-KR", "clear":true}, function(){console.log("")});
   console.log("Express server has started on port " + port + "");
 });
