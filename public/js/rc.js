@@ -1,29 +1,29 @@
 function forward(){
-    var data = "hello";
-    socket.emit("forward", data);
+    var data = {"name":"forward"};
+    socket.emit("ls-call", data);
 }
 
 function backward(){
-    var data = "hello";
-    socket.emit("backward", data);
+    var data = {"name":"backward"};
+    socket.emit("ls-call", data);
 }
 
 function right(){
-    var data = "hello";
-    socket.emit("right", data);
+    var data = {"name":"right"};
+    socket.emit("ls-call", data);
 }
 
 function left(){
-    var data = "hello";
-    socket.emit("left", data);
+    var data = {"name":"left"};
+    socket.emit("ls-call", data);
 }
 
 function stop(){
-    var data = "hello";
-    socket.emit("stop", data);
+    var data = {"name":"stop"};
+    socket.emit("ls-call", data);
 }
 
 function reboot(){
-    var data = "hello";
+    var data = {"name":"reboot"};
     socket.emit("reboot", data);
 }
