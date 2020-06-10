@@ -20,9 +20,19 @@ function tts(ment){
 }
 
 function forward(){
-    tts("전진");
-    luna.rc_forward({"speed":""}, function(m){
-        msg = m.payload.returnValue;
+    var status = "";
+    luna.get_infrared_value({}, function(m){
+        status = m.payload.status;
+        if(status == "detected"){
+            tts("전방에 장애물");
+            stop();
+        }
+        if(status == "Non"){
+            tts("전진");
+            luna.rc_forward({"speed":""}, function(m){
+                msg = m.payload.returnValue;
+            });
+        }
     });
 }
 
@@ -45,7 +55,6 @@ function left(){
 }
 
 function stop(){
-    tts("정지");
     luna.rc_stop({"speed":""}, function(m){
         msg = m.payload.returnValue;
     });
