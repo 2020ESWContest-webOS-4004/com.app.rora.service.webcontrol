@@ -28,7 +28,6 @@ function forward(){
             stop();
         }
         if(status == "Non"){
-            tts("전진");
             luna.rc_forward({"speed":""}, function(m){
                 msg = m.payload.returnValue;
             });
