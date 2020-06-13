@@ -26,12 +26,12 @@ function forward(socket){
         if(status == "detected"){
             tts("전방에 장애물");
             stop();
-            socket.broadcast.emit("status", {"text": "정지", "speed": "0"});
+            socket.broadcast.emit("status", {"text": "정지", "word": "P", "speed": "0"});
         }
         if(status == "Non"){
             luna.rc_forward({"speed":""}, function(m){
                 msg = m.payload.returnValue;
-                socket.broadcast.emit("status", {"text": "전진", "speed": "25"});
+                socket.broadcast.emit("status", {"text": "전진", "word": "D", "speed": "25"});
             });
         }
     });
@@ -40,24 +40,28 @@ function forward(socket){
 function backward(socket){
     luna.rc_backward({"speed":""}, function(m){
         msg = m.payload.returnValue;
+        socket.broadcast.emit("status", {"text": "후진", "word": "R", "speed": "25"});
     });
 }
 
 function right(socket){
     luna.rc_right({"speed":""}, function(m){
         msg = m.payload.returnValue;
+        socket.broadcast.emit("status", {"text": "우회전", "word": "D", "speed": "25"});
     });
 }
 
 function left(socket){
     luna.rc_left({"speed":""}, function(m){
         msg = m.payload.returnValue;
+        socket.broadcast.emit("status", {"text": "좌회전", "word": "D", "speed": "25"});
     });
 }
 
 function stop(socket){
     luna.rc_stop({"speed":""}, function(m){
         msg = m.payload.returnValue;
+        socket.broadcast.emit("status", {"text": "정지", "word": "P", "speed": "0"});
     });
 }
 

@@ -64,6 +64,14 @@
         color:rgb(142,162,201);
         background-color: rgb(51,53,80);
       }
+      #temper {
+        width: 500px;
+      }
+      #temper-text {
+        text-align: center;
+        font-size: 80px;
+        color:white;
+      }
       #lock {
         width: 616px;
         height: 300px;
@@ -72,7 +80,7 @@
         color:rgb(164,17,62);
         background-color: rgb(51,53,80);
       }
-      #gear-font{
+      #gear-word{
         color:white;
         font-size: 100px;
         letter-spacing: 0em;
@@ -110,9 +118,19 @@
   <body>
     <script src="/socket.io/socket.io.js"></script>
     <script>
+      function getTime(){
+        const time = new Date();
+        const hour = time.getHours();
+        const minutes = time.getMinutes();
+        const seconds = time.getSeconds();
+        document.getElementById("system-time-font").innerHTML = `${hour<10 ? `0${hour}`:hour}:${minutes<10 ? `0${minutes}`:minutes}:${seconds<10 ? `0${seconds}`:seconds}`
+      }
+      setInterval(getTime, 1000);
+
       var socket = io();
       socket.on("status", (data) =>{
         console.log("test success");
+        document.getElementById("gear-word").innerHTML = data.word;
         document.getElementById("gear-text").innerHTML = data.text;
         document.getElementById("speed-font").innerHTML = data.speed;
       });
@@ -129,8 +147,8 @@
               <path fill-rule="evenodd" d="M8 5.754a2.246 2.246 0 1 0 0 4.492 2.246 2.246 0 0 0 0-4.492zM4.754 8a3.246 3.246 0 1 1 6.492 0 3.246 3.246 0 0 1-6.492 0z"/>
             </svg><b> GEAR</b>
             <div>
-              <p id="gear-font">P</p>
-              <p id="gear-text"></p>
+              <p id="gear-word">P</p>
+              <p id="gear-text">정지</p>
             </div>
           </div>
           <div id="speed">
@@ -157,6 +175,9 @@
               <path fill-rule="evenodd" d="M4.553 7.776c.82-1.641 1.717-2.753 2.093-3.13l.708.708c-.29.29-1.128 1.311-1.907 2.87l-.894-.448z"/>
               <path d="M14 10a6 6 0 0 1-12 0s2.5 2.5 6.5.5S14 10 14 10z"/>
             </svg><b> TEMPERATURE</b>
+            <div id="temper">
+              <p id="temper-num">TEST</p><p id="temper-word">℃
+            </div>
           </div>
           <div id="lock">
             <svg class="bi bi-lock-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
