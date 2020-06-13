@@ -19,41 +19,43 @@ function tts(ment){
     });
 }
 
-function forward(){
+function forward(socket){
     var status = "";
     luna.get_infrared_value({}, function(m){
         status = m.payload.status;
         if(status == "detected"){
             tts("전방에 장애물");
             stop();
+            socket.broadcast.emit("status", {"text": "정지", "speed": "0"});
         }
         if(status == "Non"){
             luna.rc_forward({"speed":""}, function(m){
                 msg = m.payload.returnValue;
+                socket.broadcast.emit("status", {"text": "전진", "speed": "25"});
             });
         }
     });
 }
 
-function backward(){
+function backward(socket){
     luna.rc_backward({"speed":""}, function(m){
         msg = m.payload.returnValue;
     });
 }
 
-function right(){
+function right(socket){
     luna.rc_right({"speed":""}, function(m){
         msg = m.payload.returnValue;
     });
 }
 
-function left(){
+function left(socket){
     luna.rc_left({"speed":""}, function(m){
         msg = m.payload.returnValue;
     });
 }
 
-function stop(){
+function stop(socket){
     luna.rc_stop({"speed":""}, function(m){
         msg = m.payload.returnValue;
     });
@@ -69,7 +71,7 @@ function init(service, http){
     io.on('connection', (socket) => {
         socket.on('ls-call', (data) => {
             var func = callList[data.name];
-            func();
+            func(socket);
         });
     });
 

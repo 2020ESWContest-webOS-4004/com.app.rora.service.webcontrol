@@ -1,0 +1,177 @@
+<!doctype html>
+<html>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <title>DASHBOARD</title>
+    <style>
+      body {
+        background-color: rgb(61,62,93);
+      }
+      #box1 {
+        width: 1600px;
+        height: 300px;
+        margin-top: 60px;
+        margin-left: 150px;
+      }
+      .border {
+        display: inline-block;
+        width: 500px;
+        height: 300px;
+        margin: 6px;
+        padding: 20px;
+      }
+      #gear {
+        width: 400px;
+        height: 300px;
+        margin: 6px;
+        padding: 20px;
+        background-color: rgb(51,53,80);
+        color: rgb(109,131,190);
+      }
+      #speed {
+        width: 550px;
+        height: 300px;
+        margin: 6px;
+        padding: 20px;
+        color: rgb(178, 171, 85);
+        background-color: rgb(51,53,80);
+      }
+      #system {
+        width: 550px;
+        height: 300px;
+        margin: 6px;
+        padding: 20px;
+        color: rgb(209,116,57);
+        background-color: rgb(51,53,80);
+      }
+      #system-time-font {
+        margin-top: 30px;
+        font-size: 80px;
+        text-align: center;
+        color:white;
+      }
+      #temperature {
+        width: 900px;
+        height: 300px;
+        margin: 6px;
+        padding: 20px;
+        color:rgb(142,162,201);
+        background-color: rgb(51,53,80);
+      }
+      #lock {
+        width: 616px;
+        height: 300px;
+        margin: 6px;
+        padding: 20px;
+        color:rgb(164,17,62);
+        background-color: rgb(51,53,80);
+      }
+      #gear-font{
+        color:white;
+        font-size: 100px;
+        letter-spacing: 0em;
+        font-weight: 800;
+        font-style: normal;
+        padding-top: 20px;
+        text-align: center;
+      }
+      #gear-text{
+        color:white;
+        font-size: 30px;
+        font-style: normal;
+        text-align: center;
+      }
+      #speed-font{
+        color:white;
+        font-size: 100px;
+        letter-spacing: 0em;
+        font-weight: 100;
+        font-style: normal;
+        padding-top: 20px;
+        text-align: center;
+        line-height: 150px;
+      }
+      #speed-font-unit{
+        color:white;
+        font-size: 30px;
+        font-style: normal;
+        text-align: center;
+      }
+      </style>
+      <script type="text/javascript" src="./js/webOS.js"></script>
+      <script type="text/javascript" src="./js/rc.js"></script>
+  </head>
+  <body>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      var socket = io();
+      socket.on("status", (data) =>{
+        console.log("test success");
+        document.getElementById("gear-text").innerHTML = data.text;
+        document.getElementById("speed-font").innerHTML = data.speed;
+      });
+    </script>
+    <nav class="navbar navbar-dark bg-dark">
+      <a class="nav-brand" href="#" text-align="center">J.A.R.V.I.S DASHBOARD</a>  
+    </nav>
+    <div>
+      <div class="container-fluid">
+        <div id="box1" class="row">
+          <div id="gear">
+            <svg class="bi bi-gear" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M8.837 1.626c-.246-.835-1.428-.835-1.674 0l-.094.319A1.873 1.873 0 0 1 4.377 3.06l-.292-.16c-.764-.415-1.6.42-1.184 1.185l.159.292a1.873 1.873 0 0 1-1.115 2.692l-.319.094c-.835.246-.835 1.428 0 1.674l.319.094a1.873 1.873 0 0 1 1.115 2.693l-.16.291c-.415.764.42 1.6 1.185 1.184l.292-.159a1.873 1.873 0 0 1 2.692 1.116l.094.318c.246.835 1.428.835 1.674 0l.094-.319a1.873 1.873 0 0 1 2.693-1.115l.291.16c.764.415 1.6-.42 1.184-1.185l-.159-.291a1.873 1.873 0 0 1 1.116-2.693l.318-.094c.835-.246.835-1.428 0-1.674l-.319-.094a1.873 1.873 0 0 1-1.115-2.692l.16-.292c.415-.764-.42-1.6-1.185-1.184l-.291.159A1.873 1.873 0 0 1 8.93 1.945l-.094-.319zm-2.633-.283c.527-1.79 3.065-1.79 3.592 0l.094.319a.873.873 0 0 0 1.255.52l.292-.16c1.64-.892 3.434.901 2.54 2.541l-.159.292a.873.873 0 0 0 .52 1.255l.319.094c1.79.527 1.79 3.065 0 3.592l-.319.094a.873.873 0 0 0-.52 1.255l.16.292c.893 1.64-.902 3.434-2.541 2.54l-.292-.159a.873.873 0 0 0-1.255.52l-.094.319c-.527 1.79-3.065 1.79-3.592 0l-.094-.319a.873.873 0 0 0-1.255-.52l-.292.16c-1.64.893-3.433-.902-2.54-2.541l.159-.292a.873.873 0 0 0-.52-1.255l-.319-.094c-1.79-.527-1.79-3.065 0-3.592l.319-.094a.873.873 0 0 0 .52-1.255l-.16-.292c-.892-1.64.902-3.433 2.541-2.54l.292.159a.873.873 0 0 0 1.255-.52l.094-.319z"/>
+              <path fill-rule="evenodd" d="M8 5.754a2.246 2.246 0 1 0 0 4.492 2.246 2.246 0 0 0 0-4.492zM4.754 8a3.246 3.246 0 1 1 6.492 0 3.246 3.246 0 0 1-6.492 0z"/>
+            </svg><b> GEAR</b>
+            <div>
+              <p id="gear-font">P</p>
+              <p id="gear-text"></p>
+            </div>
+          </div>
+          <div id="speed">
+            <svg class="bi bi-lightning-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M11.251.068a.5.5 0 0 1 .227.58L9.677 6.5H13a.5.5 0 0 1 .364.843l-8 8.5a.5.5 0 0 1-.842-.49L6.323 9.5H3a.5.5 0 0 1-.364-.843l8-8.5a.5.5 0 0 1 .615-.09z"/>
+            </svg><b> SPEED</b>
+            <div>
+              <p id="speed-font">0</p>
+              <p id="speed-font-unit">KMH</p>
+            </div>
+          </div>
+          <div id="system">
+            <svg class="bi bi-terminal" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M14 2H2a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1zM2 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H2z"/>
+              <path fill-rule="evenodd" d="M6 9a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3A.5.5 0 0 1 6 9zM3.146 4.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 1 1-.708-.708L4.793 6.5 3.146 4.854a.5.5 0 0 1 0-.708z"/>
+            </svg><b> SYSTEM</b>
+            <p id="system-time-font">23:00</p>
+          </div>
+        </div>
+        <div id="box1" class="row">
+          <div id="temperature">
+            <svg class="bi bi-droplet-half" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M7.21.8C7.69.295 8 0 8 0c.109.363.234.708.371 1.038.812 1.946 2.073 3.35 3.197 4.6C12.878 7.096 14 8.345 14 10a6 6 0 0 1-12 0C2 6.668 5.58 2.517 7.21.8zm.413 1.021A31.25 31.25 0 0 0 5.794 3.99c-.726.95-1.436 2.008-1.96 3.07C3.304 8.133 3 9.138 3 10a5 5 0 0 0 10 0c0-1.201-.796-2.157-2.181-3.7l-.03-.032C9.75 5.11 8.5 3.72 7.623 1.82z"/>
+              <path fill-rule="evenodd" d="M4.553 7.776c.82-1.641 1.717-2.753 2.093-3.13l.708.708c-.29.29-1.128 1.311-1.907 2.87l-.894-.448z"/>
+              <path d="M14 10a6 6 0 0 1-12 0s2.5 2.5 6.5.5S14 10 14 10z"/>
+            </svg><b> TEMPERATURE</b>
+          </div>
+          <div id="lock">
+            <svg class="bi bi-lock-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <rect width="11" height="9" x="2.5" y="7" rx="2"/>
+              <path fill-rule="evenodd" d="M4.5 4a3.5 3.5 0 1 1 7 0v3h-1V4a2.5 2.5 0 0 0-5 0v3h-1V4z"/>
+            </svg><b> LOCK</b>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+  </body>
+</html>
