@@ -22,8 +22,3 @@ function stop(){
     var data = {"name":"stop"};
     socket.emit("ls-call", data);
 }
-
-function reboot(){
-    var data = {"name":"reboot"};
-    socket.emit("reboot", data);
-}

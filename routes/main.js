@@ -4,6 +4,6 @@ module.exports = function(app)
         res.render('index', {name:req.query.test});
      });
      app.get('/dashboard',function(req, res){
-        res.render('dashboard');
+        res.render('dashboard', {auth:req.query.auth});
     });
 }

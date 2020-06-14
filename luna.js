@@ -35,7 +35,6 @@ function get_infrared_value(param, callback){
     });
 }
 
-
 exports.init = init;
 exports.rc_forward = rc_forward;
 exports.rc_backward = rc_backward;

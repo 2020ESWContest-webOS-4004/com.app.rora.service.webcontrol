@@ -1,4 +1,6 @@
 var luna = require('./luna');
+var fs = require('fs');
+var env = require('./env/env.json');
 
 var io;
 var ls2;
@@ -11,6 +13,8 @@ function callListinit(){
     callList['right'] = right;
     callList['left'] = left;
     callList['stop'] = stop;
+    callList['start_engine'] = start_engine;
+    callList['stop_engine'] = stop_engine;
 }
 
 function tts(ment){
@@ -65,12 +69,35 @@ function stop(socket){
     });
 }
 
+// do not work.. :(
+function start_engine(socket){
+    set_engine("1"); //work..
+    socket.broadcast.emit("car_engine", {"status": "start"}); //not work..
+}
+
+// do not work.. :(
+function stop_engine(socket){
+    set_engine("0"); //work..
+    socket.broadcast.emit("car_engine", {"status": "stop"}); //not work..
+}
+
+function get_engine(){
+    var engine_flag = fs.readFileSync(env.home_directory + "/engine_status", 'utf8');
+    return engine_flag;
+}
+
+function set_engine(value){
+    fs.writeFileSync(env.home_directory + "/engine_status", value, 'utf8');
+}
+
 function init(service, http){
     ls2 = service;
     server = http;
     io = require('socket.io')(server);
     luna.init(service);
     callListinit();
+
+    set_engine("0");    // if parameter is 0, engine status :off
 
     io.on('connection', (socket) => {
         socket.on('ls-call', (data) => {

@@ -3,14 +3,30 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/dbe9c06d6b.js" crossorigin="anonymous"></script>
     <title>DASHBOARD</title>
+    <script type="text/javascript" src="./js/webOS.js"></script>
+    <script type="text/javascript" src="./js/rc.js"></script>
+    <script type="text/javascript" src="./js/infortainment.js"></script>
     <style>
       body {
         background-color: rgb(61,62,93);
+        height: 900px;
       }
+      div.topbar {
+        font-size: 30px;
+        height: 100px;
+        padding-left: 800px;
+        background-color:rgb(30,36,59);
+        padding-top: 25px;
+      }
+
+      div.topbar a {
+        color:white;
+        text-align:"center"
+      }
+
       #box1 {
         width: 1600px;
         height: 300px;
@@ -182,9 +198,7 @@
         text-align: center;
         margin-left: 50px;
       }
-      </style>
-      <script type="text/javascript" src="./js/webOS.js"></script>
-      <script type="text/javascript" src="./js/rc.js"></script>
+    </style>
   </head>
   <body>
     <script src="/socket.io/socket.io.js"></script>
@@ -206,15 +220,31 @@
 
       var socket = io();
       socket.on("status", (data) =>{
-        console.log("test success");
         document.getElementById("gear-word").innerHTML = data.word;
         document.getElementById("gear-text").innerHTML = data.text;
         document.getElementById("speed-font").innerHTML = data.speed;
       });
+
+      socket.on("car_engine", (data) => {
+        var status = data.status;
+        console.log("status : " + status);
+        if(status == "start"){
+          console.log("start..");
+          document.getElementById("lock_icon").style.color = "green";
+          document.getElementById("btn_engine").value = "Engine Stop";
+          document.getElementById("btn_engine").onclick = stop_engine;
+        }
+        if(status == "stop"){
+          console.log("stop..");
+          document.getElementById("lock_icon").style.color = "#a4113e";
+          document.getElementById("btn_engine").value = "Engine Start";
+          document.getElementById("btn_engine").onclick = start_engine;
+        }
+      });
     </script>
-    <nav class="navbar navbar-dark bg-dark">
-      <a class="nav-brand" href="#" text-align="center">J.A.R.V.I.S DASHBOARD</a>  
-    </nav>
+    <div class="topbar">
+      <a href="#">J.A.R.V.I.S DASHBOARD</a>  
+    </div>
     <div>
       <div class="container-fluid">
         <div id="box1" class="row">
@@ -278,18 +308,17 @@
               </svg><b> LOCK</b>
             </div>
             <div class="lock_status">
-              <div class="lock_status_icon">
+              <div id="lock_icon" class="lock_status_icon">
                 <i class="fas fa-power-off"></i>
               </div>
             </div>
             <div class="btn_start">
-              <input type="button" value="Engine Start"></input>
+              <input id="btn_engine" type="button" onclick="start_engine();" value="Engine Start"></input>
             </div>
           </div>
         </div>
       </div>
     </div>
-
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
