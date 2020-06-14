@@ -25,8 +25,8 @@ function forward(socket){
         status = m.payload.status;
         if(status == "detected"){
             tts("전방에 장애물");
-            stop();
-            socket.broadcast.emit("status", {"text": "정지", "word": "P", "speed": "0"});
+            stop(socket);
+            socket.broadcast.emit("status", {"text": "정지", "word": "N", "speed": "0"});
         }
         if(status == "Non"){
             luna.rc_forward({"speed":""}, function(m){
