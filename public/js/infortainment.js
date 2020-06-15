@@ -14,6 +14,11 @@ function stop_engine(){
     document.getElementById("btn_engine").onclick = start_engine;
 }
 
+function auth_user(){
+    var data = {"name": "auth_user"};
+    socket.emit("ls-call", data);
+}
+
 function get_engine_status(){
     var data = {"name":"get_engine_status"};
     socket.emit("ls-call", data);

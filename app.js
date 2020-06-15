@@ -5,7 +5,7 @@ var luna = require('./luna');
 var app = express();
 var utils = require('./utils');
 var http = require('http').createServer(app);
-var router = require('./routes/main')(app);
+var router = require('./routes/main')(app, utils);
 var env = require('./env/env.json');
 
 var msg = "null";

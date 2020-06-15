@@ -25,6 +25,11 @@ function tts(ment){
 
 function forward(socket){
     var status = "";
+    var auth = get_auth();
+    if(!auth){
+        socket.broadcast.emit("user-auth", {"status":"unauth"});
+        return 0;
+    }
     luna.get_infrared_value({}, function(m){
         status = m.payload.status;
         if(status == "detected"){
@@ -42,6 +47,11 @@ function forward(socket){
 }
 
 function backward(socket){
+    var auth = get_auth();
+    if(!auth){
+        socket.broadcast.emit("user-auth", {"status":"unauth"});
+        return 0;
+    }
     luna.rc_backward({"speed":""}, function(m){
         msg = m.payload.returnValue;
         socket.broadcast.emit("status", {"text": "후진", "word": "R", "speed": "25"});
@@ -49,6 +59,11 @@ function backward(socket){
 }
 
 function right(socket){
+    var auth = get_auth();
+    if(!auth){
+        socket.broadcast.emit("user-auth", {"status":"unauth"});
+        return 0;
+    }
     luna.rc_right({"speed":""}, function(m){
         msg = m.payload.returnValue;
         socket.broadcast.emit("status", {"text": "우회전", "word": "D", "speed": "25"});
@@ -56,6 +71,11 @@ function right(socket){
 }
 
 function left(socket){
+    var auth = get_auth();
+    if(!auth){
+        socket.broadcast.emit("user-auth", {"status":"unauth"});
+        return 0;
+    }
     luna.rc_left({"speed":""}, function(m){
         msg = m.payload.returnValue;
         socket.broadcast.emit("status", {"text": "좌회전", "word": "D", "speed": "25"});
@@ -63,6 +83,11 @@ function left(socket){
 }
 
 function stop(socket){
+    var auth = get_auth();
+    if(!auth){
+        socket.broadcast.emit("user-auth", {"status":"unauth"});
+        return 0;
+    }
     luna.rc_stop({"speed":""}, function(m){
         msg = m.payload.returnValue;
         socket.broadcast.emit("status", {"text": "정지", "word": "P", "speed": "0"});
@@ -90,6 +115,16 @@ function set_engine(value){
     fs.writeFileSync(env.home_directory + "/engine_status", value, 'utf8');
 }
 
+function get_auth(){
+    var auth = fs.readFileSync(env.home_directory + "/user_auth", 'utf8');
+    return auth;
+}
+
+function set_auth(value){
+    fs.writeFileSync(env.home_directory + "/user_auth", value, 'utf8');
+    return true;
+}
+
 function init(service, http){
     ls2 = service;
     server = http;
@@ -97,6 +132,7 @@ function init(service, http){
     luna.init(service);
     callListinit();
 
+    set_auth("");
     set_engine("0");    // if parameter is 0, engine status :off
 
     io.on('connection', (socket) => {
@@ -110,3 +146,5 @@ function init(service, http){
 }
 
 exports.init = init;
+exports.set_auth = set_auth;
+exports.get_auth = get_auth;

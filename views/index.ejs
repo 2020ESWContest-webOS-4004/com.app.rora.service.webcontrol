@@ -18,11 +18,11 @@
     </script>
     <div id="app">
       <img src="./media/logo_ESSC.jpg">
-      <h1 id="test">Hello
-        <% if(name){ %>
-          <span class="name"><%= name %>!</span>
+      <h1 id="test">name :  
+        <% if(auth){ %>
+          <span class="name"><%= auth %></span>
         <% } else { %>
-          <span class="stranger">Stranger!</span>
+          <span class="stranger">미인증</span>
         <% } %>
       </h1>
       <div id="control">

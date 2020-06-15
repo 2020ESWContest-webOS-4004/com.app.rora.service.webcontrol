@@ -241,6 +241,11 @@
           document.getElementById("btn_engine").onclick = start_engine;
         }
       });
+      socket.on("user-auth", (data) => {
+        var status = data.status;
+        if(status == "unauth")
+          console.log("unauth");
+      });
     </script>
     <div class="topbar">
       <a href="#">J.A.R.V.I.S DASHBOARD</a>  
