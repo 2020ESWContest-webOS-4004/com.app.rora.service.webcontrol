@@ -25,9 +25,15 @@ function tts(ment){
 
 function forward(socket){
     var status = "";
+    var power = get_engine();
     var auth = get_auth();
+
     if(!auth){
-        socket.broadcast.emit("user-auth", {"status":"unauth"});
+        socket.broadcast.emit("user-auth", {"status":"no auth"});
+        return 0;
+    }
+    else if(power == "0"){
+        socket.broadcast.emit("user-auth", {"status":"no power"});
         return 0;
     }
     luna.get_infrared_value({}, function(m){
@@ -47,9 +53,15 @@ function forward(socket){
 }
 
 function backward(socket){
+    var power = get_engine();
     var auth = get_auth();
+
     if(!auth){
-        socket.broadcast.emit("user-auth", {"status":"unauth"});
+        socket.broadcast.emit("user-auth", {"status":"no auth"});
+        return 0;
+    }
+    else if(power == "0"){
+        socket.broadcast.emit("user-auth", {"status":"no power"});
         return 0;
     }
     luna.rc_backward({"speed":""}, function(m){
@@ -59,9 +71,15 @@ function backward(socket){
 }
 
 function right(socket){
+    var power = get_engine();
     var auth = get_auth();
+
     if(!auth){
-        socket.broadcast.emit("user-auth", {"status":"unauth"});
+        socket.broadcast.emit("user-auth", {"status":"no auth"});
+        return 0;
+    }
+    else if(power == "0"){
+        socket.broadcast.emit("user-auth", {"status":"no power"});
         return 0;
     }
     luna.rc_right({"speed":""}, function(m){
@@ -71,9 +89,15 @@ function right(socket){
 }
 
 function left(socket){
+    var power = get_engine();
     var auth = get_auth();
+
     if(!auth){
-        socket.broadcast.emit("user-auth", {"status":"unauth"});
+        socket.broadcast.emit("user-auth", {"status":"no auth"});
+        return 0;
+    }
+    else if(power == "0"){
+        socket.broadcast.emit("user-auth", {"status":"no power"});
         return 0;
     }
     luna.rc_left({"speed":""}, function(m){
@@ -83,11 +107,18 @@ function left(socket){
 }
 
 function stop(socket){
+    var power = get_engine();
     var auth = get_auth();
+
     if(!auth){
-        socket.broadcast.emit("user-auth", {"status":"unauth"});
+        socket.broadcast.emit("user-auth", {"status":"no auth"});
         return 0;
     }
+    else if(power == "0"){
+        socket.broadcast.emit("user-auth", {"status":"no power"});
+        return 0;
+    }
+
     luna.rc_stop({"speed":""}, function(m){
         msg = m.payload.returnValue;
         socket.broadcast.emit("status", {"text": "정지", "word": "P", "speed": "0"});

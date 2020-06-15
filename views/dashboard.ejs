@@ -243,8 +243,10 @@
       });
       socket.on("user-auth", (data) => {
         var status = data.status;
-        if(status == "unauth")
-          console.log("unauth");
+        if(status == "no auth")
+          console.log("no authorization");
+        else if(status == "no power")
+          console.log("no power");
       });
     </script>
     <div class="topbar">
