@@ -15,6 +15,7 @@ function callListinit(){
     callList['stop'] = stop;
     callList['start_engine'] = start_engine;
     callList['stop_engine'] = stop_engine;
+    callList['welcome_voice'] = welcome_voice;
 }
 
 function tts(ment){
@@ -29,10 +30,12 @@ function forward(socket){
     var auth = get_auth();
 
     if(!auth){
+        tts("사용자 인증이 필요합니다");
         socket.broadcast.emit("user-auth", {"status":"no auth"});
         return 0;
     }
     else if(power == "0"){
+        tts("시동 버튼을 눌러주세요");
         socket.broadcast.emit("user-auth", {"status":"no power"});
         return 0;
     }
@@ -57,10 +60,12 @@ function backward(socket){
     var auth = get_auth();
 
     if(!auth){
+        tts("사용자 인증이 필요합니다");
         socket.broadcast.emit("user-auth", {"status":"no auth"});
         return 0;
     }
     else if(power == "0"){
+        tts("시동 버튼을 눌러주세요");
         socket.broadcast.emit("user-auth", {"status":"no power"});
         return 0;
     }
@@ -75,10 +80,12 @@ function right(socket){
     var auth = get_auth();
 
     if(!auth){
+        tts("사용자 인증이 필요합니다");
         socket.broadcast.emit("user-auth", {"status":"no auth"});
         return 0;
     }
     else if(power == "0"){
+        tts("시동 버튼을 눌러주세요");
         socket.broadcast.emit("user-auth", {"status":"no power"});
         return 0;
     }
@@ -93,10 +100,12 @@ function left(socket){
     var auth = get_auth();
 
     if(!auth){
+        tts("사용자 인증이 필요합니다");
         socket.broadcast.emit("user-auth", {"status":"no auth"});
         return 0;
     }
     else if(power == "0"){
+        tts("시동 버튼을 눌러주세요");
         socket.broadcast.emit("user-auth", {"status":"no power"});
         return 0;
     }
@@ -111,10 +120,12 @@ function stop(socket){
     var auth = get_auth();
 
     if(!auth){
+        tts("사용자 인증이 필요합니다");
         socket.broadcast.emit("user-auth", {"status":"no auth"});
         return 0;
     }
     else if(power == "0"){
+        tts("시동 버튼을 눌러주세요");
         socket.broadcast.emit("user-auth", {"status":"no power"});
         return 0;
     }
@@ -156,6 +167,12 @@ function set_auth(value){
     return true;
 }
 
+function welcome_voice(socket){
+    var name = get_auth();
+    if(name)
+        tts(name + "님 안녕하세요");
+}
+
 function init(service, http){
     ls2 = service;
     server = http;
@@ -179,3 +196,4 @@ function init(service, http){
 exports.init = init;
 exports.set_auth = set_auth;
 exports.get_auth = get_auth;
+exports.welcome_voice = welcome_voice;

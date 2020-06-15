@@ -23,3 +23,8 @@ function get_engine_status(){
     var data = {"name":"get_engine_status"};
     socket.emit("ls-call", data);
 }
+
+function welcom_voice(){
+    var data = {"name": "welcome_voice"}
+    socket.emit("ls-call", data);
+}

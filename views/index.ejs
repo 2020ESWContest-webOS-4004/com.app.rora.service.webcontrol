@@ -20,6 +20,7 @@
       <img src="./media/logo_ESSC.jpg">
       <h1 id="test">name :  
         <% if(auth){ %>
+        <% welcome_voice(); %>
           <span class="name"><%= auth %></span>
         <% } else { %>
           <span class="stranger">미인증</span>

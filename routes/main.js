@@ -4,11 +4,13 @@ module.exports = function(app, utils)
         var name = req.query.name;
         var auth_flag = false;
 
+        var welcome_voice = utils.welcome_voice;
+
         if(name)
          var auth_flag = utils.set_auth(name);
 
         if(auth_flag){
-         res.render('index', {auth:name});
+         res.render('index', {auth:name, welcome_voice:welcome_voice});
         }
         else{
          utils.set_auth("");
