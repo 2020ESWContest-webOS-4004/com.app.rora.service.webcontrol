@@ -1,6 +1,8 @@
 var luna = require('./luna');
 var fs = require('fs');
 var env = require('./env/env.json');
+var http = require('http');
+var querystring = require('querystring');
 
 var io;
 var ls2;
@@ -173,6 +175,60 @@ function welcome_voice(socket){
         tts(name + "님 안녕하세요");
 }
 
+function help_request(type){
+    //dataType : DA(drive accident), TA(theft Accident)
+    //conscious : conscious status -> 1, unconscious status -> 0
+    var options;
+    var userName = get_auth();
+    var accidentTime = Date.now();
+    var req;
+
+    var options = { 
+        host: env.help_server_address,
+        path: env.help_server_path,
+        port: env.help_server_port,
+        headers: {'content-type': 'application/x-www-form-urlencoded'},
+        method: 'POST'
+    };
+
+    function readJSONResponse(response) {
+        var responseData = ''; 
+        response.on('data', function (chunk) {
+        responseData += chunk;
+        }); 
+
+        response.on('end', function () {
+            console.log(responseData);
+        }); 
+    }
+
+    if(type == "rescue"){
+        var param = querystring.stringify({
+            'landing_page': "data",
+            'dataType': "DA",
+            'driver_name': userName,
+            'conscious': '0',
+            'location': '서울 구로구 항동',
+            'accident_Time': accidentTime,
+            'car_number': env.car_number
+        });
+    }
+    if(type == "theft"){
+        var param = querystring.stringify({
+            'landing_page': "data",
+            'dataType': "TA",
+            'location': '서울 구로구 항동',
+            'accident_Time': accidentTime,
+            'car_number': env.car_number
+        });
+    }
+
+    req = http.request(options, readJSONResponse);
+
+    req.write(param);
+    req.end();
+}
+
 function init(service, http){
     ls2 = service;
     server = http;
@@ -197,3 +253,4 @@ exports.init = init;
 exports.set_auth = set_auth;
 exports.get_auth = get_auth;
 exports.welcome_voice = welcome_voice;
+exports.help_request = help_request;

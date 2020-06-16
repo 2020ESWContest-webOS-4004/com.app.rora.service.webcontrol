@@ -25,6 +25,16 @@ service.register("hello", function(message) {
     });
 });
 
+service.register("help_call", function(message){
+  var type = message.payload.type;
+  utils.help_request(type);
+
+  message.respond({
+    returnValue: true,
+    helpType: type
+  });
+});
+
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 app.use(express.static('./public'));
