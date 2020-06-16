@@ -110,6 +110,41 @@
       #icon-list {
         width: 540px;
       }
+      #assistant {
+        float:left;
+        width: 250px;
+        height: 251px;
+      }
+      .assistant-btn {
+        border:none;
+        color:rgb(191,191,191);
+        cursor:pointer;
+        background-color: rgb(51,53,80);
+      }
+      /* Darker background on mouse-over */
+      .btn:hover {
+        background-color: rgb(51,53,80);
+      }
+      div.voice_icon {
+        margin: auto;
+        margin-top: 10px;
+        width: 50%;
+        height:150px;
+        
+        margin-bottom: 10px;
+      }
+      div.voice_icon i {
+        color:rgb(191,191,191);
+        margin: auto;
+        padding: 5px;
+        font-size: 80px;
+        width: 100px;
+        height: 165px;
+        padding-left: 0px;
+        padding-right: 0px;
+        padding-top: 43px;
+        padding-bottom: 35px;
+      }
       #lock {
         width: 616px;
         height: 300px;
@@ -218,6 +253,15 @@
       }
       setInterval(getTime, 1000);
 
+      var voice = false;
+      function touch_voice(){
+        voice = !voice;
+        if(voice) 
+          document.getElementById("voice_img").style.color = "tomato";
+        else 
+          document.getElementById("voice_img").style.color = "rgb(191,191,191)";
+      }
+
       var socket = io();
       socket.on("status", (data) =>{
         document.getElementById("gear-word").innerHTML = data.word;
@@ -298,12 +342,13 @@
                 <p id="temper-num">29 ℃</p>
               </div>
               <div id="temper">
-                <img id="temper-img" src="./media/sun.jpg">
-                <p id="temper-num">29 ℃</p>
+                <img id="temper-img" src="./media/cloud.jpg">
+                <p id="temper-num">18 ℃</p>
               </div>
-              <div id="temper">
-                <img id="temper-img" src="./media/sun.jpg">
-                <p id="temper-num">29 ℃</p>
+              <div id="assistant">
+                <div class="voice_icon">
+                  <button onclick="touch_voice();" class="assistant-btn"><i id="voice_img" class="fas fa-microphone"></i></button>
+                </div>
               </div>
             </div>
           </div>

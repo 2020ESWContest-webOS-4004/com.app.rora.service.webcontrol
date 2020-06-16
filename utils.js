@@ -8,6 +8,7 @@ var io;
 var ls2;
 var server;
 var callList = {};
+var auth_count = 0;
 
 function callListinit(){
     callList['forward'] = forward;
@@ -32,15 +33,28 @@ function forward(socket){
     var auth = get_auth();
 
     if(!auth){
-        tts("사용자 인증이 필요합니다");
-        socket.broadcast.emit("user-auth", {"status":"no auth"});
-        return 0;
+        if(auth_count < 3){
+            auth_count += 1;
+            tts("사용자 인증이 필요합니다");
+            socket.broadcast.emit("user-auth", {"status":"no auth"});
+            return 0;
+        }
+        if(auth_count >= 3){
+            tts("차량도난 시도가 감지되어 사용자에게 알립니다");
+            var type = "theft";
+            help_request(type);
+            socket.broadcast.emit("user-auth", {"status":"no auth"});
+            return 0;
+        }
     }
+    
     else if(power == "0"){
+        auth_count = 0;
         tts("시동 버튼을 눌러주세요");
         socket.broadcast.emit("user-auth", {"status":"no power"});
         return 0;
     }
+    auth_count = 0;
     luna.get_infrared_value({}, function(m){
         status = m.payload.status;
         if(status == "detected"){
@@ -62,15 +76,27 @@ function backward(socket){
     var auth = get_auth();
 
     if(!auth){
-        tts("사용자 인증이 필요합니다");
-        socket.broadcast.emit("user-auth", {"status":"no auth"});
-        return 0;
+        if(auth_count < 3){
+            auth_count += 1;
+            tts("사용자 인증이 필요합니다");
+            socket.broadcast.emit("user-auth", {"status":"no auth"});
+            return 0;
+        }
+        if(auth_count >= 3){
+            tts("차량도난 시도가 감지되어 사용자에게 알립니다");
+            var type = "theft";
+            help_request(type);
+            socket.broadcast.emit("user-auth", {"status":"no auth"});
+            return 0;
+        }
     }
     else if(power == "0"){
+        auth_count = 0;
         tts("시동 버튼을 눌러주세요");
         socket.broadcast.emit("user-auth", {"status":"no power"});
         return 0;
     }
+    auth_count = 0;
     luna.rc_backward({"speed":""}, function(m){
         msg = m.payload.returnValue;
         socket.broadcast.emit("status", {"text": "후진", "word": "R", "speed": "25"});
@@ -82,15 +108,27 @@ function right(socket){
     var auth = get_auth();
 
     if(!auth){
-        tts("사용자 인증이 필요합니다");
-        socket.broadcast.emit("user-auth", {"status":"no auth"});
-        return 0;
+        if(auth_count < 3){
+            auth_count += 1;
+            tts("사용자 인증이 필요합니다");
+            socket.broadcast.emit("user-auth", {"status":"no auth"});
+            return 0;
+        }
+        if(auth_count >= 3){
+            tts("차량도난 시도가 감지되어 사용자에게 알립니다");
+            var type = "theft";
+            help_request(type);
+            socket.broadcast.emit("user-auth", {"status":"no auth"});
+            return 0;
+        }
     }
     else if(power == "0"){
+        auth_count = 0;
         tts("시동 버튼을 눌러주세요");
         socket.broadcast.emit("user-auth", {"status":"no power"});
         return 0;
     }
+    auth_count = 0;
     luna.rc_right({"speed":""}, function(m){
         msg = m.payload.returnValue;
         socket.broadcast.emit("status", {"text": "우회전", "word": "D", "speed": "25"});
@@ -102,15 +140,27 @@ function left(socket){
     var auth = get_auth();
 
     if(!auth){
-        tts("사용자 인증이 필요합니다");
-        socket.broadcast.emit("user-auth", {"status":"no auth"});
-        return 0;
+        if(auth_count < 3){
+            auth_count += 1;
+            tts("사용자 인증이 필요합니다");
+            socket.broadcast.emit("user-auth", {"status":"no auth"});
+            return 0;
+        }
+        if(auth_count >= 3){
+            tts("차량도난 시도가 감지되어 사용자에게 알립니다");
+            var type = "theft";
+            help_request(type);
+            socket.broadcast.emit("user-auth", {"status":"no auth"});
+            return 0;
+        }
     }
     else if(power == "0"){
+        auth_count = 0;
         tts("시동 버튼을 눌러주세요");
         socket.broadcast.emit("user-auth", {"status":"no power"});
         return 0;
     }
+    auth_count = 0;
     luna.rc_left({"speed":""}, function(m){
         msg = m.payload.returnValue;
         socket.broadcast.emit("status", {"text": "좌회전", "word": "D", "speed": "25"});
@@ -122,16 +172,27 @@ function stop(socket){
     var auth = get_auth();
 
     if(!auth){
-        tts("사용자 인증이 필요합니다");
-        socket.broadcast.emit("user-auth", {"status":"no auth"});
-        return 0;
+        if(auth_count < 3){
+            auth_count += 1;
+            tts("사용자 인증이 필요합니다");
+            socket.broadcast.emit("user-auth", {"status":"no auth"});
+            return 0;
+        }
+        if(auth_count >= 3){
+            tts("차량도난 시도가 감지되어 사용자에게 알립니다");
+            var type = "theft";
+            help_request(type);
+            socket.broadcast.emit("user-auth", {"status":"no auth"});
+            return 0;
+        }
     }
     else if(power == "0"){
+        auth_count = 0;
         tts("시동 버튼을 눌러주세요");
         socket.broadcast.emit("user-auth", {"status":"no power"});
         return 0;
     }
-
+    auth_count = 0;
     luna.rc_stop({"speed":""}, function(m){
         msg = m.payload.returnValue;
         socket.broadcast.emit("status", {"text": "정지", "word": "P", "speed": "0"});
@@ -235,6 +296,7 @@ function init(service, http){
     io = require('socket.io')(server);
     luna.init(service);
     callListinit();
+    var sockets;
 
     set_auth("");
     set_engine("0");    // if parameter is 0, engine status :off
@@ -245,7 +307,6 @@ function init(service, http){
             func(socket);
         });
     });
-
     exports.io = io;
 }
 
@@ -254,3 +315,5 @@ exports.set_auth = set_auth;
 exports.get_auth = get_auth;
 exports.welcome_voice = welcome_voice;
 exports.help_request = help_request;
+exports.set_engine = set_engine;
+exports.start_engine = start_engine;
