@@ -14,6 +14,21 @@ function stop_engine(){
     document.getElementById("btn_engine").onclick = start_engine;
 }
 
+var voice = false;
+function touch_voice(){
+    voice = !voice;
+    if(voice){
+        document.getElementById("voice_img").style.color = "tomato";
+        var data = {"name": "start_assistant"};
+        socket.emit("ls-call", data);
+    }
+    else {
+        document.getElementById("voice_img").style.color = "rgb(191,191,191)";
+        var data = {"name": "stop_assistant"};
+        socket.emit("ls-call", data);
+    }
+}
+
 function auth_user(){
     var data = {"name": "auth_user"};
     socket.emit("ls-call", data);

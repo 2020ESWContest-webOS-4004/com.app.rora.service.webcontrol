@@ -19,6 +19,8 @@ function callListinit(){
     callList['start_engine'] = start_engine;
     callList['stop_engine'] = stop_engine;
     callList['welcome_voice'] = welcome_voice;
+    callList['start_assistant'] = start_assistant;
+    callList['stop_assistant'] = stop_assistant;
 }
 
 function tts(ment){
@@ -234,6 +236,18 @@ function welcome_voice(socket){
     var name = get_auth();
     if(name)
         tts(name + "님 안녕하세요");
+}
+
+function start_assistant(socket){
+    tts("음성 비서를 시작합니다");
+    luna.start_assistant();
+    socket.broadcast.emit("assistant_status", {"status":"start"});
+}
+    
+function stop_assistant(socket){
+    tts("음성 비서를 종료 합니다");
+    luna.stop_assistant();
+    socket.broadcast.emit("assistant_status", {"status": "stop"});
 }
 
 function help_request(type){
