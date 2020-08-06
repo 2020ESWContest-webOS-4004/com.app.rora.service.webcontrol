@@ -25,7 +25,7 @@ function callListinit(){
 
 function tts(ment){
     luna.tts(ment, function(){
-        console.log("a");
+        console.log("[+] running tts");
     });
 }
 
@@ -38,6 +38,7 @@ function forward(socket){
         if(auth_count < 3){
             auth_count += 1;
             tts("사용자 인증이 필요합니다");
+            luna.toast_to_webOS("사용자 인증 필요");
             socket.broadcast.emit("user-auth", {"status":"no auth"});
             return 0;
         }
