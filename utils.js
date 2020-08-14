@@ -202,16 +202,14 @@ function stop(socket){
     });
 }
 
-// do not work.. :(
 function start_engine(socket){
-    set_engine("1"); //work..
-    socket.broadcast.emit("car_engine", {"status": "start"}); //not work..
+    set_engine("1");
+    socket.broadcast.emit("car_engine", {"status": "start"});
 }
 
-// do not work.. :(
 function stop_engine(socket){
-    set_engine("0"); //work..
-    socket.broadcast.emit("car_engine", {"status": "stop"}); //not work..
+    set_engine("0");
+    socket.broadcast.emit("car_engine", {"status": "stop"});
 }
 
 function get_engine(){
