@@ -1,3 +1,11 @@
+/**
+ * service      :   com.app.rora.service.webcontrol
+ * type         :   JSService
+ * date         :   2020.09.02
+ * author       :   소찬영(RORA PM)
+ * description  :   공유 모빌리티 제어를 위한 사용자 웹컨트롤러 서비스
+ */
+
 var pkgInfo = require('./package.json');
 var Service = require('webos-service');
 var express = require('express');
