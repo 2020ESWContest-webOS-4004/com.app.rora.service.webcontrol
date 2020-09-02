@@ -308,7 +308,8 @@ function help_request(type){
 //  카메라 인증요청 함수
 function request_camera(socket_client){
     tts("사용자 안면인식 시작");
-    socket_client.emit("chat message", "HELLO!!!!!!!!");    // opencv server로 face 인증 요청 처리 해야함
+    data = {result: "true"};
+    socket_client.emit("face recognition", data);    // opencv server로 face 인증 요청 처리 해야함
 }
 
 // 웹소켓 생성
@@ -332,8 +333,11 @@ function init(service, http){
         });
         exports.socket = socket;
     });
-    io_client.on('connect', () => {
+    io_client.on('connect', (socket) => {
         console.log("connection server");
+        socket.on('result_face_recognition', (data) => {
+            console.log(data.result);
+        });
     });
 
     exports.io = io;
