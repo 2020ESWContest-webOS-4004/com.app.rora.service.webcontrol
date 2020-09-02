@@ -43,3 +43,8 @@ function welcom_voice(){
     var data = {"name": "welcome_voice"}
     socket.emit("ls-call", data);
 }
+
+function request_camera(){
+    var data = {"name": "request_camera"};
+    socket.emit("ls-call", data);
+}

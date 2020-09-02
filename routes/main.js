@@ -24,5 +24,8 @@ module.exports = function(app, utils)
      });
      app.get('/dashboard',function(req, res){
         res.render('dashboard', {auth:req.query.auth});
-    });
+     });
+     app.get('/window', function(req, res){
+        res.render('window');
+     })
 }

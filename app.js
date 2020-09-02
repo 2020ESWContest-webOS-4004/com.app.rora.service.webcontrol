@@ -19,10 +19,10 @@ service.activityManager.create("keepAlive", function(activity){
 service.register("hello", function(message) {
   var name = message.payload.name ? message.payload.name : "World";
 
-    message.respond({
-        returnValue: true,
-        Response: "port :  " + env.port + "!"
-    });
+  message.respond({
+      returnValue: true,
+      Response: "port :  " + env.port + "!"
+  });
 });
 
 service.register("help_call", function(message){
@@ -32,6 +32,36 @@ service.register("help_call", function(message){
   message.respond({
     returnValue: true,
     helpType: type
+  });
+});
+
+service.register("get_auth", function(message){
+  var auth = utils.get_auth();
+
+  if(!auth)
+    auth = false;
+  message.respond({
+    returnValue: true,
+    auth: auth
+  });
+});
+
+// 카메라 서버에 얼굴인식을 요청
+service.register("request_camera", function(message){
+  var io_client = utils.io_client;
+  utils.request_camera(io_client);
+
+  message.respond({
+    returnValue: true
+  });
+});
+
+service.register("set_auth", function(message){
+  var value = message.payload.value;
+  utils.set_auth(value);
+
+  message.respond({
+    returnValue: true,
   });
 });
 

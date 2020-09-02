@@ -5,7 +5,9 @@ var http = require('http');
 var querystring = require('querystring');
 
 var io;
+var io_client;
 var ls2;
+var opencv_server;
 var server;
 var callList = {};
 var auth_count = 0;
@@ -303,10 +305,19 @@ function help_request(type){
     req.end();
 }
 
+//  카메라 인증요청 함수
+function request_camera(socket_client){
+    tts("사용자 안면인식 시작");
+    socket_client.emit("chat message", "HELLO!!!!!!!!");    // opencv server로 face 인증 요청 처리 해야함
+}
+
+// 웹소켓 생성
 function init(service, http){
     ls2 = service;
     server = http;
+    opencv_server = env.opencv_server;
     io = require('socket.io')(server);
+    io_client = require('socket.io-client')(opencv_server);    // for opencv
     luna.init(service);
     callListinit();
     var sockets;
@@ -319,8 +330,14 @@ function init(service, http){
             var func = callList[data.name];
             func(socket);
         });
+        exports.socket = socket;
     });
+    io_client.on('connect', () => {
+        console.log("connection server");
+    });
+
     exports.io = io;
+    exports.io_client = io_client;
 }
 
 exports.init = init;
@@ -330,3 +347,4 @@ exports.welcome_voice = welcome_voice;
 exports.help_request = help_request;
 exports.set_engine = set_engine;
 exports.start_engine = start_engine;
+exports.request_camera = request_camera;

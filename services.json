@@ -1,6 +1,6 @@
 {
   "id": "com.app.rora.service.webcontrol",
-  "description": "Web controler service for ESSC",
+  "description": "Web controler service for JARVIS",
   "services": [
     {
       "name": "com.app.rora.service.webcontrol"
