@@ -311,6 +311,7 @@ function help_request(type){
         }); 
     }
 
+    // 구조요청
     if(type == "rescue"){
         var param = querystring.stringify({
             'landing_page': "data",
@@ -322,6 +323,7 @@ function help_request(type){
             'car_number': env.car_number
         });
     }
+    // 도난사고 요청
     if(type == "theft"){
         var param = querystring.stringify({
             'landing_page': "data",
@@ -369,11 +371,11 @@ function init(service, http){
     });
 
     // openCV 서버 웹소켓 연결
-    io_client.on('connect', () => { // socket..?
+    io_client.on('connect', () => {
         console.log("connection server");
-        //socket.on('result_face_recognition', (data) => {
-        //    console.log(data.result);
-        //});
+    });
+    io_client.on('result_face_recognition', () => {
+        io_client.emit('test', 'AAAAA');
     });
 
     exports.io = io;
