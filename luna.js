@@ -1,4 +1,11 @@
-// a collection of Luna service calls
+/**
+ * service      :   com.app.rora.service.webcontrol
+ * type         :   JSService
+ * date         :   2020.08.28
+ * author       :   소찬영(RORA PM)
+ * description  :   nodeJS가 luna service 호출할 때 사용하는 함수 정의
+ */
+
 var ls2 = undefined;
 
 function init(s){
