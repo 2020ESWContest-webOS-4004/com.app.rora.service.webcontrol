@@ -33,6 +33,7 @@ service.register("hello", function(message) {
   });
 });
 
+// 사고 발생 시 구조요청 서비스
 service.register("help_call", function(message){
   var type = message.payload.type;
   utils.help_request(type);
@@ -43,6 +44,7 @@ service.register("help_call", function(message){
   });
 });
 
+// 차량 인증 상태 확인하는 서비스
 service.register("get_auth", function(message){
   var auth = utils.get_auth();
 
@@ -64,6 +66,7 @@ service.register("request_camera", function(message){
   });
 });
 
+// 차량 인증이 성공할 경우 인증완료 처리하는 서비스
 service.register("set_auth", function(message){
   var value = message.payload.value;
   utils.set_auth(value);
