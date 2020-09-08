@@ -52,7 +52,6 @@ function forward(socket){
         if(auth_count < 3){
             auth_count += 1;
             tts("사용자 인증이 필요합니다");
-            luna.toast_to_webOS("사용자 인증 필요");
             socket.broadcast.emit("user-auth", {"status":"no auth"});
             return 0;
         }
@@ -379,7 +378,12 @@ function init(service, http){
     });
 
     exports.io = io;
+
     exports.io_client = io_client;
+}
+
+function toast_to_webOS(msg){
+    luna.toast_to_webOS(msg);
 }
 
 exports.init = init;
@@ -390,3 +394,4 @@ exports.help_request = help_request;
 exports.set_engine = set_engine;
 exports.start_engine = start_engine;
 exports.request_camera = request_camera;
+exports.toast_to_webOS = toast_to_webOS;

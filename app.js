@@ -60,6 +60,7 @@ service.register("get_auth", function(message){
 service.register("request_camera", function(message){
   var io_client = utils.io_client;
   utils.request_camera(io_client);
+  utils.toast_to_webOS("얼굴 인식을 시작합니다.");
 
   message.respond({
     returnValue: true

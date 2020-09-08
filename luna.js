@@ -52,10 +52,10 @@ function stop_assistant(){
     ls2.call("luna://com.webos.service.ai.voice/stop", {}, callback);
 }
 
-//function toast_to_webOS(msg){
-//    callback = function() {console.log("[+] toast_to_webos");}
-//    ls2.call("luna://com.webos.notification/createToast", {"sourceId": "com.webos.app.test", "onclick": {"appId":"com.webos.app.test"}, "message": msg, "noaction": false,"persistent":true}, callback);
-//}
+function toast_to_webOS(msg){
+    callback = function() {console.log("[+] toast_to_webos");}
+    ls2.call("luna://com.webos.notification/createToast", {"sourceId":"com.app.rora.service.webcontrol","onclick": {"appId":"com.app.rora"},"message":msg,"noaction": false,"persistent":true}, callback);
+}
 
 exports.init = init;
 exports.rc_forward = rc_forward;
@@ -67,4 +67,4 @@ exports.get_infrared_value = get_infrared_value;
 exports.tts = tts;
 exports.start_assistant = start_assistant;
 exports.stop_assistant = stop_assistant;
-//exports.toast_to_webOS = toast_to_webOS;
+exports.toast_to_webOS = toast_to_webOS;
