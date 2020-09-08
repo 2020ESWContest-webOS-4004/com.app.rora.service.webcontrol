@@ -1,12 +1,12 @@
 {
   "name": "com.app.rora.service.webcontrol",
-  "version": "1.0.0",
-  "description": "Web controler service for ESSC",
+  "version": "1.0.2",
+  "description": "Web control service for JARVIS",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "TEAM RORA",
   "license": "BSD",
   "dependencies": {
     "child_process": "^1.0.2",
