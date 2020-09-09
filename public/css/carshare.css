@@ -1,0 +1,27 @@
+body, html { height: 100%; } 
+#app { 
+    height: 100%;
+}
+#content {
+    height: 100%;
+    display: flex;
+}
+#map { 
+    width: 50%;
+    height: 100%;
+    border-right: 1px solid gray;
+}
+#map_info {
+    padding: 1rem;
+
+}
+#result {
+    margin-top: 2rem;
+}
+nav {
+    background-color : rgb(30, 36, 59);
+}
+
+nav ul{
+    margin-left: 2rem;
+}

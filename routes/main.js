@@ -28,4 +28,8 @@ module.exports = function(app, utils)
      app.get('/window', function(req, res){
         res.render('window');
      })
+
+     app.get('/share', function(req, res) {
+        res.render('carshare');
+     })
 }
