@@ -5,6 +5,8 @@
     <head>
         <meta charset="utf-8">
         <title>Test</title>
+        <!--Custom CSS-->
+        <link rel="stylesheet" type="text/css" href="css/reset.css">
         <link rel="stylesheet" type="text/css" href="css/carshare.css">
 
         <!--BootStrapCDN-->
@@ -20,13 +22,14 @@
         <!--카카오 맵-->
         <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1d0a159da55940360f13d50b0203bb38"></script>
         
-        
+        <!--Font Awesome-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
         
     </head>
 
     <body>
         <div id="app">
-            <!-- As a heading -->
+            <!-- As a heading 
             <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: rgb(30, 36, 59)">
                 <span class="navbar-brand mb-0 h1">JARVIS</span>
 
@@ -42,17 +45,44 @@
                 </div>
             
             </nav>
+            -->
             <div id="content">
-                <div id="map"></div>
+                <div id="map">
+                    <div id="rent_request">
+                        <button type="button" onclick="rent_request()">대여하기</button>
+                    </div>
+                    <div id="search" class="input-group md-form form-sm form-2 pl-0">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">주소검색</span>
+                        </div>
+                        <input id="address_input" class="form-control my-0 py-1 amber-border" type="text" placeholder="Search" aria-label="Search">
+                        <div class="input-group-append">
+                          <span class="input-group-text amber lighten-3" id="basic-text1"><i class="fas fa-search text-grey"
+                              aria-hidden="true"></i></span>
+                        </div>
+                    </div>
+                    
+                    <div id="floating_sidebar">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                    
                 
-                <div id="map_info">
-                     <button id="first_choice" type="button" class="btn btn-primary">첫번째 마커</button>
-                     <button id="second_choice" type="button" class="btn btn-primary">두번째 마커</button>
-
-                     <p id="result">경로를 설정해주세요.</p>
+                    
                 </div>
+                
+                <div id="rent_ready">
+                     <div id="card1" class="share_card"></div>
+                     <div id="card2" class="share_card"></div>
+                     <div id="card3" class="share_card"></div>
+                     <button type="button" id="share_start">대여 시작</button>
+
+                     
+                </div>
+                
             </div>
         </div>
+        <!--Custom JS-->
         <script type="text/javascript" src="js/kakaoMap.js"></script>
+        <script type="text/javascript" src="js/carshare.js"></script>
     </body>
 </html>
