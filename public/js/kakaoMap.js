@@ -8,19 +8,11 @@ var options = {
 
 var map = new kakao.maps.Map(container, options);
 
-/*
-// 마커가 표시될 위치입니다 
-var markerPosition  = new kakao.maps.LatLng(37.487113, 126.825320); 
+// 주소-좌표 변환 객체를 생성합니다
+var geocoder = new kakao.maps.services.Geocoder();
 
-    
-// 마커를 생성합니다
-var marker = new kakao.maps.Marker({
-    position: markerPosition
-});
-
-
-marker.setMap(map);
-*/
+var marker = new kakao.maps.Marker(), // 클릭한 위치를 표시할 마커입니다
+    infowindow = new kakao.maps.InfoWindow({zindex:1}); // 클릭한 위치에 대한 주소를 표시할 인포윈도우입니다
 
 // 지도가 이동, 확대, 축소로 인해 중심좌표가 변경되면 마지막 파라미터로 넘어온 함수를 호출하도록 이벤트를 등록합니다
 marker_repositon = kakao.maps.event.addListener(map, 'center_changed', function() {
@@ -40,20 +32,38 @@ marker_repositon = kakao.maps.event.addListener(map, 'center_changed', function(
 });
 
 
-var marker = new kakao.maps.Marker();
-
 // 타일 로드가 완료되면 지도 중심에 마커를 표시합니다
 kakao.maps.event.addListener(map, 'tilesloaded', displayMarker);
 
 function displayMarker() {
-    
-    // 마커의 위치를 지도중심으로 설정합니다 
-    marker.setPosition(map.getCenter()); 
-    marker.setMap(map); 
 
-    // 아래 코드는 최초 한번만 타일로드 이벤트가 발생했을 때 어떤 처리를 하고 
-    // 지도에 등록된 타일로드 이벤트를 제거하는 코드입니다 
-    // kakao.maps.event.removeListener(map, 'tilesloaded', displayMarker);
+    searchDetailAddrFromCoords(map.getCenter(), function (result, status) {
+        if (status === kakao.maps.services.Status.OK) {
+            var detailAddr = !!result[0].road_address ? '<div>도로명주소 : ' + result[0].road_address.address_name + '</div>' : '';
+            detailAddr += '<div>지번 주소 : ' + result[0].address.address_name + '</div>';
+            
+            var add_content = '<div class="bAddr">' +
+                            '<span class="title">법정동 주소정보</span>' + 
+                            detailAddr + 
+                        '</div>';
+            
+            
+
+
+            // 마커의 위치를 지도중심으로 설정합니다 
+            marker.setPosition(map.getCenter());
+            marker.setMap(map);
+
+            // 인포윈도우에 클릭한 위치에 대한 법정동 상세 주소정보를 표시합니다
+            infowindow.setContent(add_content);
+            
+
+            infowindow.open(map, marker);
+        }
+    })
+    
+
+
 }
 
 
@@ -72,4 +82,7 @@ function panTo() {
     map.panTo(moveLatLon);            
 }        
 
-
+function searchDetailAddrFromCoords(coords, callback) {
+    // 좌표로 법정동 상세 주소 정보를 요청합니다
+    geocoder.coord2Address(coords.getLng(), coords.getLat(), callback);    
+}

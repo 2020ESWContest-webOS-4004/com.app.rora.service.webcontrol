@@ -19,22 +19,32 @@ body { width: 100%; height: 100%; margin: 0; padding: 0;}
     height: 100%;
     /*원래는 border-right: 1px solid gray; */
 }
-#rent_ready {
+
+#rent {
+    display: none;
     width: 100%;
     max-width: 50%;
+    
+}
+#rent_ready {
     /*원래는 display: flex*/
-    display: none;
+    height: 90%;
+    display: flex;
     flex-direction: column;
+    overflow-y: auto; 
+    
 }
 .share_card {
-    flex: 1;
     width: 100%;
+    height: 200px;
     border: 1px solid black;
     background-color: gainsboro;
+    padding: 1rem;
 }
 
 #share_start {
-    flex: 1;
+    width: 100%; 
+    height: 10%;
     color: white;
     background-color: rgb(30, 36, 59);
     border: 0;
