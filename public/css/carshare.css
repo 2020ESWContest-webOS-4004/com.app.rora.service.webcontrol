@@ -5,10 +5,9 @@ input[type="text"]:focus {
 }
 
 html { width: 1024px; height: 600px; } 
-body { width: 100%; height: 100%; margin: 0; padding: 0;} 
-#app { 
-    height: 100%;
-}
+body { width: 100%; height: 100%;} 
+#app { width: 100%; height: 100%;} 
+
 #content {
     height: 100%;
     display: flex;
@@ -37,9 +36,14 @@ body { width: 100%; height: 100%; margin: 0; padding: 0;}
 .share_card {
     width: 100%;
     height: 200px;
-    border: 1px solid black;
-    background-color: gainsboro;
+    border: 0.5px solid rgba(131, 131, 131, 0.527);
+    background-image: linear-gradient(white,gainsboro);
     padding: 1rem;
+}
+
+.share_card .share_card_img {
+    width: 40%;
+    height: 100%;
 }
 
 #share_start {
@@ -94,7 +98,7 @@ nav ul{
 }
 
 #floating_sidebar {
-    position: fixed;
+    position: absolute;
     left: 3%;
     top: 5%;
     z-index: 2;

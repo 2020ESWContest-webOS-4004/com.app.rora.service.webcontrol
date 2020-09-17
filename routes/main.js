@@ -30,4 +30,7 @@ module.exports = function (app, utils) {
    app.get('/share', function (req, res) {
       res.render('carshare');
    })
+   app.get('/share/end', function (req, res) {
+      res.render('carsharepayment');
+   })
 }

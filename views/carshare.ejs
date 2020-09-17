@@ -7,7 +7,9 @@
         <title>Connected Car Share</title>
         <!--Custom CSS-->
         <link rel="stylesheet" type="text/css" href="css/reset.css">
+        <link rel="stylesheet" type="text/css" href="css/sidemenu.css">
         <link rel="stylesheet" type="text/css" href="css/carshare.css">
+        
 
         <!--BootStrapCDN-->
         <!-- CSS only -->
@@ -28,9 +30,17 @@
     </head>
 
     <body>
+        
         <div id="app">
+            <div id="mySidenav" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">X</a>
+                <a href="#" class="navigator">면허등록</a>
+                <a href="#" class="navigator">카드등록</a>
+                <a href="#" class="navigator">이용안내</a>
+            </div>
             <div id="content">
                 <div id="map">
+                    
                     <div id="rent_request">
                         <button type="button" onclick="rent_request()">대여하기</button>
                     </div>
@@ -45,7 +55,7 @@
                         </div>
                     </div>
                     
-                    <div id="floating_sidebar">
+                    <div id="floating_sidebar" onclick="openNav()">
                         <i class="fas fa-bars"></i>
                     </div>
                     
@@ -55,13 +65,13 @@
                 <div id="rent">
                     <div id="rent_ready">
                         <div id="card1" class="share_card">
-                            <img src="media/license.jpg" width="30%" height="100%">
+                            <img src="media/license.jpg" class="share_card_img">
                         </div>
                         <div id="card2" class="share_card">
-                            <img src="media/credit_card.jpg" width="30%" height="100%">
+                            <img src="media/credit_card.jpg" class="share_card_img">
                         </div>
                         <div id="card3" class="share_card">
-                            <img src="media/ending_time.jpg" width="30%" height="100%">
+                            <img src="media/ending_time.jpg" class="share_card_img">
                         </div>
                     </div>
                     <button type="button" id="share_start" onclick="gotoEnd()">대여 시작</button>
@@ -72,6 +82,7 @@
         <!--Custom JS-->
         <script type="text/javascript" src="js/kakaoMap.js"></script>
         <script type="text/javascript" src="js/carshare.js"></script>
+        <script type="text/javascript" src="js/sidemenu.js"></script>
         <script>
             function gotoEnd() {
                 window.location = 'share/end';
