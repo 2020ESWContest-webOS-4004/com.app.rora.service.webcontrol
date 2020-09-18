@@ -12,6 +12,7 @@ var fs = require('fs');
 var env = require('./env/env.json');
 var http = require('http');
 var querystring = require('querystring');
+var utils = require('./utils');
 
 var io;
 var io_client;
@@ -20,6 +21,8 @@ var opencv_server;
 var server;
 var callList = {};
 var auth_count = 0;
+var userid;
+var username;
 
 function callListinit(){
     callList['forward'] = forward;
@@ -340,10 +343,12 @@ function help_request(type){
 }
 
 //  카메라 인증요청 함수
-function request_camera(socket_client){
-    tts("사용자 안면인식 시작");
-    var data = {result: "true"};
-    socket_client.emit("face recognition", data);    // opencv server로 face 인증 요청 처리 해야함
+function request_camera(socketio, socketio_client){
+    tts("화면을 바라봐주세요");
+    var data = {"status": "open"};
+    socketio.broadcast.emit("open_camera", data);   // webOS front에 카메라 개방
+    js_sleep(2500);
+    socketio_client.emit("face recognition", data);    // opencv server로 face 인증 요청
 }
 
 // 웹소켓 생성
@@ -366,6 +371,7 @@ function init(service, http){
             var func = callList[data.name];
             func(socket);
         });
+        sockets = socket;
         exports.socket = socket;
     });
 
@@ -373,8 +379,28 @@ function init(service, http){
     io_client.on('connect', () => {
         console.log("connection server");
     });
-    io_client.on('result_face_recognition', () => {
-        io_client.emit('test', 'AAAAA');
+    io_client.on('auth-data', (data) => {
+        var auth_data = data;  // 인증받은 데이터
+
+        if(auth_data.result == true){  // 얼굴 인증 성공
+            // nodejs 로그인 세션 구현
+            //
+            //
+            userid = auth_data.userid;  // 인증 받은 사용자의 아이디 (전역변수)
+            username = auth_data.username;  // 인증 받은 사용자의 이름 (전역변수)
+
+            // 세션처리 구현해야함
+            //
+            sockets.emit('face_auth_success', "");
+        }
+        if(auth_data.result == false){
+            // 로그인 실패 시 로직 구현
+            //
+            //
+            console.log("fail");
+            sockets.emit('face_auth_fail', "");
+        }
+        io_client.emit('test', auth_data);
     });
 
     exports.io = io;
@@ -382,8 +408,14 @@ function init(service, http){
     exports.io_client = io_client;
 }
 
+// luna service에 구현된 tts를 call하는 함수
 function toast_to_webOS(msg){
     luna.toast_to_webOS(msg);
+}
+
+// sleep 구현
+async function js_sleep(time){
+    await new Promise(r => setTimeout(r, time));
 }
 
 exports.init = init;
@@ -395,3 +427,4 @@ exports.set_engine = set_engine;
 exports.start_engine = start_engine;
 exports.request_camera = request_camera;
 exports.toast_to_webOS = toast_to_webOS;
+exports.js_sleep = js_sleep;

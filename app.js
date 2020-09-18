@@ -58,9 +58,10 @@ service.register("get_auth", function(message){
 
 // 카메라 서버에 얼굴인식을 요청
 service.register("request_camera", function(message){
-  var io_client = utils.io_client;
-  utils.request_camera(io_client);
-  utils.toast_to_webOS("얼굴 인식을 시작합니다.");
+  var socketio = utils.socket;
+  var socketio_client = utils.io_client;
+  utils.request_camera(socketio, socketio_client);
+  utils.toast_to_webOS("페이스 인증 시작");
 
   message.respond({
     returnValue: true
