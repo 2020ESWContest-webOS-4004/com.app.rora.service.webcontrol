@@ -1,3 +1,5 @@
+@import url(https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css);
+
 html {
     height: 100%;
   }
@@ -7,6 +9,7 @@ html {
     margin:0;
     background-color: rgb(61, 62, 93);
     height: 100%;
+    font-family: 'NanumSquare', sans-serif;
   }
 
   div.topbar {
@@ -292,7 +295,7 @@ html {
   #temper-img {
     width: 100px;
     margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     margin-left: 50px;
   }
 
