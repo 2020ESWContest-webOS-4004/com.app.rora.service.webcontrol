@@ -11,7 +11,6 @@ module.exports = function (app, utils) {
 
       if (power == "1")
          utils.set_engine(power);
-      //utils.start_engine(utils.io.sockets.sockets);
 
       if (auth_flag) {
          res.render('index', { auth: name, welcome_voice: welcome_voice });
