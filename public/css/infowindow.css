@@ -1,0 +1,36 @@
+.info_address {
+    border-radius: 1rem; 
+    margin-bottom: 2rem; 
+    float:left;
+    position: relative; 
+    border: 1px solid #ccc;
+    border-bottom: 2px solid #ddd;
+    background-color:#fff;
+}
+.info_address .title {
+    text-align: center;
+    display: block; 
+    background: rgb(30, 36, 59);
+    text-decoration: none; 
+    color: #fff; 
+    padding: 0.5rem; 
+    border-radius: 6px 6px 0 0
+}   
+.info_address .desc {
+    padding:1rem; 
+    position: relative; 
+    min-width: 190px;
+}
+.info_address .address {
+    font-size: 12px; 
+    color: #333;
+}
+.info_address:after {
+    content:'';
+    position: absolute; 
+    margin-left: -11px; 
+    left: 50%; 
+    bottom: -12px; 
+    width: 22px; 
+    height: 12px; 
+    background:url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png) no-repeat 0 bottom;}

@@ -71,11 +71,7 @@ nav ul{
     left:50%;
     transform:translateX(-50%);
     width: 500px;
-    
-    background-color: white;
     z-index: 2;
-
-    
 }
 
 #rent_request {
@@ -136,4 +132,8 @@ nav ul{
     font-size: 1.8em;
     padding: 0;
     margin: .22em 0 0 0;
+}
+
+#basic-text1 {
+    cursor: pointer;
 }

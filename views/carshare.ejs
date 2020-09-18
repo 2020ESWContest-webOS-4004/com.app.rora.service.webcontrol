@@ -9,7 +9,8 @@
         <link rel="stylesheet" type="text/css" href="css/reset.css">
         <link rel="stylesheet" type="text/css" href="css/sidemenu.css">
         <link rel="stylesheet" type="text/css" href="css/carshare.css">
-        
+        <link rel="stylesheet" type="text/css" href="css/infowindow.css">
+        <link rel="stylesheet" type="text/css" href="css/search.css">
 
         <!--BootStrapCDN-->
         <!-- CSS only -->
@@ -32,6 +33,7 @@
     <body>
         
         <div id="app">
+            
             <div id="mySidenav" class="sidenav">
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">X</a>
                 <a href="#" class="navigator">면허등록</a>
@@ -44,16 +46,31 @@
                     <div id="rent_request">
                         <button type="button" onclick="rent_request()">대여하기</button>
                     </div>
-                    <div id="search" class="input-group md-form form-sm form-2 pl-0">
+                    <div  id="search" >
+                    <div class="input-group md-form form-sm form-2 pl-0">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1">주소검색</span>
                         </div>
                         <input id="address_input" class="form-control my-0 py-1 amber-border" type="text" placeholder="Search" aria-label="Search">
+
+                    
                         <div class="input-group-append">
-                          <span class="input-group-text amber lighten-3" id="basic-text1"><i class="fas fa-search text-grey"
+                          <span class="input-group-text amber lighten-3" id="basic-text1" onclick="search()"><i class="fas fa-search text-grey"
                               aria-hidden="true"></i></span>
                         </div>
                     </div>
+
+                    
+                    <div id="search_result_box">
+                        <h5>주소 검색 결과</h5>
+                        <div id="address_search_result_print">
+                        </div>
+        
+                        <h5>단어 검색 결과</h5>
+                        <div id="keyword_search_result_print">
+                        </div>
+                    </div>
+                </div>
                     
                     <div id="floating_sidebar" onclick="openNav()">
                         <i class="fas fa-bars"></i>

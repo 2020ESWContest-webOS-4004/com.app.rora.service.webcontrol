@@ -1,0 +1,36 @@
+#search_result_box{
+    position: relative;
+    top: -10%;
+    left: 5%;
+    background-color : rgba(255, 255, 255, 0.9);
+    
+    padding: 1rem;
+    overflow: auto;
+    margin: 0 4rem;
+    margin-bottom: 1rem;
+}
+
+#search_result_box #address_search_result_print {
+    border: 1px solid gray;
+    padding: 0.5rem;
+}
+
+#search_result_box #keyword_search_result_print {
+    border: 1px solid gray;
+    padding: 0.5rem;
+}
+
+#search_result_box .result_card {
+    border: 1px solid gray;
+    padding: 1rem;
+    cursor: pointer;
+}
+
+#search_result_box .result_card .address{
+    font-size: 1rem;
+}
+#search_result_box .result_card .road_address{
+    color: gray;
+    font-size:0.8rem;
+    
+}

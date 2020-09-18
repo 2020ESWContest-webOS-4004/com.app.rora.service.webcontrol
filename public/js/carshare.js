@@ -24,3 +24,24 @@ function rent_close() {
     removeMapClickEnent();
 }
 
+function search() {
+    let address_str = document.getElementById("address_input").value;
+    
+    console.log(address_str);
+
+    if(address_str == '') {
+        alert('error');
+    }
+    else {
+        addressSearchFromAddress(address_str);
+        addressSearchFromKeyword(address_str);
+    }
+}
+
+function test(){  
+    var inputBox = document.getElementById("address_input");             
+    var testDiv = document.getElementById("search_result_box");             
+    testDiv.style.top=inputBox.offsetTop+inputBox.offsetHeight;  
+    testDiv.style.left=inputBox.offsetLeft;  
+      
+}  
