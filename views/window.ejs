@@ -6,90 +6,84 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
       integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/dbe9c06d6b.js" crossorigin="anonymous"></script>
-    <title>DASHBOARD</title>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <title>WINDOWS</title>
     <script type="text/javascript" src="./js/webOS.js"></script>
-    <script type="text/javascript" src="./js/rc.js"></script>
-    <script type="text/javascript" src="./js/infortainment.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/dashboard.css">
+    <script type="text/javascript" src="./js/face_utils.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/window.css">
     <script src="/socket.io/socket.io.js"></script>
     <script>
       var socket = io();
 
-      socket.on("assistant_status", (data) => {
-        var status = data.status;
-        if (status == "start") {
-          document.getElementById("voice_img").style.color = "tomato";
-          console.log("[+] vpa start");
-        }
-        if (status == "stop") {
-          document.getElementById("voice_img").style.color = "rgb(191,191,191)";
-          console.log("[+] vpa stop");
-        }
-      })
+      socket.on("face-auth", (data) => {
+        var result = data.result;
+        var userid = data.userid;
+        var username = data.username;
 
-      socket.on("car_engine", (data) => {
-        var status = data.status;
-        console.log("status : " + status);
-        if (status == "start") {
-          console.log("start..");
-          document.getElementById("lock_icon").style.color = "green";
-          document.getElementById("btn_engine").value = "Engine Stop";
-          document.getElementById("btn_engine").onclick = stop_engine;
+        if(result){
+          console.log("[+] Auth success!");
         }
-        if (status == "stop") {
-          console.log("stop..");
-          document.getElementById("lock_icon").style.color = "#a4113e";
-          document.getElementById("btn_engine").value = "Engine Start";
-          document.getElementById("btn_engine").onclick = start_engine;
+        else{
+          console.log("[-] Auth fail..");
         }
       });
-      socket.on("user-auth", (data) => {
-        var status = data.status;
-        if (status == "no auth")
-          console.log("no authorization");
-        else if (status == "no power")
-          console.log("no power");
+
+      socket.on("open_camera", (data) => {
+        if(data.status == "open"){
+          console.log("[+] camera open");
+          opencamera();
+        }
+      });
+
+      socket.on("face_auth_success", (data) => {
+        console.log("[+] success auth");
+        face_auth_success();
+      });
+
+      socket.on("face_auth_fail", (data) => {
+        console.log("[+] fail auth");
+        face_auth_fail();
       });
     </script>
   </head>
   <body>
-    <div class="topbar">
-        <ul class="topbar-item">
-          <a href="./dashboard">사용자 인증</a>
-        </ul>
-    </div>
-    <div class="board">
-      <div class="container">
-        <div class="camera-area">
-          <img class="picamera" src="https://i.stack.imgur.com/aKJ5L.png">
-        </div>
-        <div class="status-area">
-          <div class="status-head">
-            <span class="status-title">잠김</span>
+    <div id="background">
+      <div id="left-section">
+        <div class="face-auth-area">
+          <div class="camera-area">
+            <img id="face-auth-camera" src="./media/face-auth.png">
           </div>
-          <div class="status-board">
-            <div class="status-board-left">
-              <div class="left-keyword">
-                <span>이름 : </span>
-              </div>
-              <div class="left-keyword">
-                <span>시간 : </span>
-              </div>
-              <div class="left-keyword">
-                <span>등급 : </span>
-              </div>
-            </div>
-            <div class="status-board-right">
-              <div class="left-keyword">
-                <span id="board-name"></span>
-              </div>
-              <div class="left-keyword">
-                <span id="board-time" class="auth-time">2020-08-16 15:20</span>
-              </div>
-              <div class="left-keyword">
-                <span board-grade>master</span>
-              </div>
-            </div>
+          <div class="face-auth-text">
+            <span id="face-auth-text-span" class="light">
+              얼굴인식을 시작하려면 창문을 두드려주세요
+            </span>
+          </div>
+        </div>
+      </div>
+      <div id="right-section">
+        <div class="right-section-logo">
+          <img src="./media/jarvis_logo.png">
+        </div>
+        <div class="right-section-car">
+          <img src="./media/jarvis_my_car.png">
+        </div>
+        <div class="reservation-status">
+            <i id="reservation-status-mark" class="fas fa-spinner fa-pulse fa-3x"></i>
+            <strong id="reservation-status-text" class="reservation-wait">대기중</strong>
+        </div>
+        <!--성공하면 출력할 결과물-->
+        <div id="reservation-result-area" class="reservation-contents">
+          <div class="user-name">
+            <span class="extra">예약자 | </span>
+            <span class="light">소찬영</span>
+          </div>
+          <div class="reserved-time">
+            <span class="extra">예약시간 | </span>
+            <span id="reserved-time-text" class="time">2020년 09월 17일 오후 07시 10분</span>
+          </div>
+          <div class="car-number">
+            <span class="extra">차량번경 | </span>
+            <span id="reserved-car-number" class="light">123-가-1234</span>
           </div>
         </div>
       </div>
