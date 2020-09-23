@@ -373,9 +373,11 @@ function init(service, http){
             func(socket);
         });
 
-        socket.on('auth-data', (data) => {
+        socket.on('auth-data', async (data) => {
             //var auth_data = JSON.parse(data);
             var auth_data = data;
+
+            await js_sleep(5000);
 
             if(auth_data.result == true){  // 얼굴 인증 성공
                 
@@ -418,8 +420,8 @@ function toast_to_webOS(msg){
 }
 
 // sleep 구현
-async function js_sleep(time){
-    await new Promise(r => setTimeout(r, time));
+function js_sleep(time){
+    return new Promise(r => setTimeout(r, time));
 }
 
 exports.init = init;
