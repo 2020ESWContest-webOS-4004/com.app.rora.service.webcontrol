@@ -90,15 +90,21 @@
           </ul>
           <ul class="navbar-nav ml-auto" style="margin-right: 0px">
             <li class="nav-item dropdown">
+              <%if(session.username) {%>
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                소찬영 님
+                <%= session.username %> 님
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="#">개인정보</a>
                 <a class="dropdown-item" href="#">대여종료</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">로그아웃</a>
+                <a class="dropdown-item" href="./logout">로그아웃</a>
               </div>
+              <%} else {%>
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                로그인
+              <%}%>
+              </a>
             </li>
           </ul>
         </div>

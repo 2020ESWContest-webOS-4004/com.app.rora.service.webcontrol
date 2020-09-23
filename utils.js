@@ -13,6 +13,7 @@ var env = require('./env/env.json');
 var http = require('http');
 var querystring = require('querystring');
 var utils = require('./utils');
+var bioAuth = require('./auth');
 
 var io;
 var io_client;
@@ -346,23 +347,23 @@ function help_request(type){
 function request_camera(socketio, socketio_client){
     tts("화면을 바라봐주세요");
     var data = {"status": "open"};
-    socketio.broadcast.emit("open_camera", data);   // webOS front에 카메라 개방
-    js_sleep(2500);
-    socketio_client.emit("face recognition", data);    // opencv server로 face 인증 요청
+    socketio.emit("open_camera", data);   // webOS front에 카메라 인증요청
+    socketio_client.emit('face_test', {status: "open"});
 }
 
 // 웹소켓 생성
 function init(service, http){
     ls2 = service;
     server = http;
-    opencv_server = env.opencv_server;
+    opencv_server = env.opencv_test;
     io = require('socket.io')(server);
     io_client = require('socket.io-client')(opencv_server);    // for opencv
     luna.init(service);
     callListinit();
     var sockets;
+    var fs = require('fs');
 
-    set_auth("");
+    set_auth("");   // 인증 초기화
     set_engine("0");    // if parameter is 0, engine status :off
 
     // webOS OSE 웹소켓 연결
@@ -371,6 +372,32 @@ function init(service, http){
             var func = callList[data.name];
             func(socket);
         });
+
+        socket.on('auth-data', (data) => {
+            //var auth_data = JSON.parse(data);
+            var auth_data = data;
+
+            if(auth_data.result == true){  // 얼굴 인증 성공
+                
+                bioAuth.jarvis_login(auth_data);
+
+                if(auth_data && auth_data.userid && auth_data.username){
+                    socket.emit('face_auth_success', auth_data);
+                }
+                else{
+                    socket.emit('face_auth_fail', '');
+                }
+            }
+
+            if(auth_data.result == false){
+                // 로그인 실패 시 로직 구현
+                //
+                //
+                console.log("[-] login fail");
+                socket.broadcast.emit('face_auth_fail', '');
+            }
+        });
+
         sockets = socket;
         exports.socket = socket;
     });
@@ -378,29 +405,6 @@ function init(service, http){
     // openCV 서버 웹소켓 연결
     io_client.on('connect', () => {
         console.log("connection server");
-    });
-    io_client.on('auth-data', (data) => {
-        var auth_data = data;  // 인증받은 데이터
-
-        if(auth_data.result == true){  // 얼굴 인증 성공
-            // nodejs 로그인 세션 구현
-            //
-            //
-            userid = auth_data.userid;  // 인증 받은 사용자의 아이디 (전역변수)
-            username = auth_data.username;  // 인증 받은 사용자의 이름 (전역변수)
-
-            // 세션처리 구현해야함
-            //
-            sockets.emit('face_auth_success', "");
-        }
-        if(auth_data.result == false){
-            // 로그인 실패 시 로직 구현
-            //
-            //
-            console.log("fail");
-            sockets.emit('face_auth_fail', "");
-        }
-        io_client.emit('test', auth_data);
     });
 
     exports.io = io;
