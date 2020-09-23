@@ -7,7 +7,7 @@
       integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/dbe9c06d6b.js" crossorigin="anonymous"></script>
     <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <title>WINDOWS</title>
+    <title><% if(session.username) {%>WINDOWS<%} else {%>T.T <% }%></title>
     <script type="text/javascript" src="./js/webOS.js"></script>
     <script type="text/javascript" src="./js/face_utils.js"></script>
     <link rel="stylesheet" type="text/css" href="css/window.css">
@@ -15,33 +15,28 @@
     <script>
       var socket = io();
 
-      socket.on("face-auth", (data) => {
-        var result = data.result;
-        var userid = data.userid;
-        var username = data.username;
-
-        if(result){
-          console.log("[+] Auth success!");
-        }
-        else{
-          console.log("[-] Auth fail..");
-        }
-      });
-
       socket.on("open_camera", (data) => {
         if(data.status == "open"){
           console.log("[+] camera open");
           opencamera();
+          
+          // 테스트 코드
+          /****/
+          var test_data = {result: true, userid: 'scy', username: '소찬영'};
+          socket.emit('auth-data', test_data);
+          /****/
         }
       });
 
       socket.on("face_auth_success", (data) => {
         console.log("[+] success auth");
-        face_auth_success();
+        console.log(data);
+        face_auth_success(data);
       });
 
       socket.on("face_auth_fail", (data) => {
         console.log("[+] fail auth");
+        console.log(data);
         face_auth_fail();
       });
     </script>
@@ -75,7 +70,7 @@
         <div id="reservation-result-area" class="reservation-contents">
           <div class="user-name">
             <span class="extra">예약자 | </span>
-            <span class="light">소찬영</span>
+            <span id="jarvisuser" class="light"></span>
           </div>
           <div class="reserved-time">
             <span class="extra">예약시간 | </span>
