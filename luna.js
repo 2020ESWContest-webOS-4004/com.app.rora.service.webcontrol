@@ -54,7 +54,7 @@ function stop_assistant(){
 
 function toast_to_webOS(msg){
     callback = function() {console.log("[+] toast_to_webos");}
-    ls2.call("luna://com.webos.notification/createToast", {"sourceId":"com.app.rora.service.webcontrol","onclick": {"appId":"com.app.rora"},"message":msg,"noaction": false,"persistent":true}, callback);
+    ls2.call("luna://com.webos.notification/createToast", {"sourceId":"com.app.rora.service.webcontrol","onclick": {"appId":"com.app.rora"}, "iconUrl":"/media/developer/apps/usr/palm/applications/com.app.rora/icon.png", "message":msg,"noaction": false,"persistent":true}, callback);
 }
 
 exports.init = init;
