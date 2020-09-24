@@ -26,16 +26,11 @@ function rent_close() {
 
 function search() {
     let address_str = document.getElementById("address_input").value;
-    
+    document.getElementById("address_search_result_print").innerHTML="";
+    document.getElementById("keyword_search_result_print").innerHTML="";
     console.log(address_str);
-
-    if(address_str == '') {
-        alert('error');
-    }
-    else {
-        addressSearchFromAddress(address_str);
-        addressSearchFromKeyword(address_str);
-    }
+    addressSearchFromAddress(address_str);
+    addressSearchFromKeyword(address_str);    
 }
 
 function test(){  
@@ -45,3 +40,22 @@ function test(){
     testDiv.style.left=inputBox.offsetLeft;  
       
 }  
+
+document.getElementById('address_input').addEventListener('keyup', function(event) {
+    if(document.getElementById('address_input').value != '') {
+        document.getElementById('search_result_box').style.display = "block";        
+        search();
+    }
+    else {
+        document.getElementById('search_result_box').style.display = "none";  
+    }
+
+})
+/* document.getElementById('address_input').addEventListener('focus', function() {
+    document.getElementById('search_result_box').style.display = "block";
+});
+ */
+/* document.getElementById('address_input').addEventListener('focusout', function() {
+    document.getElementById('search_result_box').style.display = "none";
+}) */
+

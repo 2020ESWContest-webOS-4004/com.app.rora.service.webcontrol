@@ -2,72 +2,86 @@
 
 <head>
     <title>hihi</title>
-    <link rel="stylesheet" type="text/css" href="/css/reset.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/sidemenu.css"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="/css/sidemenu.css">
+    <link rel="stylesheet" type="text/css" href="/css/common.css">
+
+    <!--BootStrapCDN-->
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <!-- JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+
+    <!--Font Awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
 </head>
 
-<body>
-    <button type="button" id="floating_sidebar" onclick="openNav()">사이드메뉴</button>
+<body>        
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <span id="logo" class="navbar-brand mb-0 h1">JARVIS</span>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav" style="margin-left: 0px">
+            </ul>
+            <ul class="navbar-nav ml-auto" style="margin-right: 0px">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        소찬영 님
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">개인정보</a>
+                        <a class="dropdown-item" href="#">대여종료</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">로그아웃</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
-    <div id="mySidenav" class="sidenav">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">X</a>
-        <a href="#" class="navigator">About</a>
-        <a href="#" class="navigator">Services</a>
-        <a href="#" class="navigator">Clients</a>
-        <a href="#" class="navigator">Contact</a>
+    <i id="floating_sidebar" class="fas fa-arrow-left" onclick="goBack()"></i>
+
+    <div id="content">
+        <h1>결제 정보 확인</h1>
+        <hr />
+        <form id="form">
+            <div id="credit_card_number" class="form-group col">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">카드번호</span>
+                    </div>
+                    <input id="card_num1" type="text" class="form-control" placeholder="XXXX">-
+                    <input id="card_num2" type="text" class="form-control" placeholder="XXXX">-
+                    <input id="card_num3" type="text" class="form-control" placeholder="XXXX">-
+                    <input id="card_num4" type="text" class="form-control" placeholder="XXXX">
+                </div>
+            </div>
+
+            <div id="expiration_date" class="form-group col" >
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">유효기간</span>
+                    </div>
+                    <input id="date_Month" type="text" class="form-control" placeholder="월(MM)">
+                    <input id="date_Year" type="text" class="form-control" placeholder="년(YY)">
+                </div>
+            </div>
+
+            <hr />
+
+              <button id="cardRegistrationSubmit" class="btn btn-dark btn-lg btn-block mt-5" type="submit">결제 하기</button>
+        </form>
     </div>
-   
-    <div id="main">
-    <p>
-        In incididunt consectetur culpa quis sint proident ex. Officia voluptate culpa non nostrud in consectetur dolore
-        magna esse incididunt minim non. Exercitation magna pariatur esse proident nostrud consequat ad veniam. Occaecat
-        nostrud ex occaecat incididunt consectetur exercitation aliquip do deserunt sint velit fugiat. Id dolore est
-        sint ea excepteur consequat nulla culpa elit Lorem elit consectetur aute ad.
-
-        Pariatur veniam duis incididunt excepteur exercitation fugiat quis. Id id Lorem ullamco labore consequat
-        excepteur Lorem in eu ullamco. Id deserunt nostrud consequat quis incididunt cillum dolor anim elit ea
-        reprehenderit.
-
-        Incididunt ipsum pariatur consequat commodo sunt elit reprehenderit nisi aliqua. Labore voluptate ad elit
-        commodo eiusmod pariatur. Cillum qui id Lorem aute velit consequat cupidatat ullamco in est. Sit est amet aliqua
-        sunt nulla occaecat consectetur. Occaecat voluptate incididunt cillum tempor veniam veniam duis cupidatat.
-
-        Amet commodo non velit amet ipsum. Est dolore nulla pariatur eu velit quis ea in cupidatat voluptate. Esse
-        officia enim cupidatat consequat aute sunt ea dolore tempor est eu ea. Consequat fugiat laborum consectetur
-        incididunt sint Lorem non. Nulla ipsum officia Lorem eu exercitation non ipsum consectetur est anim consectetur
-        nisi. Consequat nisi velit sint aute. In eiusmod magna do eu.
-
-        Exercitation do quis cupidatat esse qui do nulla esse quis voluptate consectetur ex. Deserunt sunt exercitation
-        sit do duis ad irure do aliquip elit et. Laborum sint nisi et eiusmod incididunt. Pariatur nulla do est mollit
-        dolore. Quis occaecat sit labore aute officia nulla sunt deserunt cupidatat fugiat commodo laborum qui anim.
-        Velit magna sit fugiat pariatur laborum proident eiusmod.
-
-        Consequat enim cillum commodo exercitation amet. Cupidatat irure cupidatat elit veniam sunt aliqua. Anim nostrud
-        fugiat deserunt et officia deserunt pariatur nisi. Id occaecat aliquip irure reprehenderit consequat eiusmod
-        pariatur reprehenderit. Et in aliqua adipisicing sit qui amet reprehenderit do commodo non id elit. Consectetur
-        exercitation nostrud quis eu ea duis aliqua consequat incididunt ad sint.
-
-        Consequat dolore labore nisi non Lorem quis minim consequat culpa laborum occaecat. Adipisicing cupidatat culpa
-        non consectetur occaecat dolore excepteur eu mollit fugiat nostrud enim. Duis consectetur ea id non cillum ea
-        excepteur sunt ex officia et tempor consequat fugiat. Eu nisi excepteur aliqua aliqua ea exercitation nostrud
-        velit consectetur. Occaecat laboris proident qui exercitation veniam laboris ut officia cillum anim. Pariatur
-        commodo dolore exercitation minim esse id pariatur velit est deserunt. Labore in reprehenderit consectetur
-        excepteur officia irure.
-
-        Ea ipsum incididunt anim ad aliqua veniam ut duis ea. Nostrud qui eu amet consequat minim aute nulla occaecat.
-        Laboris eu ut tempor et velit cupidatat reprehenderit. Elit aliqua id proident et et nulla non sint culpa
-        adipisicing exercitation. Consectetur amet tempor magna ut amet ullamco ut eu. Anim elit non duis labore. Minim
-        ex est sint eu deserunt sit dolor eu nisi ea exercitation minim.
-
-        Officia pariatur voluptate ad   ipisicing adipisicing veniam cupidatat cupidatat laboris. Tempor nulla mollit
-        reprehenderit incididunt magna incididunt pariatur nisi excepteur non est deserunt officia. Et aute officia enim
-        exercitation labore elit adipisicing dolore aute pariatur adipisicing dolor ut et.
-
-        Et proident ad ea consectetur velit nisi consectetur sint. Incididunt aute labore duis ipsum excepteur deserunt
-        aliquip sunt et quis elit duis id. Eiusmod ex laboris non ullamco quis in do.
-    </p>
-    </div>
-    <script type="text/javascript" src="/js/sidemenu.js"></script>
+    <script type="text/javascript" src="/js/common.js"></script>
+    <script type="text/javascript" src="/js/cardRegistration.js"></script>
 </body>
 
 </html>

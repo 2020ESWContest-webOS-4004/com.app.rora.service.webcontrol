@@ -48,6 +48,15 @@ module.exports = function (app, utils) {
    app.get('/share/end', function (req, res) {
       res.render('carsharepayment');
    });
+
+   app.get('/share/license', function (req, res) {
+      res.render('drivinglicense');
+   })
+
+   app.get('/share/card', function (req, res) {
+      res.render('cardregistration');
+   })
+
    app.get('/logout', function(req, res) {
       auth_lib.jarvis_logout();
       res.redirect('dashboard');

@@ -35,15 +35,15 @@ kakao.maps.event.addListener(map, 'tilesloaded', setMarkerAndInfowindow);
 function setMarkerAndInfowindow() {
     searchDetailAddrFromCoords(map.getCenter(), function (result, status) {
         if (status === kakao.maps.services.Status.OK) {
-            
+
             var detailAddr = !!result[0].road_address ? '<div>도로명주소 : ' + result[0].road_address.address_name + '</div>' : '';
             detailAddr += '<div>지번 주소 : ' + result[0].address.address_name + '</div>';
-/*
-            var add_content = '<div class="info_address">' +
-                '<span class="title">법정동 주소정보</span>' +
-                detailAddr +
-                '</div>';
-            */
+            /*
+                        var add_content = '<div class="info_address">' +
+                            '<span class="title">법정동 주소정보</span>' +
+                            detailAddr +
+                            '</div>';
+                        */
 
             // 커스텀 오버레이에 표시할 내용입니다
             // HTML 문자열 또는 Dom Element 입니다
@@ -63,12 +63,12 @@ function setMarkerAndInfowindow() {
             infowindow.setContent(add_content);
             infowindow.open(map, marker);
             */
-            
-            
+
+
             mapCustomOverlay.setPosition(map.getCenter());
             mapCustomOverlay.setContent(app_content);
             mapCustomOverlay.setMap(map);
-            
+
         }
     });
 }
@@ -81,22 +81,22 @@ map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 function panTo() {
     // 이동할 위도 경도 위치를 생성합니다 
     var moveLatLon = new kakao.maps.LatLng(center_Location_Latitude, center_Location_Longitude);
-    
+
     // 지도 중심을 부드럽게 이동시킵니다
     // 만약 이동할 거리가 지도 화면보다 크면 부드러운 효과 없이 이동합니다
-    map.panTo(moveLatLon);            
-}        
+    map.panTo(moveLatLon);
+}
 
 function searchDetailAddrFromCoords(coords, callback) {
     // 좌표로 법정동 상세 주소 정보를 요청합니다
-    geocoder.coord2Address(coords.getLng(), coords.getLat(), callback);    
+    geocoder.coord2Address(coords.getLng(), coords.getLat(), callback);
 }
 
 
 // 버튼 클릭에 따라 지도 이동 기능을 막거나 풀고 싶은 경우에는 map.setDraggable 함수를 사용합니다
 function setDraggable(draggable) {
     // 마우스 드래그로 지도 이동 가능여부를 설정합니다
-    map.setDraggable(draggable);    
+    map.setDraggable(draggable);
 }
 
 // 대여하기 버튼을 누른 후, 다시 초기화 할때 함수를 사용합니다.
@@ -105,7 +105,7 @@ function setMapClickEvent() {
     // 지도에 클릭 이벤트를 등록합니다
     // 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
     kakao.maps.event.addListener(map, 'click', function (mouseEvent) {
-       rent_close();
+        rent_close();
     });
 }
 
@@ -116,15 +116,15 @@ function removeMapClickEnent() {
 
 // 주소로 검색하여 좌표를 추출할 때 사용합니다.
 function addressSearchFromAddress(text) {
-    geocoder.addressSearch(text, function(result, status) {
-        if(status === kakao.maps.services.Status.ERROR) {
+    geocoder.addressSearch(text, function (result, status) {
+        /* if (status === kakao.maps.services.Status.ERROR) {
             console.log('address search error');
-        }
-        if(status === kakao.maps.services.Status.ZERO_RESULT) {
+        } */
+        if (status === kakao.maps.services.Status.ZERO_RESULT) {
             console.log('검색 결과가 존재하지 않습니다.');
         }
 
-        if(status === kakao.maps.services.Status.OK) {
+        if (status === kakao.maps.services.Status.OK) {
             address_search_displayresult(text, result);
         }
     });
@@ -132,35 +132,35 @@ function addressSearchFromAddress(text) {
 
 // 키워드로 검색하여 좌표를 추출할 때 사용합니다.
 function addressSearchFromKeyword(text) {
-    ps.keywordSearch(text, function(data, status, pagination) {
-        if(status === kakao.maps.services.Status.ERROR) {
+    ps.keywordSearch(text, function (data, status, pagination) {
+        /* if (status === kakao.maps.services.Status.ERROR) {
             console.log('keyword search error');
-        }
-        if(status === kakao.maps.services.Status.ZERO_RESULT) {
+        } */
+        if (status === kakao.maps.services.Status.ZERO_RESULT) {
             console.log('검색 결과가 존재하지 않습니다.');
-        } 
+        }
 
-        if(status === kakao.maps.services.Status.OK) {
-            
+        if (status === kakao.maps.services.Status.OK) {
+
             keyword_search_displayresult(text, data);
-            
+
         }
     });
 }
 
 function address_search_displayresult(text, result) {
     var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-    
-    searchDetailAddrFromCoords(coords, function(result, status) {
+
+    searchDetailAddrFromCoords(coords, function (result, status) {
         if (status === kakao.maps.services.Status.OK) {
-            var result_box  = document.getElementById('address_search_result_print');
+            var result_box = document.getElementById('address_search_result_print');
             var result_card = document.createElement('div');
-            
+
             if (result[0].road_address == null) {
                 var address_name = result[0].address.address_name;
 
                 //var address_area = '<a onclick="changeMapPosition('+ coords + ')' + '<div class="result_card">';
-                var address_area = '<a onclick="alert(`hihi`)"><div class="result_card">';
+                var address_area = '<a><div class="result_card">';
                 address_area += '<div class="address">' + address_name + '</div>';
                 address_area += '</div></a>';
             }
@@ -169,35 +169,34 @@ function address_search_displayresult(text, result) {
                 var road_address_name = result[0].road_address.address_name;
                 var building_name = result[0].road_address.building_name;
 
-                var address_area = '<div class="result_card">';
+                var address_area = '<a><div class="result_card">';
                 address_area += '<div class="address">' + building_name + '</div>';
                 address_area += '<div class="road_address">' + address_name + '</div>';
                 address_area += '<div class="road_address">' + road_address_name + '</div>';
-                address_area += '</div>';
+                address_area += '</div></a>';
             }
 
             result_card.innerHTML = address_area;
-            
-            result_box.innerHTML='';
+
+            result_box.innerHTML = '';
             result_box.appendChild(result_card);
         }
     });
 }
 
 function keyword_search_displayresult(text, data) {
-    for(let i = 0; i < data.length; i++) {
-        console.log(data[i]);
+    for (let i = 0; i < data.length; i++) {
+
         var coords = new kakao.maps.LatLng(data[i].y, data[i].x);
-        searchDetailAddrFromCoords(coords, function(result, status) {
+        searchDetailAddrFromCoords(coords, function (result, status) {
             if (status === kakao.maps.services.Status.OK) {
-                console.log(result);
-                var result_box  = document.getElementById('keyword_search_result_print');
+                var result_box = document.getElementById('keyword_search_result_print');
                 var result_card = document.createElement('div');
-                
+
                 if (result[0].road_address == null) {
-                    var address_name = result[0].address.address_name;                    
+                    var address_name = result[0].address.address_name;
                     var place_name = data[i].place_name;
-                    
+
                     var address_area = '<div class="result_card">';
                     address_area += '<div class="address">' + place_name + '</div>';
                     address_area += '<div class="road_address">' + address_name + '</div>';
@@ -208,17 +207,17 @@ function keyword_search_displayresult(text, data) {
                     var road_address_name = result[0].road_address.address_name;
                     var building_name = result[0].road_address.building_name;
                     var place_name = data[i].place_name;
-    
+
                     var address_area = '<div class="result_card">';
                     address_area += '<div class="address">' + place_name + '(' + building_name + ')' + '</div>';
                     address_area += '<div class="road_address">' + address_name + '</div>';
                     address_area += '<div class="road_address">' + road_address_name + '</div>';
                     address_area += '</div>';
                 }
-    
+
                 result_card.innerHTML = address_area;
-                
-                
+
+
                 result_box.appendChild(result_card);
             }
         });
@@ -228,5 +227,6 @@ function keyword_search_displayresult(text, data) {
 
 //지정한 좌표로 맵 이동
 function changeMapPosition(position) {
-    map.setCenter(position);
+    map.setCenter(new kakao.maps.LatLng(position));
+
 }

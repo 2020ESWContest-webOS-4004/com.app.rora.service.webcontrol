@@ -6,11 +6,11 @@
         <meta charset="utf-8">
         <title>Connected Car Share</title>
         <!--Custom CSS-->
-        <link rel="stylesheet" type="text/css" href="css/reset.css">
-        <link rel="stylesheet" type="text/css" href="css/sidemenu.css">
-        <link rel="stylesheet" type="text/css" href="css/carshare.css">
-        <link rel="stylesheet" type="text/css" href="css/infowindow.css">
-        <link rel="stylesheet" type="text/css" href="css/search.css">
+        <link rel="stylesheet" type="text/css" href="/css/reset.css">
+        <link rel="stylesheet" type="text/css" href="/css/sidemenu.css">
+        <link rel="stylesheet" type="text/css" href="/css/carshare.css">
+        <link rel="stylesheet" type="text/css" href="/css/infowindow.css">
+        <link rel="stylesheet" type="text/css" href="/css/search.css">
 
         <!--BootStrapCDN-->
         <!-- CSS only -->
@@ -36,8 +36,8 @@
             
             <div id="mySidenav" class="sidenav">
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">X</a>
-                <a href="#" class="navigator">면허등록</a>
-                <a href="#" class="navigator">카드등록</a>
+                <a href="/share/license" class="navigator">면허등록</a>
+                <a href="/share/card" class="navigator">카드등록</a>
                 <a href="#" class="navigator">이용안내</a>
             </div>
             <div id="content">
@@ -46,49 +46,44 @@
                     <div id="rent_request">
                         <button type="button" onclick="rent_request()">대여하기</button>
                     </div>
-                    <div  id="search" >
-                    <div class="input-group md-form form-sm form-2 pl-0">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">주소검색</span>
-                        </div>
-                        <input id="address_input" class="form-control my-0 py-1 amber-border" type="text" placeholder="Search" aria-label="Search">
-
+                    <div id="search">
+                        <div class="input-group md-form form-sm form-2 pl-0">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">주소검색</span>
+                            </div>
+                            <input id="address_input" class="form-control my-0 py-1 amber-border" type="text" placeholder="Search"
+                                aria-label="Search">
                     
-                        <div class="input-group-append">
-                          <span class="input-group-text amber lighten-3" id="basic-text1" onclick="search()"><i class="fas fa-search text-grey"
-                              aria-hidden="true"></i></span>
+                    
+                            <div class="input-group-append">
+                                <span class="input-group-text amber lighten-3" id="basic-text1">
+                                    <i class="fas fa-search text-grey" aria-hidden="true"></i></span>
+                            </div>
+                        </div>
+                    
+                    
+                        <div id="search_result_box">
+                            <h5>주소 검색 결과</h5>
+                            <div id="address_search_result_print">
+                            </div>
+                    
+                            <h5>단어 검색 결과</h5>
+                            <div id="keyword_search_result_print">
+                            </div>
                         </div>
                     </div>
-
-                    
-                    <div id="search_result_box">
-                        <h5>주소 검색 결과</h5>
-                        <div id="address_search_result_print">
-                        </div>
-        
-                        <h5>단어 검색 결과</h5>
-                        <div id="keyword_search_result_print">
-                        </div>
-                    </div>
-                </div>
-                    
-                    <div id="floating_sidebar" onclick="openNav()">
-                        <i class="fas fa-bars"></i>
-                    </div>
-                    
-                
-                    
+                    <i id="floating_sidebar" class="fas fa-bars" onclick="openNav()"></i>                
                 </div>
                 <div id="rent">
                     <div id="rent_ready">
                         <div id="card1" class="share_card">
-                            <img src="media/license.jpg" class="share_card_img">
+                            <img src="/media/license.jpg" class="share_card_img">
                         </div>
                         <div id="card2" class="share_card">
-                            <img src="media/credit_card.jpg" class="share_card_img">
+                            <img src="/media/credit_card.jpg" class="share_card_img">
                         </div>
                         <div id="card3" class="share_card">
-                            <img src="media/ending_time.jpg" class="share_card_img">
+                            <img src="/media/ending_time.jpg" class="share_card_img">
                         </div>
                     </div>
                     <button type="button" id="share_start" onclick="gotoEnd()">대여 시작</button>
@@ -97,13 +92,10 @@
             </div>
         </div>
         <!--Custom JS-->
-        <script type="text/javascript" src="js/kakaoMap.js"></script>
-        <script type="text/javascript" src="js/carshare.js"></script>
-        <script type="text/javascript" src="js/sidemenu.js"></script>
-        <script>
-            function gotoEnd() {
-                window.location = 'share/end';
-            }
-        </script>
+        <script type="text/javascript" src="/js/kakaoMap.js"></script>
+        <script type="text/javascript" src="/js/carshare.js"></script>
+        <script type="text/javascript" src="/js/sidemenu.js"></script>
+        <script type="text/javascript" src="/js/common.js"></script>
+       
     </body>
 </html>

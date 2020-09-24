@@ -1,0 +1,116 @@
+<html>
+    <head>
+        <title>Card Registration</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!--Custom CSS-->
+        <link rel="stylesheet" type="text/css" href="/css/reset.css">
+        <link rel="stylesheet" type="text/css" href="/css/sidemenu.css">
+        <link rel="stylesheet" type="text/css" href="/css/common.css">
+
+        <!--BootStrapCDN-->
+        <!-- CSS only -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+        <!-- JS, Popper.js, and jQuery -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+        <!--Font Awesome-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+    </head>
+
+    <body>        
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <span id="logo" class="navbar-brand mb-0 h1">JARVIS</span>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav" style="margin-left: 0px">
+                </ul>
+                <ul class="navbar-nav ml-auto" style="margin-right: 0px">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            소찬영 님
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">개인정보</a>
+                            <a class="dropdown-item" href="#">대여종료</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">로그아웃</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <i id="floating_sidebar" class="fas fa-arrow-left" onclick="goBack()"></i>
+
+        <div id="content">
+            <h1>카드 등록</h1>
+            <hr />
+            <form id="form">
+                <div id="credit_card_number" class="form-group col">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">카드번호</span>
+                        </div>
+                        <input id="card_num1" type="text" class="form-control" placeholder="XXXX">-
+                        <input id="card_num2" type="text" class="form-control" placeholder="XXXX">-
+                        <input id="card_num3" type="text" class="form-control" placeholder="XXXX">-
+                        <input id="card_num4" type="text" class="form-control" placeholder="XXXX">
+                    </div>
+                </div>
+
+                <div id="expiration_date" class="form-group col" >
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">유효기간</span>
+                        </div>
+                        <input id="date_Month" type="text" class="form-control" placeholder="월(MM)">
+                        <input id="date_Year" type="text" class="form-control" placeholder="년(YY)">
+                    </div>
+                </div>
+
+                <hr />
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="TOS1" id="cardRegistrationTOS1"" value=true>
+                    <label class="form-check-label" for="cardRegistrationTOS1">
+                      (필수) 전자 금융 거래 기본 약관 동의
+                    </label>
+                  </div>
+
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="TOS2" id="cardRegistrationTOS2" value=true>
+                    <label class="form-check-label" for="cardRegistrationTOS2">
+                      (필수) 개인정보 수집 이용 동의 (결제카드)
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="TOS3" id="cardRegistrationTOS3" value=true>
+                    <label class="form-check-label" for="cardRegistrationTOS3">
+                      (필수) 자동승인 약관 동의
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="TOS4" id="cardRegistrationTOS4" value=true>
+                    <label class="form-check-label" for="cardRegistrationTOS4">
+                      (필수) 전자금융거래 기본 약관 동의
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="TOS5" id="cardRegistrationTOS5" value=true>
+                    <label class="form-check-label" for="cardRegistrationTOS5">
+                      (필수) 개인정보 수집/이용 동의(회원가입)
+                    </label>
+                  </div>
+                  
+                  <button id="cardRegistrationSubmit" class="btn btn-dark btn-lg btn-block mt-5" type="submit">결제카드 등록</button>
+            </form>
+        </div>
+        <script type="text/javascript" src="/js/common.js"></script>
+        <script type="text/javascript" src="/js/cardRegistration.js"></script>
+    </body>
+</html>

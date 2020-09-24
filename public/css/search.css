@@ -3,11 +3,11 @@
     top: -10%;
     left: 5%;
     background-color : rgba(255, 255, 255, 0.9);
-    
+    max-height: 350px;
     padding: 1rem;
     overflow: auto;
     margin: 0 4rem;
-    margin-bottom: 1rem;
+    display: none;
 }
 
 #search_result_box #address_search_result_print {
@@ -22,7 +22,7 @@
 
 #search_result_box .result_card {
     border: 1px solid gray;
-    padding: 1rem;
+    padding: 0.5rem;
     cursor: pointer;
 }
 
