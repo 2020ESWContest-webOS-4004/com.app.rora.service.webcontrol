@@ -399,3 +399,8 @@ html {
   .dropdown-menu {
     min-width: 3rem;
   }
+
+  #user-icon {
+    color: rgb(255, 255, 255, 0.5);
+    margin-top: 13px;
+  }
