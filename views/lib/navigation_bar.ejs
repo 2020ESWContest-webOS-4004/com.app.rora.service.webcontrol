@@ -1,0 +1,35 @@
+<div class="topbar">
+    <nav class="navbar navbar-expand-lg navbar-dark" style="margin-left:5%; margin-right:5%;width: 90%;background-color: rgb(30, 36, 59);padding-right: 0px;">
+      <span class="navbar-brand mb-0 h1">JARVIS</span>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav" style="margin-left: 0px">
+          <li class="nav-item active">
+            <a class="nav-link" href="./share">SHARE</a> <!--테스트용 코드-->
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="./window">WINDOW</a> <!--테스트용 코드-->
+          </li>
+        </ul>
+        <ul class="navbar-nav ml-auto" style="margin-right: 0px">
+          <i id="user-icon" class="far fa-user-circle"></i>
+          <li class="nav-item dropdown">
+            <%if(session.username) {%>
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <%= session.username %>님
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">개인정보</a>
+              <a class="dropdown-item" href="#">대여종료</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="./logout">로그아웃</a>
+            </div>
+            <%} else {%>
+            <a class="nav-link" href="./window" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              로그인
+            <%}%>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
