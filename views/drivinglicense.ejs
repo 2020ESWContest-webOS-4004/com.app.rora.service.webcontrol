@@ -6,6 +6,7 @@
         <link rel="stylesheet" type="text/css" href="/css/reset.css">
         <link rel="stylesheet" type="text/css" href="/css/sidemenu.css">
         <link rel="stylesheet" type="text/css" href="/css/common.css">
+        <link rel="stylesheet" type="text/css" href="/css/topbar.css">
 
         <!--BootStrapCDN-->
         <!-- CSS only -->
@@ -22,27 +23,7 @@
     </head>
 
     <body>        
-        <nav class="navbar navbar-expand-lg navbar-dark">
-            <span id="logo" class="navbar-brand mb-0 h1">JARVIS</span>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav" style="margin-left: 0px">
-                </ul>
-                <ul class="navbar-nav ml-auto" style="margin-right: 0px">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                            소찬영 님
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">개인정보</a>
-                            <a class="dropdown-item" href="#">대여종료</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">로그아웃</a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+        <%- include('./lib/navigation_bar') -%>
 
         <i id="floating_sidebar" class="fas fa-arrow-left" onclick="goBack()"></i>
 

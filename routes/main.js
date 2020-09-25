@@ -1,6 +1,7 @@
 var mysql = require('mysql');
 var auth_lib = require('../auth');
 var express_session = require('express-session');
+const session = require('express-session');
 
 module.exports = function (app, utils) {
    var jarvis_session = auth_lib.auth_session;
@@ -42,19 +43,37 @@ module.exports = function (app, utils) {
    app.get('/window', function (req, res) {
       res.render('window', {session: jarvis_session});
    });
+
+
+
+
    app.get('/share', function (req, res) {
-      res.render('carshare', {session: jarvis_session});
+      res.render('carshare', {session: jarvis_session, time: '111111'});
    });
-   app.get('/share/end', function (req, res) {
-      res.render('sharepayment', {session: jarvis_session});
-   });
+
+   app.post('/share', function (req, res) { 
+       if(req.body.time) {
+         var rent_start_time = req.body.time;
+      } else {
+         console.log(JSON.stringify(req.body));
+      }
+      //jarvis_session.shareChecked.rent_start_time = rent_start_time; 
+      res.render('carshare', {session: jarvis_session, time: rent_start_time});
+
+   })
+
+
+
+
    app.get('/share/license', function (req, res) {
       res.render('drivinglicense', {session: jarvis_session});
    })
-
    app.get('/share/card', function (req, res) {
       res.render('cardregistration', {session: jarvis_session});
    })
+   app.get('/share/end', function (req, res) {
+      res.render('sharepayment', {session: jarvis_session});
+   });
 
    app.get('/logout', function(req, res) {
       auth_lib.jarvis_logout();

@@ -13,7 +13,7 @@ var luna = require('./luna');
 var app = express();
 var utils = require('./utils');
 var http = require('http').createServer(app);
-var router = require('./routes/main')(app, utils);
+
 var env = require('./env/env.json');
 var bodyparser = require('body-parser');
 var session = require('express-session');
@@ -83,7 +83,10 @@ service.register("set_auth", function(message){
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 app.use(express.static('./public'));
-app.use(bodyparser.urlencoded({ extended: false}));
+app.use(bodyparser.urlencoded({extended: false}));
+app.use(bodyparser.json());
+
+const router = require('./routes/main')(app, utils);
 
 var server = http.listen(env.port, function(){
   console.log("Express server has started on port [" + env.port + " ]");
