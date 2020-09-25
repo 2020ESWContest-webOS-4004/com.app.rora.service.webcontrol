@@ -384,7 +384,7 @@ function init(service, http){
                 bioAuth.jarvis_login(auth_data);
 
                 if(auth_data && auth_data.userid && auth_data.username){
-                    socket.emit('face_auth_success', auth_data);
+                    io.emit('face_auth_success', auth_data);
                 }
                 else{
                     socket.emit('face_auth_fail', '');
