@@ -46,15 +46,14 @@ module.exports = function (app, utils) {
       res.render('carshare', {session: jarvis_session});
    });
    app.get('/share/end', function (req, res) {
-      res.render('carsharepayment');
+      res.render('sharepayment', {session: jarvis_session});
    });
-
    app.get('/share/license', function (req, res) {
-      res.render('drivinglicense');
+      res.render('drivinglicense', {session: jarvis_session});
    })
 
    app.get('/share/card', function (req, res) {
-      res.render('cardregistration');
+      res.render('cardregistration', {session: jarvis_session});
    })
 
    app.get('/logout', function(req, res) {

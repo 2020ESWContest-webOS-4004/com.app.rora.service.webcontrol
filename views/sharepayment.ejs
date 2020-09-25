@@ -74,7 +74,16 @@
                     <input id="date_Year" type="text" class="form-control" placeholder="년(YY)">
                 </div>
             </div>
-
+            <div>
+                <h4>면허정보</h4>
+                <p><% if (session.userid) { %>
+                    <h2><%= session.userid %></h2>
+                </p>
+                <p><% } else { %>
+                    <h2>hihi</h2>
+               <% } %>
+                </p>
+            </div>
             <hr />
 
               <button id="cardRegistrationSubmit" class="btn btn-dark btn-lg btn-block mt-5" type="submit">결제 하기</button>
@@ -82,6 +91,7 @@
     </div>
     <script type="text/javascript" src="/js/common.js"></script>
     <script type="text/javascript" src="/js/cardRegistration.js"></script>
+    <script type="text/javascript" src="/js/shareSession.js"></script>
 </body>
 
 </html>
