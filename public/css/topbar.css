@@ -21,6 +21,8 @@ div.topbar {
   #topbar-navbar {
     width:100%;
     padding-left: 58px;
+    padding-right:  0px;
+    background-color: rgb(30, 36, 59);
   }
 
   #topbar-username {
@@ -40,6 +42,6 @@ div.topbar {
     margin-top: 13px;
   }
 
-  .dropdown-menu {
+  #dropdown-menu {
       min-width: 1rem;
   }
