@@ -31,6 +31,16 @@ html {
     padding-right: 0px;
   }
 
+  #topbar-navbar {
+    width:100%;
+    padding-left: 58px;
+  }
+
+  #topbar-username {
+    margin-right:0px;
+    padding-right:55px;
+  }
+
   .topbar-item a {
     color: white;
     font: Sans-Serif;

@@ -10,10 +10,10 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
     <title>DASHBOARD</title>
-    <script type="text/javascript" src="./js/webOS.js"></script>
-    <script type="text/javascript" src="./js/rc.js"></script>
-    <script type="text/javascript" src="./js/infortainment.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/dashboard.css">
+    <script type="text/javascript" src="/js/webOS.js"></script>
+    <script type="text/javascript" src="/js/rc.js"></script>
+    <script type="text/javascript" src="/js/infortainment.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/dashboard.css">
     <script src="/socket.io/socket.io.js"></script>
     <script>
       function getTime() {
@@ -76,41 +76,7 @@
     </script>
   </head>
   <body>
-    <div class="topbar">
-      <nav class="navbar navbar-expand-lg navbar-dark" style="margin-left:5%; margin-right:5%;width: 90%;background-color: rgb(30, 36, 59);padding-right: 0px;">
-        <span class="navbar-brand mb-0 h1">JARVIS</span>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav" style="margin-left: 0px">
-            <li class="nav-item active">
-              <a class="nav-link" href="./share">SHARE</a> <!--테스트용 코드-->
-            </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="./window">WINDOW</a> <!--테스트용 코드-->
-            </li>
-          </ul>
-          <ul class="navbar-nav ml-auto" style="margin-right: 0px">
-            <i id="user-icon" class="far fa-user-circle"></i>
-            <li class="nav-item dropdown">
-              <%if(session.username) {%>
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <%= session.username %> 님
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">개인정보</a>
-                <a class="dropdown-item" href="#">대여종료</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="./logout">로그아웃</a>
-              </div>
-              <%} else {%>
-              <a class="nav-link" href="./window" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                로그인
-              <%}%>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-    </div>
+    <%- include('./lib/navigation_bar.ejs') -%>
     <div class="board">
         <div id="box1">
             <div id="gear">
