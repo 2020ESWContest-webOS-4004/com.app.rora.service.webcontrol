@@ -32,7 +32,6 @@
     </head>
 
     <body>
-        
         <div id="app">
             
             <div id="mySidenav" class="sidenav">
@@ -41,6 +40,7 @@
                 <a href="/share/card" class="navigator">카드등록</a>
                 <a href="#" class="navigator">이용안내</a>
             </div>
+            <i id="floating_menu_button" class="fas fa-bars" onclick="openNav()"></i>                
             <div id="content">
                 <div id="map">
                     
@@ -72,13 +72,12 @@
                             <div id="keyword_search_result_print">
                             </div>
                         </div>
-                    </div>
-                    <i id="floating_sidebar" class="fas fa-bars" onclick="openNav()"></i>                
+                    </div>          
                 </div>
                 <div id="rent">
                     <div id="rent_ready">
                         <div id="card1" class="share_card">
-                            <img src="/media/license.jpg" class="share_card_img">
+                           <p>time: <%=time%></p>
                         </div>
                         <div id="card2" class="share_card">
                             <img src="/media/credit_card.jpg" class="share_card_img">
@@ -87,9 +86,8 @@
                             <img src="/media/ending_time.jpg" class="share_card_img">
                         </div>
                     </div>
-                    <button type="button" id="share_start" onclick="gotoEnd()">대여 시작</button>
+                    <button type="button" id="share_start" onclick="share_start()">대여 시작</button>
                 </div>
-                
             </div>
         </div>
         <!--Custom JS-->

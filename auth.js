@@ -26,7 +26,6 @@ var dbOptions = {
 
 // face 인증 후 커스텀 세션을 활용한 로그인 처리 함수
 function jarvis_login(auth_data){
-
     var results;
     conn = mysql.createConnection(dbOptions);
 
@@ -41,6 +40,12 @@ function jarvis_login(auth_data){
             results = query_results;
             auth_session.userid = results[0].jarvis_id;
             auth_session.username = results[0].member_name;
+            auth_session.shareChecked = {
+                phone_num           : results[0].phone_num,
+                car_owned           : results[0].car_owned,
+                card_registered     : results[0].card_registered,
+                license_registered  : results[0].license_registered   
+            };
             utils.set_auth(auth_session.username);
         }
     });
@@ -51,6 +56,8 @@ function jarvis_login(auth_data){
 function jarvis_logout(){
     auth_session.userid = "";
     auth_session.username = "";
+    auth_session.shareChecked = {};
+
     utils.set_auth("");
 }
 

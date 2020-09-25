@@ -3,5 +3,6 @@ function goBack() {
 }
 
 function gotoEnd() {
-    window.location = 'end';
+    window.location = '/share/end';
 }
+

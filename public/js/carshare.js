@@ -24,6 +24,25 @@ function rent_close() {
     removeMapClickEnent();
 }
 
+function share_start() {
+    method = "POST";
+    path = "/share"
+
+    var form = document.createElement("form");
+    form.setAttribute("method", method);
+    form.setAttribute("action", path);
+
+    var hiddenField = document.createElement("input");
+    hiddenField.setAttribute("type", "hidden");
+    hiddenField.setAttribute("name", "time");
+    hiddenField.setAttribute("value", "202020");
+
+    form.appendChild(hiddenField);
+    
+    document.body.appendChild(form);
+    form.submit();
+}
+
 function search() {
     let address_str = document.getElementById("address_input").value;
     document.getElementById("address_search_result_print").innerHTML="";
@@ -32,14 +51,6 @@ function search() {
     addressSearchFromAddress(address_str);
     addressSearchFromKeyword(address_str);    
 }
-
-function test(){  
-    var inputBox = document.getElementById("address_input");             
-    var testDiv = document.getElementById("search_result_box");             
-    testDiv.style.top=inputBox.offsetTop+inputBox.offsetHeight;  
-    testDiv.style.left=inputBox.offsetLeft;  
-      
-}  
 
 document.getElementById('address_input').addEventListener('keyup', function(event) {
     if(document.getElementById('address_input').value != '') {
@@ -51,11 +62,4 @@ document.getElementById('address_input').addEventListener('keyup', function(even
     }
 
 })
-/* document.getElementById('address_input').addEventListener('focus', function() {
-    document.getElementById('search_result_box').style.display = "block";
-});
- */
-/* document.getElementById('address_input').addEventListener('focusout', function() {
-    document.getElementById('search_result_box').style.display = "none";
-}) */
 
