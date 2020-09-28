@@ -39,7 +39,7 @@
                 <a href="/share/card" class="navigator">카드등록</a>
                 <a href="#" class="navigator">이용안내</a>
             </div>
-            <i id="floating_menu_button" class="fas fa-bars" onclick="openNav()"></i>                
+            <i id="floating_sidebar_button" class="fas fa-bars" onclick="openNav()"></i>                
             <div id="content">
                 <div id="map">
                     
@@ -75,17 +75,74 @@
                 </div>
                 <div id="rent">
                     <div id="rent_ready">
+                        <!--
                         <div id="card1" class="share_card">
-                           <p>time: <%=time%></p>
+                            
+                            <% if (session.userid) { %>
+                                userid = <%=session.userid%>
+                                username = <%=session.username%>
+
+                                phone_num = <%=session.shareChecked.phone_num%>
+                                car_owned = <%=session.shareChecked.car_owned%>
+                                card_registered = <%=session.shareChecked.card_registered%>
+                                license_registered = <%=session.shareChecked.license_registered%>
+                                
+                                <% } else { %>
+                                empty session.
+                                <% } %>
+                            
                         </div>
-                        <div id="card2" class="share_card">
-                            <img src="/media/credit_card.jpg" class="share_card_img">
-                        </div>
+                        -->
+                        <% if(!session.shareChecked.card_registered) { %>
+                            <div id="card1" class="share_card">
+                                <h3 class="warning_title"><i class="fas fa-exclamation-triangle"></i> 카드 정보를 입력해주세요.</h3>
+                                <img src="/media/credit_card.png" class="share_card_img"> 
+                                <p class="warning_message">
+                                    서비스를 이용하시려면, 카드 정보를 입력하셔야 합니다.<br />
+                                    좌측 상단의 메뉴 버튼을 누르셔서 카드등록을 하시거나 하단의 버튼을 눌러주세요.
+                                </p>
+                                <span class="go_info_register"><a href="/share/card">카드등록 <i class="fas fa-angle-right"></i></a></span>
+                            </div>
+                        <% } else { %>
+                            <div id="card1" class="share_card">
+                                <h3 class="success_title"><i class="fas fa-chevron-circle-down"></i> 카드 정보 확인</h3>
+                                <p class="success_message">
+                                    카드 정보 확인되었습니다.
+                                </p>
+                            </div>
+                        <% } %>
+
+                        <% if(!session.shareChecked.license_registered) { %>
+                            <div id="card2" class="share_card">
+                                <h3 class="warning_title"><i class="fas fa-exclamation-triangle"></i> 면허 정보를 입력해주세요.</h3>
+                                <img src="/media/license.png" class="share_card_img"> 
+                                <p class="warning_message">
+                                    서비스를 이용하시려면, 면허 정보를 입력하셔야 합니다.<br />
+                                    좌측 상단의 메뉴 버튼을 누르셔서 면허등록을 하시거나 하단의 버튼을 눌러주세요.
+                                </p>
+                                <span class="go_info_register"><a href="/share/card">면허등록 <i class="fas fa-angle-right"></i></a></span>
+                            </div>
+                        <% } else { %>
+                            <div id="card2" class="share_card">
+                                <h3 class="success_title"><i class="fas fa-chevron-circle-down"></i> 면허 정보 확인</h3>
+                                <p class="success_message">
+                                    카드 정보 확인되었습니다.
+                                </p>
+                            </div>
+                        <% }%>
                         <div id="card3" class="share_card">
-                            <img src="/media/ending_time.jpg" class="share_card_img">
+                            <h3 class="success_title"><i class="fas fa-chevron-circle-down"></i> 대여 정보 확인</h3>
+                            <img src="/media/jarvis_my_car.png" class="share_card_img">                             
+                            <p class="warning_message" id="start_location_text"></p>
+                            <p class="warning_message" id="start_time_text"></p>
+                            <p class="warning_message"><br />출발주소와 출발시간을 확인해주세요.</p>
                         </div>
                     </div>
-                    <button type="button" id="share_start" onclick="share_start()">대여 시작</button>
+                    <% if(session.shareChecked.card_registered && session.shareChecked.license_registered) { %>
+                        <button type="button" id="share_start" onclick="gotoEnd()">대여 시작</button>
+                    <% } else { %>
+                        <button type="button" id="share_start" onclick="gotoEnd()" disabled>대여 조건을 확인해주세요.</button>
+                    <% } %>
                 </div>
             </div>
         </div>

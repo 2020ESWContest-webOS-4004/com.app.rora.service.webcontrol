@@ -2,11 +2,8 @@
     <head>
         <title>driving license</title>
 
-        <!--Custom CSS-->
+        <!--reset CSS-->
         <link rel="stylesheet" type="text/css" href="/css/reset.css">
-        <link rel="stylesheet" type="text/css" href="/css/sidemenu.css">
-        <link rel="stylesheet" type="text/css" href="/css/common.css">
-        <link rel="stylesheet" type="text/css" href="/css/topbar.css">
 
         <!--BootStrapCDN-->
         <!-- CSS only -->
@@ -20,6 +17,11 @@
         <!--Font Awesome-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
 
+
+        <!--Custom CSS-->
+        <link rel="stylesheet" type="text/css" href="/css/sidemenu.css">
+        <link rel="stylesheet" type="text/css" href="/css/common.css">
+        <link rel="stylesheet" type="text/css" href="/css/topbar.css">
     </head>
 
     <body>        
@@ -28,68 +30,70 @@
         <i id="floating_sidebar" class="fas fa-arrow-left" onclick="goBack()"></i>
 
         <div id="content">
-            <h1>면허 등록</h1>
+          <h1>면허 등록</h1>
+          <hr />
+          <form action="/share/license" method="POST" id="license_form">
+            <div id="credit_card_number" class="form-group col">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">면허종류</span>
+                </div>
+                <div>
+                  <select id="license_class" class="form-control" name="license_class">
+                    <option value="noChoice">---선택---</option>
+                    <option value="1종대형">1종 대형면허</option>
+                    <option value="1종보통">1종 보통면허</option>
+                    <option value="1종특수">1종 특수면허</option>
+                    <option value="2종보통">2종 보통면허</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div id="credit_card_number" class="form-group col">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">면허번호</span>
+                </div>
+                <input id="license_num1" name="license_num1" type="text" class="form-control" placeholder="XX">-
+                <input id="license_num2" name="license_num2" type="text" class="form-control" placeholder="XX">-
+                <input id="license_num3" name="license_num3" type="text" class="form-control" placeholder="XXXXXX">-
+                <input id="license_num4" name="license_num4" type="text" class="form-control" placeholder="XX">
+              </div>
+            </div>
+        
             <hr />
-            <form id="form">
-                <div id="credit_card_number" class="form-group col">
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">면허종류</span>
-                        </div>
-                        <div>
-                            <select id="license_class" class="form-control">
-                              <option value="noChoice">---선택---</option>
-                              <option value="1종대형">1종 대형면허</option>
-                              <option value="1종보통">1종 보통면허</option>
-                              <option value="1종특수">1종 특수면허</option>
-                              <option value="2종보통">2종 보통면허</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div id="credit_card_number" class="form-group col">
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">면허번호</span>
-                        </div>
-                        <input id="license_num1" type="text" class="form-control" placeholder="XX">-
-                        <input id="license_num2" type="text" class="form-control" placeholder="XX">-
-                        <input id="license_num3" type="text" class="form-control" placeholder="XXXXXX">-
-                        <input id="license_num4" type="text" class="form-control" placeholder="XX">
-                    </div>
-                </div>
-
-                <hr />
-
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="TOS1" id="cardRegistrationTOS1"" value=true>
-                    <label class="form-check-label" for="cardRegistrationTOS1">
-                      (필수) 고유식별정보 수집/이용 동의
-                    </label>
-                  </div>
-
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="TOS2" id="cardRegistrationTOS2" value=true>
-                    <label class="form-check-label" for="cardRegistrationTOS2">
-                      (필수) 고유식별정보 제공 동의
-                    </label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="TOS3" id="cardRegistrationTOS3" value=true>
-                    <label class="form-check-label" for="cardRegistrationTOS3">
-                      (필수) 개인정보 제공 동의
-                    </label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="TOS4" id="cardRegistrationTOS4" value=true>
-                    <label class="form-check-label" for="cardRegistrationTOS4">
-                      (필수) 온라인 고지 확인 및 동의
-                    </label>
-                  </div>
-                  <button id="cardRegistrationSubmit"class="btn btn-dark btn-lg btn-block mt-5" type="submit">결제카드 등록</button>
-            </form>
+        
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="TOS1" id="cardRegistrationTOS1"" value=true>
+                          <label class=" form-check-label" for="cardRegistrationTOS1">
+              (필수) 고유식별정보 수집/이용 동의
+              </label>
+            </div>
+        
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="TOS2" id="cardRegistrationTOS2" value=true>
+              <label class="form-check-label" for="cardRegistrationTOS2">
+                (필수) 고유식별정보 제공 동의
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="TOS3" id="cardRegistrationTOS3" value=true>
+              <label class="form-check-label" for="cardRegistrationTOS3">
+                (필수) 개인정보 제공 동의
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="TOS4" id="cardRegistrationTOS4" value=true>
+              <label class="form-check-label" for="cardRegistrationTOS4">
+                (필수) 온라인 고지 확인 및 동의
+              </label>
+            </div>
+        
+          </form>
+          <button id="RegistrationSubmit" class="btn btn-dark btn-lg btn-block mt-5" type="submit" form="license_form">면허
+            등록</button>
         </div>
+
         <script type="text/javascript" src="/js/common.js"></script>
-        <script type="text/javascript" src="/js/licenseRegistration.js"></script>
     </body>
 </html>

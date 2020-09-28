@@ -44,37 +44,6 @@ module.exports = function (app, utils) {
       res.render('window', {session: jarvis_session});
    });
 
-
-
-
-   app.get('/share', function (req, res) {
-      res.render('carshare', {session: jarvis_session, time: '111111'});
-   });
-
-   app.post('/share', function (req, res) { 
-       if(req.body.time) {
-         var rent_start_time = req.body.time;
-      } else {
-         console.log(JSON.stringify(req.body));
-      }
-      //jarvis_session.shareChecked.rent_start_time = rent_start_time; 
-      res.render('carshare', {session: jarvis_session, time: rent_start_time});
-
-   })
-
-
-
-
-   app.get('/share/license', function (req, res) {
-      res.render('drivinglicense', {session: jarvis_session});
-   })
-   app.get('/share/card', function (req, res) {
-      res.render('cardregistration', {session: jarvis_session});
-   })
-   app.get('/share/end', function (req, res) {
-      res.render('sharepayment', {session: jarvis_session});
-   });
-
    app.get('/logout', function(req, res) {
       auth_lib.jarvis_logout();
       res.redirect('dashboard');

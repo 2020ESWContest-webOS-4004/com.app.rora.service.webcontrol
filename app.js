@@ -13,7 +13,8 @@ var luna = require('./luna');
 var app = express();
 var utils = require('./utils');
 var http = require('http').createServer(app);
-
+var router = require('./routes/main')(app, utils);
+var shareRouter = require('./routes/share');
 var env = require('./env/env.json');
 var bodyparser = require('body-parser');
 var session = require('express-session');
@@ -86,7 +87,7 @@ app.use(express.static('./public'));
 app.use(bodyparser.urlencoded({extended: false}));
 app.use(bodyparser.json());
 
-const router = require('./routes/main')(app, utils);
+app.use('/share', shareRouter);
 
 var server = http.listen(env.port, function(){
   console.log("Express server has started on port [" + env.port + " ]");

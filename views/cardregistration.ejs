@@ -30,69 +30,86 @@
         <i id="floating_sidebar" class="fas fa-arrow-left" onclick="goBack()"></i>
 
         <div id="content">
-            <h1>카드 등록</h1>
+          <h1>카드 등록</h1>
+          <hr />
+          <form action="/share/card" method="POST" id="card_form">
+            <div id="credit_card_number" class="form-group col">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">카드번호</span>
+                </div>
+                <input id="card_num1" name="card_num1" type="text" class="form-control" placeholder="XXXX">-
+                <input id="card_num2" name="card_num2" type="text" class="form-control" placeholder="XXXX">-
+                <input id="card_num3" name="card_num3" type="text" class="form-control" placeholder="XXXX">-
+                <input id="card_num4" name="card_num4" type="text" class="form-control" placeholder="XXXX">
+              </div>
+            </div>
+        
+            <div id="expiration_date" class="form-group col">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">유효기간</span>
+                </div>
+                <input id="date_Month" name="date_Month" type="text" class="form-control" placeholder="월(MM)">
+                <input id="date_Year" name="date_Year" type="text" class="form-control" placeholder="년(YY)">
+              </div>
+            </div>
+        
+            <div id="CVC" class="form-group col">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">CVC</span>
+                </div>
+                <input id="CVC_num" name="CVC" type="text" class="form-control" placeholder="XXX">
+              </div>
+            </div>
+        
+            <div id="card_password" class="form-group col">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">비밀번호</span>
+                </div>
+                <input id="card_password_text" name="card_password" type="text" class="form-control" placeholder="password">
+              </div>
+            </div>
+        
             <hr />
-            <form id="form">
-                <div id="credit_card_number" class="form-group col">
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">카드번호</span>
-                        </div>
-                        <input id="card_num1" type="text" class="form-control" placeholder="XXXX">-
-                        <input id="card_num2" type="text" class="form-control" placeholder="XXXX">-
-                        <input id="card_num3" type="text" class="form-control" placeholder="XXXX">-
-                        <input id="card_num4" type="text" class="form-control" placeholder="XXXX">
-                    </div>
-                </div>
-
-                <div id="expiration_date" class="form-group col" >
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">유효기간</span>
-                        </div>
-                        <input id="date_Month" type="text" class="form-control" placeholder="월(MM)">
-                        <input id="date_Year" type="text" class="form-control" placeholder="년(YY)">
-                    </div>
-                </div>
-
-                <hr />
-
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="TOS1" id="cardRegistrationTOS1"" value=true>
-                    <label class="form-check-label" for="cardRegistrationTOS1">
-                      (필수) 전자 금융 거래 기본 약관 동의
-                    </label>
-                  </div>
-
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="TOS2" id="cardRegistrationTOS2" value=true>
-                    <label class="form-check-label" for="cardRegistrationTOS2">
-                      (필수) 개인정보 수집 이용 동의 (결제카드)
-                    </label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="TOS3" id="cardRegistrationTOS3" value=true>
-                    <label class="form-check-label" for="cardRegistrationTOS3">
-                      (필수) 자동승인 약관 동의
-                    </label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="TOS4" id="cardRegistrationTOS4" value=true>
-                    <label class="form-check-label" for="cardRegistrationTOS4">
-                      (필수) 전자금융거래 기본 약관 동의
-                    </label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="TOS5" id="cardRegistrationTOS5" value=true>
-                    <label class="form-check-label" for="cardRegistrationTOS5">
-                      (필수) 개인정보 수집/이용 동의(회원가입)
-                    </label>
-                  </div>
-                  
-                  <button id="cardRegistrationSubmit" class="btn btn-dark btn-lg btn-block mt-5" type="submit">결제카드 등록</button>
-            </form>
+        
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="TOS1" id="cardRegistrationTOS1"" value=true>
+                          <label class=" form-check-label" for="cardRegistrationTOS1">
+              (필수) 전자 금융 거래 기본 약관 동의
+              </label>
+            </div>
+        
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="TOS2" id="cardRegistrationTOS2" value=true>
+              <label class="form-check-label" for="cardRegistrationTOS2">
+                (필수) 개인정보 수집 이용 동의 (결제카드)
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="TOS3" id="cardRegistrationTOS3" value=true>
+              <label class="form-check-label" for="cardRegistrationTOS3">
+                (필수) 자동승인 약관 동의
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="TOS4" id="cardRegistrationTOS4" value=true>
+              <label class="form-check-label" for="cardRegistrationTOS4">
+                (필수) 전자금융거래 기본 약관 동의
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="TOS5" id="cardRegistrationTOS5" value=true>
+              <label class="form-check-label" for="cardRegistrationTOS5">
+                (필수) 개인정보 수집/이용 동의(회원가입)
+              </label>
+            </div>
+          </form>
+          <button id="RegistrationSubmit" class="btn btn-dark btn-lg btn-block mt-5" type="submit" form="card_form">결제카드
+            등록</button>
         </div>
         <script type="text/javascript" src="/js/common.js"></script>
-        <script type="text/javascript" src="/js/cardRegistration.js"></script>
     </body>
 </html>

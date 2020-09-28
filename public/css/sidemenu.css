@@ -55,4 +55,16 @@
   cursor: pointer;
 }
 
+#floating_sidebar_button {
+  position: absolute;
+  left: 3%;
+  top: 5%;
+  z-index: 2;
+  background-color: white;
+  padding:15px 15px;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+}
+
 
