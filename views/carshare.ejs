@@ -11,6 +11,7 @@
         <link rel="stylesheet" type="text/css" href="/css/carshare.css">
         <link rel="stylesheet" type="text/css" href="/css/infowindow.css">
         <link rel="stylesheet" type="text/css" href="/css/search.css">
+        <link rel="stylesheet" href="/css/font.css">
 
         <!--BootStrapCDN-->
         <!-- CSS only -->
@@ -47,9 +48,9 @@
                         <button type="button" onclick="rent_request()">대여하기</button>
                     </div>
                     <div id="search">
-                        <div class="input-group md-form form-sm form-2 pl-0">
+                        <div id="search_bar" class="input-group md-form form-sm form-2 pl-0">
                             <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1">주소검색</span>
+                                <span class="input-group-text" id="search_bar_title">주소검색</span>
                             </div>
                             <input id="address_input" class="form-control my-0 py-1 amber-border" type="text" placeholder="Search"
                                 aria-label="Search">
@@ -75,25 +76,7 @@
                 </div>
                 <div id="rent">
                     <div id="rent_ready">
-                        <!--
-                        <div id="card1" class="share_card">
-                            
-                            <% if (session.userid) { %>
-                                userid = <%=session.userid%>
-                                username = <%=session.username%>
-
-                                phone_num = <%=session.shareChecked.phone_num%>
-                                car_owned = <%=session.shareChecked.car_owned%>
-                                card_registered = <%=session.shareChecked.card_registered%>
-                                license_registered = <%=session.shareChecked.license_registered%>
-                                
-                                <% } else { %>
-                                empty session.
-                                <% } %>
-                            
-                        </div>
-                        -->
-                        <% if(!session.shareChecked.card_registered) { %>
+                        <% if(!shareChecked.card_registered) { console.log(shareChecked.license_registered);%>
                             <div id="card1" class="share_card">
                                 <h3 class="warning_title"><i class="fas fa-exclamation-triangle"></i> 카드 정보를 입력해주세요.</h3>
                                 <img src="/media/credit_card.png" class="share_card_img"> 
@@ -112,7 +95,7 @@
                             </div>
                         <% } %>
 
-                        <% if(!session.shareChecked.license_registered) { %>
+                        <% if(!shareChecked.license_registered) { console.log(shareChecked.license_registered);%>
                             <div id="card2" class="share_card">
                                 <h3 class="warning_title"><i class="fas fa-exclamation-triangle"></i> 면허 정보를 입력해주세요.</h3>
                                 <img src="/media/license.png" class="share_card_img"> 
@@ -120,7 +103,7 @@
                                     서비스를 이용하시려면, 면허 정보를 입력하셔야 합니다.<br />
                                     좌측 상단의 메뉴 버튼을 누르셔서 면허등록을 하시거나 하단의 버튼을 눌러주세요.
                                 </p>
-                                <span class="go_info_register"><a href="/share/card">면허등록 <i class="fas fa-angle-right"></i></a></span>
+                                <span class="go_info_register"><a href="/share/license">면허등록 <i class="fas fa-angle-right"></i></a></span>
                             </div>
                         <% } else { %>
                             <div id="card2" class="share_card">
@@ -138,7 +121,7 @@
                             <p class="warning_message"><br />출발주소와 출발시간을 확인해주세요.</p>
                         </div>
                     </div>
-                    <% if(session.shareChecked.card_registered && session.shareChecked.license_registered) { %>
+                    <% if(shareChecked.card_registered && shareChecked.license_registered) { %>
                         <button type="button" id="share_start" onclick="gotoEnd()">대여 시작</button>
                     <% } else { %>
                         <button type="button" id="share_start" onclick="gotoEnd()" disabled>대여 조건을 확인해주세요.</button>

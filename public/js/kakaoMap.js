@@ -110,9 +110,9 @@ function removeMapClickEnent() {
 // 주소로 검색하여 좌표를 추출할 때 사용합니다.
 function addressSearchFromAddress(text) {
     geocoder.addressSearch(text, function (result, status) {
-        /* if (status === kakao.maps.services.Status.ERROR) {
+        if (status === kakao.maps.services.Status.ERROR) {
             console.log('address search error');
-        } */
+        }
         if (status === kakao.maps.services.Status.ZERO_RESULT) {
             console.log('검색 결과가 존재하지 않습니다.');
         }
@@ -126,9 +126,9 @@ function addressSearchFromAddress(text) {
 // 키워드로 검색하여 좌표를 추출할 때 사용합니다.
 function addressSearchFromKeyword(text) {
     ps.keywordSearch(text, function (data, status, pagination) {
-        /* if (status === kakao.maps.services.Status.ERROR) {
+        if (status === kakao.maps.services.Status.ERROR) {
             console.log('keyword search error');
-        } */
+        }
         if (status === kakao.maps.services.Status.ZERO_RESULT) {
             console.log('검색 결과가 존재하지 않습니다.');
         }

@@ -8,7 +8,7 @@ function rent_request() {
     document.getElementById("map").style.width="50%";
     document.getElementById("search").style.width="300px";
     document.getElementById("rent").style.display="block";
-    document.getElementById("basic-addon1").innerText="";
+    document.getElementById("search_bar_title").innerText="";
     document.getElementById("start_location_text").innerText= `출발장소 : ${addressName}`;
     document.getElementById("rent_request").style.display="none";
         
@@ -22,8 +22,8 @@ function rent_request() {
 function rent_close() {
     document.getElementById("map").style.width="100%";
     document.getElementById("search").style.width="500px";
+    document.getElementById("search_bar_title").innerText="주소검색";
     document.getElementById("rent").style.display="none";
-    document.getElementById("basic-addon1").innerText="";
     document.getElementById("rent_request").style.display="inline-block";
 
     map.relayout();
@@ -74,7 +74,19 @@ document.getElementById('address_input').addEventListener('keyup', function(even
         document.getElementById('search_result_box').style.display = "none";  
     }
 
-})
+});
+document.getElementById('address_input').addEventListener('blur', e => {
+    document.getElementById('search_result_box').style.display = "none";  
+});
+document.getElementById('address_input').addEventListener('focus', e => {
+    if (document.getElementById('address_input').value != '') {
+        document.getElementById('search_result_box').style.display = "block";
+        search();
+    }
+    else {
+        document.getElementById('search_result_box').style.display = "none";
+    }
+});
 
 function getTime() {
     const time = new Date();

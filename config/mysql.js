@@ -6,7 +6,8 @@ var dbOptions = {
     port: dbconfig.port,
     user: dbconfig.user,
     password: dbconfig.password,
-    database: dbconfig.database
+    database: dbconfig.database,
+    multipleStatements: true
 };
 // mysql 연결
 const mysqlConnection = {

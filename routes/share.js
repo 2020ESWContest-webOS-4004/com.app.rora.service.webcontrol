@@ -7,65 +7,75 @@ var jarvisController = require('../controller/jarvisController');
 var jarvis_session = auth_lib.auth_session;
 
 router.get('/', function (req, res) {
-    console.log('--share 페이지 접속--');
-
     if (jarvis_session.userid) {
-        console.log('로그인 확인되었습니다.');
-        res.render('carshare', { session: jarvis_session });
+        let userid = jarvis_session.userid;
+        jarvisModel.getJarvisMember(userid, (result) => {
+            let shareChecked = {
+                card_registered: result[0].card_registered,
+                license_registered: result[0].license_registered
+            }
+            res.render('carshare', { session: jarvis_session, shareChecked: shareChecked});
+        });
     }
     else {
-        console.log('로그인이 되지않았습니다.');
         res.redirect('/window');
     }
 });
 router.get('/license', function (req, res) {
-    res.render('drivinglicense', {session: jarvis_session});
+    if (jarvis_session.userid) {
+        res.render('drivinglicense', {session: jarvis_session});
+    } else {
+        res.redirect('/window');
+    }
+    
 });
 router.post('/license', function (req, res) {
-    let userid = jarvis_session.userid;
-    let data = {
-        license_num: jarvisController.concatLicenseNumber(req.body),
-        license_class: req.body.license_class
+    if(jarvis_session.userid) {
+        let userid = jarvis_session.userid;
+        let data = {
+            license_number: jarvisController.concatLicenseNumber(req.body),
+            license_class: req.body.license_class
+        };
+        jarvisModel.insertDrivingLicenseInfo(userid, data, result => {
+            if(!result[0].msg) {
+                res.redirect('/share');
+            } else {
+                res.send(result.msg);
+            }
+        });
+        
+        
+    } else {
+        res.redirect('/window');
     }
-    jarvisModel.insertDrivingLicenseInfo(userid, data, (result) => {
-        if (result) {
-            jarvisModel.updateJarvisMember(userid, 'license_registered', 1, (result) => {
-                if(result) {
-                    res.redirect('/share');
-                }
-            });
-        }
-        else {
-            res.send('error');
-        }
-    });
-
 });
 
 router.get('/card', function (req, res) {
-    res.render('cardregistration', {session: jarvis_session});
+    if (jarvis_session.userid) {
+        res.render('cardregistration', { session: jarvis_session });
+    } else {
+        res.redirect('/window');
+    }
 });
 router.post('/card', function (req, res) {
-    let userid = jarvis_session.userid;
-    let data = {
-        card_num: jarvisController.concatCardNumber(req.body),
-        expiration_date: jarvisController.concatExpirationDate(req.body),
-        CVC: req.body.CVC,
-        card_password: req.body.card_password
+    if(jarvis_session.userid) {
+        let userid = jarvis_session.userid;
+        let data = {
+            card_num: jarvisController.concatCardNumber(req.body),
+            expiration_date: jarvisController.concatExpirationDate(req.body),
+            CVC: req.body.CVC,
+            card_password: req.body.card_password
+        }
+        jarvisModel.insertCreditCardInfo(userid, data, result => {
+            if(!result[0].msg) {
+                res.redirect('/share');
+            } else {
+                res.send(result.msg);
+            }
+        });
+    } else {
+        res.redirect('/window');
     }
-    jarvisModel.insertCreditCardInfo(userid, data, (result) => {
-        if (result) {
-            jarvisModel.updateJarvisMember(userid, 'card_registered', 1, (result) => {
-                if(result) {
-                    res.redirect('/share');
-                }
-            });
-        }
-        else {
-            res.send('error');
-        }
-    });
-
 });
 
 router.get('/end', function(req, res) {

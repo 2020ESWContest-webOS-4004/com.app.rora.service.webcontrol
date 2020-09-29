@@ -117,15 +117,6 @@ nav ul{
     margin-left: 2rem;
 }
 
-#search {
-    position: absolute;
-    top:10%;
-    left:50%;
-    transform:translateX(-50%);
-    width: 500px;
-    z-index: 2;
-}
-
 #rent_request {
     position: absolute;
     bottom: 10%;

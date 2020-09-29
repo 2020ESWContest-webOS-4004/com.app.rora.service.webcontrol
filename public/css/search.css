@@ -1,18 +1,36 @@
+#search {
+    position: absolute;
+    top:10%;
+    left:50%;
+    transform:translateX(-50%);
+    width: 500px;
+    z-index: 2;
+}
+
+
+#search_bar {
+    z-index: 3;
+}
+
 #search_result_box{
     position: relative;
     top: -10%;
-    left: 5%;
+    left: 4%;
     background-color : rgba(255, 255, 255, 0.9);
+    border: 1px solid lightgray;
     max-height: 350px;
     padding: 1rem;
     overflow: auto;
-    margin: 0 4rem;
+    margin: -0.3rem 4rem;
+    box-shadow: 0 2px 3px 1px lightgrey;
+    z-index: 2;
     display: none;
 }
 
 #search_result_box #address_search_result_print {
     border: 1px solid gray;
     padding: 0.5rem;
+    margin-bottom: 1rem;
 }
 
 #search_result_box #keyword_search_result_print {
