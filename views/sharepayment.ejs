@@ -1,15 +1,10 @@
 <html>
 
 <head>
-    <title>hihi</title>
+    <title>Share Payment!</title>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!--Custom CSS-->
+    <!--reset CSS-->
     <link rel="stylesheet" type="text/css" href="/css/reset.css">
-    <link rel="stylesheet" type="text/css" href="/css/sidemenu.css">
-    <link rel="stylesheet" type="text/css" href="/css/common.css">
-    <link rel="stylesheet" type="text/css" href="/css/topbar.css">
 
     <!--BootStrapCDN-->
     <!-- CSS only -->
@@ -20,9 +15,15 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 
-
     <!--Font Awesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+
+
+    <!--Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="/css/sidemenu.css">
+    <link rel="stylesheet" type="text/css" href="/css/common.css">
+    <link rel="stylesheet" type="text/css" href="/css/topbar.css">
+    <link rel="stylesheet" href="/css/font.css">
 </head>
 
 <body>        
@@ -33,26 +34,83 @@
     <div id="content">
         <h1>결제 정보 확인</h1>
         <hr />
-            <div>
-                <h4>면허정보</h4>
-                <p>
-                <% if (session.userid) { %>
-                userid = <%=session.userid%>
-                username = <%=session.username%>
-                phone_num = <%=session.shareChecked.phone_num%>
-                car_owned = <%=session.shareChecked.car_owned%>
-                card_registered = <%=session.shareChecked.card_registered%>
-                license_registered = <%=session.shareChecked.license_registered%>
-                
-                <% } else { %>
-                empty session.
-                <% } %>
-                </p>
+        <div id="payment_info" class="row">
+            <div id="payment_info_left" class="col info">
+                <img src="/media/route_image.png">
             </div>
-            <hr />
+            <div id="payment_info_right" class="col info">
+                <div class="info_card">
+                    <div class="row info_title">
+                        사용 내역
+                    </div>
+                    <div class="row info_pay">
+                        <div class="col">사용시간</div>
+                        <div class="col">3시간 3분 3초</div>
+                    </div>
+                    <div class="row info_pay">
+                        <div class="col">이동거리</div>
+                        <div class="col">327km</div>
+                    </div>
+                    <div class="row info_pay">
+                        <div class="col">서울 항동 1-1 -> 서울 강남구 영동대로 513</div>
+                    </div>
+                </div>
+                <div class="info_card">
+                    <div class="row info_title">
+                        상세 요금
+                    </div>
+                    <div class="row info_pay">
+                        <div class="col">기본요금</div>
+                        <div class="col">5,000원</div>
+                    </div>
+                    <div class="row info_pay">
+                        <div class="col">추가요금</div>
+                        <div class="col">7,520원</div>
+                    </div>
+                </div>
 
-              <button id="cardRegistrationSubmit" class="btn btn-dark btn-lg btn-block mt-5" type="submit">결제 하기</button>
-        </form>
+                <div class="info_card">
+                    <div class="row info_title">
+                        할인 수단
+                    </div>
+                    <div class="row info_pay">
+                        <div class="col">조회 포인트</div>
+                        <div class="col">3000 포인트</div>
+                    </div>
+                    <div class="row info_pay">
+                        <div class="col">사용할 포인트</div>
+                        <div class="col"><input type="text" size=5></div>
+                    </div>
+                </div>
+                <div class="info_card">
+                    <div class="row info_title">
+                        결제 카드
+                    </div>
+                    <div class="row info_pay">
+                        <div class="col">카드 번호</div>
+                        <div class="col">카드교체 <i class="fas fa-angle-right"></i></div>
+                    </div>
+                    <div class="row info_pay">
+                        <div class="col">1111-1111-1111-1111</div>
+                    </div>
+                </div>
+                <div class="info_card">
+                    <div class="row info_title">
+                        예약 전 주의사항
+                    </div>
+                    <div class="row info_pay">
+                        <div class="col">
+                            자비스 서비스를 이용하실 경우, 차량의 파손, 타인과의 사고 시에 발생하는
+                            모든 책임에서 본사는 아무런 책임이 없음을 알려드립니다. 추가적으로, 차량 손괴시에
+                            발생하는 금액을 청구할 수 있음을 알려드립니다.
+                        </div>
+                    </div>
+                </div>
+
+                <button id="RegistrationSubmit" class="btn btn-dark btn-lg btn-block mt-5" type="submit" form="license_form">면허등록</button>
+
+            </div>
+        </div>
     </div>
     <script type="text/javascript" src="/js/common.js"></script>
 </body>

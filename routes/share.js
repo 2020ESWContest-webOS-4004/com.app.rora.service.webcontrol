@@ -78,7 +78,7 @@ router.post('/card', function (req, res) {
     }
 });
 
-router.get('/end', function(req, res) {
+router.get('/payment', function(req, res) {
     res.render('sharepayment', {session: jarvis_session});
 })
 
