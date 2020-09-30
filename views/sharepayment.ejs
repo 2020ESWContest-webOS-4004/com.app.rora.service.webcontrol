@@ -33,36 +33,20 @@
     <div id="content">
         <h1>결제 정보 확인</h1>
         <hr />
-        <form id="form">
-            <div id="credit_card_number" class="form-group col">
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">카드번호</span>
-                    </div>
-                    <input id="card_num1" type="text" class="form-control" placeholder="XXXX">-
-                    <input id="card_num2" type="text" class="form-control" placeholder="XXXX">-
-                    <input id="card_num3" type="text" class="form-control" placeholder="XXXX">-
-                    <input id="card_num4" type="text" class="form-control" placeholder="XXXX">
-                </div>
-            </div>
-
-            <div id="expiration_date" class="form-group col" >
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">유효기간</span>
-                    </div>
-                    <input id="date_Month" type="text" class="form-control" placeholder="월(MM)">
-                    <input id="date_Year" type="text" class="form-control" placeholder="년(YY)">
-                </div>
-            </div>
             <div>
                 <h4>면허정보</h4>
-                <p><% if (session.userid) { %>
-                    <h2><%= session.userid %></h2>
-                </p>
-                <p><% } else { %>
-                    <h2>hihi</h2>
-               <% } %>
+                <p>
+                <% if (session.userid) { %>
+                userid = <%=session.userid%>
+                username = <%=session.username%>
+                phone_num = <%=session.shareChecked.phone_num%>
+                car_owned = <%=session.shareChecked.car_owned%>
+                card_registered = <%=session.shareChecked.card_registered%>
+                license_registered = <%=session.shareChecked.license_registered%>
+                
+                <% } else { %>
+                empty session.
+                <% } %>
                 </p>
             </div>
             <hr />
@@ -71,8 +55,6 @@
         </form>
     </div>
     <script type="text/javascript" src="/js/common.js"></script>
-    <script type="text/javascript" src="/js/cardRegistration.js"></script>
-    <script type="text/javascript" src="/js/shareSession.js"></script>
 </body>
 
 </html>

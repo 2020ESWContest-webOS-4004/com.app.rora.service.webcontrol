@@ -40,12 +40,6 @@ function jarvis_login(auth_data){
             results = query_results;
             auth_session.userid = results[0].jarvis_id;
             auth_session.username = results[0].member_name;
-            auth_session.shareChecked = {
-                phone_num           : results[0].phone_num,
-                car_owned           : results[0].car_owned,
-                card_registered     : results[0].card_registered,
-                license_registered  : results[0].license_registered   
-            };
             utils.set_auth(auth_session.username);
         }
     });
