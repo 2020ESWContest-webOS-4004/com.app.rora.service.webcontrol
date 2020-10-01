@@ -80,6 +80,6 @@ router.post('/card', function (req, res) {
 
 router.get('/end', function(req, res) {
     res.render('sharepayment', {session: jarvis_session});
-})
+});
 
 module.exports = router;

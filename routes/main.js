@@ -1,7 +1,6 @@
 var mysql = require('mysql');
 var auth_lib = require('../auth');
 var express_session = require('express-session');
-const session = require('express-session');
 
 module.exports = function (app, utils) {
    var jarvis_session = auth_lib.auth_session;
