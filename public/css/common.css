@@ -27,5 +27,77 @@ body { width: 100%; height: 100%;}
 
 .col { 
     padding-left: 0;
-    padding-right: 0;    
+    padding-right: 0;
+}
+
+/*smart home css*/
+#smarthome_menu {
+    width: 100%;
+    height: 70%;
+}
+
+#smarthome_menu_line1 {
+    width: 100%;
+    height: 50%;
+    margin-top: 15px;
+}
+
+#smarthome_menu_box_led {
+    float: left;
+    width: 32%;
+    height: 100%;
+    padding: 10px;
+    margin-left: 8px;
+    background-color: #CD005D;
+    color: white;
+}
+
+#smarthome_menu_box_cctv {
+    float: left;
+    width: 32%;
+    height: 100%;
+    padding: 10px;
+    margin-left: 8px;
+    background-color: #00A4C7;
+    color:white;
+}
+
+#smarthome_menu_box_waterworks {
+    float: left;
+    width: 32%;
+    height: 100%;
+    padding: 10px;
+    margin-left: 8px;
+    background-color: #8AD401;
+    color: white;
+}
+
+#smarthome_menu_box_boiler {
+    float: left;
+    width: 32%;
+    height: 100%;
+    padding: 10px;
+    margin-left: 8px;
+    background-color: #04B284;
+    color: white;
+}
+
+#smarthome_menu_box_powerplug {
+    float: left;
+    width: 32%;
+    height: 100%;
+    padding: 10px;
+    margin-left: 8px;
+    background-color: #FFBE00;
+    color: white;
+}
+
+#smarthome_menu_box_washer {
+    float: left;
+    width: 32%;
+    height: 100%;
+    padding: 10px;
+    margin-left: 8px;
+    background-color: #C40198;
+    color: white;
 }

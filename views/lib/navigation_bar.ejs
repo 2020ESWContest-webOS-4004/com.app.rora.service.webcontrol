@@ -2,7 +2,7 @@
     <nav id="topbar-navbar" class="navbar navbar-expand-lg navbar-dark">
       <a class="navbar-brand mb-0 h1" href="/dashboard">JARVIS</a>
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav" style="margin-left: 0px">
+        <ul class="navbar-nav" style="margin-left: 0px; margin-top:0px;">
           <li class="nav-item active">
             <a class="nav-link" href="/share">SHARE</a> <!--테스트용 코드-->
           </li>
@@ -11,17 +11,18 @@
           </li>
         </ul>
         <ul id="topbar-username" class="navbar-nav ml-auto" style="margin-right: 0px">
-          <i id="user-icon" class="far fa-user-circle"></i>
           <li class="nav-item dropdown">
             <%if(session.username) {%>
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <%= session.username %>님
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding-bottom: 15px;">
+              <i id="user-icon" class="far fa-user-circle"></i> <%= session.username %>님
             </a>
             <div id="dropdown-menu" class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">개인정보</a>
-              <a class="dropdown-item" href="#">대여종료</a>
+              <a class="dropdown-item" href="#"><i class="fas fa-user"></i> 개인정보</a>
+              <a class="dropdown-item" href="#"><i class="fas fa-share-square"></i> 빌려주기</a>
+              <a class="dropdown-item" href="/iot/smarthome"><i class="fas fa-home"></i> 스마트홈</a>
+              <a class="dropdown-item" href="#"><i class="far fa-stop-circle"></i> 대여종료</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="/logout">로그아웃</a>
+              <a class="dropdown-item" href="/logout"><i class="fas fa-sign-out-alt"></i> 로그아웃</a>
             </div>
             <%} else {%>
             <a class="nav-link" href="/window" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
