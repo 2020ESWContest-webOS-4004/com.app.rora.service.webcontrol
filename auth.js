@@ -48,6 +48,7 @@ function jarvis_login(auth_data){
 
 // 커스텀세션을 활용한 로그아웃 로직
 function jarvis_logout(){
+    utils.tts("서비스 로그아웃");
     auth_session.userid = "";
     auth_session.username = "";
     auth_session.shareChecked = {};
