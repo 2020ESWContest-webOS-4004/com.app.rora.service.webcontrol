@@ -15,6 +15,7 @@ var utils = require('./utils');
 var http = require('http').createServer(app);
 var router = require('./routes/main')(app, utils);
 var shareRouter = require('./routes/share');
+var jarvisIoT = require('./routes/iot');
 var env = require('./env/env.json');
 var bodyparser = require('body-parser');
 var session = require('express-session');
@@ -88,6 +89,7 @@ app.use(bodyparser.urlencoded({extended: false}));
 app.use(bodyparser.json());
 
 app.use('/share', shareRouter);
+app.use('/iot', jarvisIoT);
 
 var server = http.listen(env.port, function(){
   console.log("Express server has started on port [" + env.port + " ]");
