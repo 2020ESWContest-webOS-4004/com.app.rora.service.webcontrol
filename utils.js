@@ -434,3 +434,4 @@ exports.start_engine = start_engine;
 exports.request_camera = request_camera;
 exports.toast_to_webOS = toast_to_webOS;
 exports.js_sleep = js_sleep;
+exports.tts = tts;

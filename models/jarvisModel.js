@@ -1,9 +1,9 @@
 /**
  * service      :   com.app.rora.service.webcontrol
- * type         :   JSService
+ * type         :   Mysql SQL
  * date         :   2020.09.20
- * author       :   소찬영(RORA PM)
- * description  :   생체인증 정보를 통해 웹에서 로그인 처리를 하는 라이브러리 정의
+ * author       :   배상준(RORA)
+ * description  :   쉐어 서비스 DB Model
 **/
 const mysql = require('mysql');
 const mysqlConnObj = require('../config/mysql');
@@ -132,6 +132,80 @@ exports.insertDrivingLicenseInfo = (userid, data, callback) => {
             }
             else {
                 callback([{msg:'면허 정보 입력이 실패했습니다.'}]);
+            }
+        } else {
+            callback(error);
+        }
+    });
+};
+
+
+
+/*---------share_history---------*/
+exports.getShareHistoryList = (callback) => {
+    let sql = 'SELECT * FROM share_history';
+    conn.query(sql, function(error, result, fields) {
+        if(!error) {
+            callback(JSON.parse(JSON.stringify(result)));
+        } else{
+            callback(error);
+        }
+    });
+};
+
+exports.getShareHistory = (shareid, callback) => {
+    let sql = `select * from share_history where share_id = ?`;
+    conn.query(sql, [shareid], (error, result, fields) => {
+        if(!error) {
+            callback(JSON.parse(JSON.stringify(result)));
+        } else{
+            callback(error);  
+        }
+    });
+}
+
+exports.insertShareHistoryList = (userid, data, callback) => {
+    let sql1 = `insert into share_history(
+                jarvis_member_id,
+                start_time,
+                start_coordinate,
+                share_status) values(?, ?, ?, ?)`;
+    let bindParam1 = [
+        userid, 
+        data.start_time, 
+        data.start_coordinate,
+        data.share_status
+    ];
+
+    conn.query(sql1, bindParam1, (error, result, fields) => {
+        if (!error) {
+            if(result.affectedRows > 0) {
+                callback(JSON.parse(JSON.stringify(result)));
+            }
+            else {
+                callback({msg:'카드 정보 입력이 실패했습니다.'});
+            }
+        } else {
+            callback(error);
+        }
+    });
+};
+
+exports.updateShareHistoryList = (shareid, data, callback) => {
+    let sql = `update share_history set end_time = ?, end_coordinate = ?, share_status = ? where share_id = ?`;
+    let bindParam = [
+        data.end_time, 
+        data.end_coordinate,
+        data.share_status,
+        shareid
+    ];
+    conn.query(sql, bindParam, (error, result, fields) => {
+        if (!error) {
+            if(result.affectedRows > 0) {
+                callback(JSON.parse(JSON.stringify(result)));
+            }
+            else {
+                callback({msg:'히스토리 수정이 실패했습니다.'});
             }
         } else {
             callback(error);

@@ -19,7 +19,11 @@
             </a>
             <div id="dropdown-menu" class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="#">개인정보</a>
-              <a class="dropdown-item" href="#">대여종료</a>
+              <%if(session.shareid){%>
+              <a class="dropdown-item" href="/share/end">대여종료</a>
+              <%}else{%>
+              <a class="dropdown-item" href="/share">대여하기</a>
+              <%}%>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="/logout">로그아웃</a>
             </div>

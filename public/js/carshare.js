@@ -37,8 +37,11 @@ function rent_close() {
 
 
 function share_start() {
+    
     method = "POST";
-    path = "/share"
+    path = "/share";
+
+    console.log('start_좌표 : ', start_coordinate);
 
     var form = document.createElement("form");
     form.setAttribute("method", method);
@@ -46,14 +49,15 @@ function share_start() {
 
     var hiddenField = document.createElement("input");
     hiddenField.setAttribute("type", "hidden");
-    hiddenField.setAttribute("name", "time");
-    hiddenField.setAttribute("value", Date());
+    hiddenField.setAttribute("name", "start_coordinate");
+    hiddenField.setAttribute("value", JSON.stringify(start_coordinate));
 
     form.appendChild(hiddenField);
     
     document.body.appendChild(form);
     form.submit();
 }
+
 
 
 function search() {

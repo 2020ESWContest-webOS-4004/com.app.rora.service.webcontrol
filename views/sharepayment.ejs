@@ -18,6 +18,8 @@
     <!--Font Awesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
 
+    <!--카카오 맵-->
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1d0a159da55940360f13d50b0203bb38&libraries=services,clusterer,drawing"></script>
 
     <!--Custom CSS-->
     <link rel="stylesheet" type="text/css" href="/css/sidemenu.css">
@@ -45,14 +47,15 @@
                     </div>
                     <div class="row info_pay">
                         <div class="col">사용시간</div>
-                        <div class="col">3시간 3분 3초</div>
+                        <div class="col"><%=data.diff_time%></div>
                     </div>
                     <div class="row info_pay">
                         <div class="col">이동거리</div>
-                        <div class="col">327km</div>
+                        <div class="col"><%=data.distance%></div>
                     </div>
                     <div class="row info_pay">
-                        <div class="col">서울 항동 1-1 -> 서울 강남구 영동대로 513</div>
+                        <div class="col" id="start_location"></div>
+                        <div class="col" id="end_location"></div>
                     </div>
                 </div>
                 <div class="info_card">
@@ -65,7 +68,7 @@
                     </div>
                     <div class="row info_pay">
                         <div class="col">추가요금</div>
-                        <div class="col">7,520원</div>
+                        <div class="col"><%=data.Surcharge%>원</div>
                     </div>
                 </div>
 
@@ -75,7 +78,7 @@
                     </div>
                     <div class="row info_pay">
                         <div class="col">조회 포인트</div>
-                        <div class="col">3000 포인트</div>
+                        <div class="col"><%=data.member_point%>포인트</div>
                     </div>
                     <div class="row info_pay">
                         <div class="col">사용할 포인트</div>
@@ -106,13 +109,52 @@
                         </div>
                     </div>
                 </div>
+                <div id="map"></div>
 
                 <button id="RegistrationSubmit" class="btn btn-dark btn-lg btn-block mt-5" type="submit" form="license_form">면허등록</button>
-
+                <input id="testinput1" type="hidden" value=<%=data%>>
+                <input id="testinput2" type="hidden" value=<%=data2%>>
             </div>
         </div>
     </div>
     <script type="text/javascript" src="/js/common.js"></script>
+    <script type="text/javascript" src="/js/kakaoMap.js"></script>
+    <script>
+
+        window.onload = print();
+        function print() {
+            var temp = JSON.parse(document.getElementById('testinput2').value);
+            //console.log(temp);
+            console.log(temp);
+
+            start_coordinate = JSON.parse(temp.start_coordinate);
+            end_coordinate =JSON.parse(temp.end_coordinate);
+
+            var coords1 = new kakao.maps.LatLng(start_coordinate.Ha, start_coordinate.Ga);
+            var coords2 = new kakao.maps.LatLng(start_coordinate.Ha, start_coordinate.Ga);
+
+            searchDetailAddrFromCoords(coords1, function(result, status) {
+                if(result[0].road_address) {
+                    document.getElementById('start_location').innerText = result[0].road_address.address_name;
+                } else { 
+                    document.getElementById('start_location').innerText = result[0].address.address_name;
+                }
+                
+            })
+
+
+            searchDetailAddrFromCoords(coords2, function(result, status) {
+                if(result[0].road_address) {
+                    document.getElementById('end_location').innerText = result[0].road_address.address_name;
+                } else { 
+                    document.getElementById('end_location').innerText = result[0].address.address_name;
+                }
+                
+            })
+
+        }
+
+    </script>
 </body>
 
 </html>

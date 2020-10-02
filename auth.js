@@ -50,7 +50,7 @@ function jarvis_login(auth_data){
 function jarvis_logout(){
     auth_session.userid = "";
     auth_session.username = "";
-    auth_session.shareChecked = {};
+    if(auth_session.shareid) auth_session.shareid = "";
 
     utils.set_auth("");
 }
