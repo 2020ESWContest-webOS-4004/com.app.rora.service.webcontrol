@@ -42,6 +42,7 @@ function jarvis_login(auth_data){
             auth_session.username = results[0].member_name;
             auth_session.car_owned = results[0].car_owned;
             utils.set_auth(auth_session.username);
+            utils.tts(auth_session.username + "님 인증되었습니다");
         }
     });
     conn.end();
