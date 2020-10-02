@@ -169,4 +169,31 @@ router.get('/payment', function(req, res) {
     }
 })
 
+router.get('/lend', function(req, res){
+    if(jarvis_session.userid){
+        res.render('lend', {session: jarvis_session});
+    }
+    else {
+        res.redirect('/window');
+    }
+});
+
+router.post('/lend', function(req, res){
+    if(jarvis_session.userid && req.body.hour && req.body.minute){
+        var hour = req.body.hour;
+        var time = req.body.minute;
+        var am_pm = req.body.am_pm;
+        var ment;
+
+        if(am_pm == "AM") ment = "오전" + hour + "시"+ time + "분 부터 내차를 공유합니다"
+        if(am_pm == "PM") ment = "오후" + hour + "시"+ time + "분 부터 내차를 공유합니다"
+
+        utils.tts(ment);
+        res.redirect('/dashboard');
+    } 
+    else {
+        res.redirect('lend');
+    }
+});
+
 module.exports = router;
