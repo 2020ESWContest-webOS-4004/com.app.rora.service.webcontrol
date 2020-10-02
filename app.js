@@ -28,15 +28,6 @@ service.activityManager.create("keepAlive", function(activity){
   keepAlive = activity;
 });
 
-service.register("hello", function(message) {
-  var name = message.payload.name ? message.payload.name : "World";
-
-  message.respond({
-      returnValue: true,
-      Response: "port :  " + env.port + "!"
-  });
-});
-
 // 사고 발생 시 구조요청 서비스
 service.register("help_call", function(message){
   var type = message.payload.type;
