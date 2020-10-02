@@ -1,6 +1,7 @@
 var center_Location_Latitude = 37.487113;
 var center_Location_Longitude = 126.825320;
 
+var start_coordinate;
 var addressName;
 
 var container = document.getElementById('map');
@@ -39,6 +40,7 @@ kakao.maps.event.addListener(map, 'center_changed', setMarkerAndInfowindow);
 
 function setMarkerAndInfowindow() {
     searchDetailAddrFromCoords(map.getCenter(), function (result, status) {
+    start_coordinate = map.getCenter();
         if (status === kakao.maps.services.Status.OK) {
 
             addressName = !!result[0].road_address ? result[0].road_address.address_name : result[0].address.address_name
@@ -217,10 +219,19 @@ function keyword_search_displayresult(text, data) {
     }
 }
 
+function getAddressFromCoodinate(coodinate) {
+    let seach_coodinate = new kakao.maps.LatLng(coodinate.Ha, coodinate.Ga);
+
+    searchDetailAddrFromCoords(seach_coodinate, function(result, status) {
+        if (status === kakao.maps.services.Status.OK) {
+            console.log(result);
+        }
+    });
+}
+
 //지정한 좌표로 맵 이동
 function changeMapPosition(position) {
     map.setCenter(new kakao.maps.LatLng(position));
-
 }
 
 // 지도의 현재 중심좌표를 얻어옵니다 

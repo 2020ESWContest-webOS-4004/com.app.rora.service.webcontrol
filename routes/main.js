@@ -39,6 +39,7 @@ module.exports = function (app, utils) {
    app.get('/dashboard', function (req, res) {
       res.render('dashboard', {session: jarvis_session});
    });
+   
    app.get('/window', function (req, res) {
       res.render('window', {session: jarvis_session});
    });

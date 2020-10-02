@@ -51,7 +51,7 @@ function jarvis_logout(){
     utils.tts("서비스 로그아웃");
     auth_session.userid = "";
     auth_session.username = "";
-    auth_session.shareChecked = {};
+    if(auth_session.shareid) auth_session.shareid = "";
 
     utils.set_auth("");
 }

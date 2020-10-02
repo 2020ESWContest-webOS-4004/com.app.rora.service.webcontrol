@@ -11,22 +11,66 @@ body { width: 100%; height: 100%;}
     font-family: 'NanumSquare', sans-serif;  
 }
 
+#payment_info {
+    height: 90%;
+    background-color: rgb(231, 231, 231);
+}
+#payment_info .info:first-child {
+    margin-right: 0;
+}
+#payment_info .info:first-child img{
+    width: 100%;
+}
+
+
+#payment_info .info {
+    height: 90%;
+    margin: 1rem;
+    color: rgb(87, 87, 87);
+    overflow: scroll;
+}
+
+.info_card {
+    background-color: white;
+    border: 1px solid black;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+}
+.info_title {
+    font-size: 1.1rem;
+    color: black;
+    margin-bottom: 0.3rem;
+}
+
+.info_pay div:nth-child(2) {
+    text-align: right;
+}
+
 .input-group-text {
     width: 6rem;
 }
 
 #RegistrationSubmit {    
-    position : fixed;
-    width: 900px;
-    margin: 0 auto;
-    bottom: 0;
-    left: 0;
-    right: 0;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
 }
 
-.col { 
+.bottom_button {
+    width: 100%; 
+    position : fixed;
+    
+    margin: 0 auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.row {
+    margin-left: 0;
+    margin-right: 0;
+}
+.col {
+    font-size: 0.8rem;
     padding-left: 0;
     padding-right: 0;
 }

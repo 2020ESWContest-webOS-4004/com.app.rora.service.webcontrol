@@ -122,9 +122,9 @@
                         </div>
                     </div>
                     <% if(shareChecked.card_registered && shareChecked.license_registered) { %>
-                        <button type="button" id="share_start" onclick="gotoEnd()">대여 시작</button>
+                        <button type="button" id="share_start" onclick="share_start()">대여 시작</button>
                     <% } else { %>
-                        <button type="button" id="share_start" onclick="gotoEnd()" disabled>대여 조건을 확인해주세요.</button>
+                        <button type="button" id="share_start" disabled>대여 조건을 확인해주세요.</button>
                     <% } %>
                 </div>
             </div>
