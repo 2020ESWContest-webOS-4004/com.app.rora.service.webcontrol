@@ -40,6 +40,7 @@ function jarvis_login(auth_data){
             results = query_results;
             auth_session.userid = results[0].jarvis_id;
             auth_session.username = results[0].member_name;
+            auth_session.car_owned = results[0].car_owned;
             utils.set_auth(auth_session.username);
         }
     });
@@ -51,6 +52,7 @@ function jarvis_logout(){
     utils.tts("서비스 로그아웃");
     auth_session.userid = "";
     auth_session.username = "";
+    auth_session.car_owned = "";
     if(auth_session.shareid) auth_session.shareid = "";
 
     utils.set_auth("");
