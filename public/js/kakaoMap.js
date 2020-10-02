@@ -151,7 +151,7 @@ function address_search_displayresult(text, result) {
             var result_box = document.getElementById('address_search_result_print');
             var result_card = document.createElement('div');
 
-            if (result[0].road_address == null) {
+            if (result[0].road_address == null || result[0].road_address.building_name== "") {
                 var address_name = result[0].address.address_name;
 
                 //var address_area = '<a onclick="changeMapPosition('+ coords + ')' + '<div class="result_card">';
@@ -188,7 +188,7 @@ function keyword_search_displayresult(text, data) {
                 var result_box = document.getElementById('keyword_search_result_print');
                 var result_card = document.createElement('div');
 
-                if (result[0].road_address == null) {
+                if (result[0].road_address == null  || result[0].road_address.building_name== "") {
                     var address_name = result[0].address.address_name;
                     var place_name = data[i].place_name;
 

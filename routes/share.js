@@ -167,6 +167,26 @@ router.get('/payment', function(req, res) {
     } else {
         res.redirect('/window');
     }
-})
+});
+
+router.get('/accident', (req, res) => {
+    let data=[];
+    for(let i=0; i<5; i++) {
+        data[i] = {
+            title   : '2020-10-0'+i,
+            content : `Eu enim ullamco mollit consequat eiusmod duis ad.
+            Ullamco deserunt incididunt ex ullamco laboris.
+            Ipsum aliqua velit non tempor mollit in Lorem cillum pariatur consectetur qui dolore.
+            Velit mollit ea duis ea veniam anim officia.
+            Non aliquip incididunt ullamco commodo officia aliquip proident culpa fugiat mollit laborum quis minim exercitation.`            
+        }
+    }
+    res.render('accidenthistory', {session:{userid:'scy', username:'미스터배'}, data:data});
+});
+
+router.get('/payment/success', (req, res) => {
+    
+    res.render('sharepaymentsuccess', {session:{userid:'scy', username:'미스터배'}});
+});
 
 module.exports = router;
