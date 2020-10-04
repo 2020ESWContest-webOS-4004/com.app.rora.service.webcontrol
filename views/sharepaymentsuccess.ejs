@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <title>Accident History</title>
+    <title>결제 완료</title>
 
     <!-- reset CSS -->
     <link rel="stylesheet" type="text/css" href="/css/reset.css">
@@ -20,7 +20,7 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="/css/sidemenu.css">
-    <link rel="stylesheet" type="text/css" href="/css/common2.css">
+    <link rel="stylesheet" type="text/css" href="/css/common.css">
     <link rel="stylesheet" type="text/css" href="/css/topbar.css">
     <link rel="stylesheet" href="/css/font.css">
 </head>
@@ -31,22 +31,85 @@
     <i id="floating_sidebar" class="fas fa-arrow-left" onclick="goBack()"></i>
 
     <div id="content">
-        <h1>사고 이력</h1>
+        <h1>결제 완료</h1>
         <hr />
-        <div class="content_row row">
-            <div class="col info">
-                <div class="info_card">
-                <div class="row info_title">
-                    사용 내역
+        <div id="success_info" class="row">
+            <div id="success_info_left" class="col-7 info">
+                <div class="payment_success">
+                    <h4><span style="color: blue;">결제가 성공적으로 완료</span>되었습니다.</h4>
+                    <h5>JARVIS를 사용해주셔서 감사합니다.</h5>
+                    <p>사용 일자 : 2020-07-12</p>
+                    <a type="button" class="btn btn-primary" href="/share">계속 사용하기 ></a>
                 </div>
-                <div class="row info_pay">
+            </div>
+            <div id="success_info_right" class="col-5 info">
+                <div class="bill">
+                    <div class="row info_title">
+                        사용자 정보
+                    </div>
+                    <div class="row info_pay">
+                        <div class="col">이름</div>
+                        <div class="col right"><%=data.jarvisMember.member_name%></div>
+                    </div>
+                    <div class="row info_pay">
+                        <div class="col">휴대폰</div>
+                        <div class="col right"><%=data.jarvisMember.phone_num%></div>
+                    </div>
+                    <div class="row info_pay">
+                        <div class="col">면허 번호</div>
+                        <div class="col right"><%=data.drivingLicenseInfo.driving_license_number%></div>
+                    </div>
+                    <div class="row info_pay">
+                        <div class="col">결제 카드 번호</div>
+                        <div class="col right"><%=data.creditCardInfo.credit_card_number%></div>
+                    </div>
+
+                    <hr />
+
+                    <div class="row info_title">
+                        사용 내역
+                    </div>
+                    <div class="row info_pay">
+                        <div class="col">사용시간</div>
+                        <div class="col right"><%=data.shareHistory.diff_time%></div>
+                    </div>
+                    <div class="row info_pay">
+                        <div class="col">이동거리</div>
+                        <div class="col right"><%=data.shareHistory.distance%>KM</div>
+                    </div>
+
+                    <hr />
+
+                    <div class="row info_title">
+                        결제 정보
+                    </div>
+                    <div class="row info_pay">
+                        <div class="col">기본요금</div>
+                        <div class="col right">5,000원</div>
+                    </div>
+                    <div class="row info_pay">
+                        <div class="col">추가요금</div>
+                        <div class="col right"><%=data.shareHistory.Surcharge%>원</div>
+                    </div>
+                    <div class="row info_pay">
+                        <div class="col">포인트 사용</div>
+                        <div class="col right">-<%=data.use_point%>원</div>
+                    </div>
+
+                    <hr />
+
+                    <div class="row info_total">
+                        <div class="col total">총 결제 금액 : </div>
+                        <div class="col total right"><%=data.shareHistory.totalprice%>원</div>
+                    </div>
+                    
                 </div>
-                </div>
-            </div>    
-            <div class="col info">
-                hihi
-            </div>    
-        </div>
+            </div>
+        </div>    
+        <hr />
+
+        
+                
     </div>
     <script type="text/javascript" src="/js/common.js"></script>
 </body>

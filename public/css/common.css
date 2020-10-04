@@ -11,29 +11,89 @@ body { width: 100%; height: 100%;}
     font-family: 'NanumSquare', sans-serif;  
 }
 
-#payment_info {
-    height: 90%;
-    background-color: rgb(231, 231, 231);
+#success_info {
+    height: 80%;
 }
-#payment_info .info:first-child {
-    margin-right: 0;
+
+#success_info .info {
+    position: relative;
 }
-#payment_info .info:first-child img{
+
+#success_info .info .payment_success {
     width: 100%;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#success_info .info .bill {
+    max-height:100%;
+    padding : 1rem;
+    border: 1px solid gray;
+    overflow: scroll;
+    background-color: #ebebeb;
+}
+/*----------------------------------------------*/
+
+#accident_title {
+    height: 10%;
 }
 
-
-#payment_info .info {
-    height: 90%;
-    margin: 1rem;
+#accident_title .title {
+    text-align: center;
+    font-size: 1.5rem;
+    background-color: gray;
+    color: #ffffff;
+}
+#accident_info {
+    height: 70%;
+}
+#accident_info .info {
+    height: 100%;
     color: rgb(87, 87, 87);
     overflow-y: scroll;
     overflow-x: hidden;
+    box-shadow: 0 1px 3px 2px lightgrey;
+}
+.traffic {
+    margin-right: 2rem;
+}
+.button_style {
+    text-decoration: none;
+    color: black;
+}
+.button_style:active{
+    text-decoration: none;
+}
+.button_style:hover{
+    text-decoration: none;;
+}
+/*----------------------------------------------*/
+
+
+#payment_info {
+    height: 80%;
+    box-shadow: 0 1px 3px 2px lightgrey;
+}
+#payment_info .info:first-child {
+    margin-right: 0.5rem;
+    overflow: hidden;
+}
+#payment_info .info:first-child img{
+    width: 100%;
+    margin: 0.5rem;
 }
 
+#payment_info .info {
+    height: 100%;
+    color: rgb(87, 87, 87);
+    overflow-y: auto;
+    overflow-x: hidden;
+}
 .info_card {
-    background-color: white;
-    border: 1px solid black;
+    background: linear-gradient(#ffffff, #e7e7e7);
+    border: 1px solid gray;
     margin-bottom: 0.5rem;
     padding: 0.5rem;
 }
@@ -42,18 +102,31 @@ body { width: 100%; height: 100%;}
     color: black;
     margin-bottom: 0.3rem;
 }
-
-.info_pay div:nth-child(2) {
-    text-align: right;
+.info_total {
+    font-size: 1.3rem;
 }
+
+
+
+
 
 .input-group-text {
     width: 6rem;
 }
 
-#RegistrationSubmit {    
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
+#finallyprice {
+    width:100%;
+    background-color:gray;
+    color:white;
+    border-radius: .3rem .3rem 0 0;
+    text-align:center;
+    padding: 0.5rem;
+    font-size:1rem;
+}
+
+#registrationsubmit {    
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
 }
 
 .bottom_button {
@@ -69,6 +142,13 @@ body { width: 100%; height: 100%;}
 .row {
     margin-left: 0;
     margin-right: 0;
+}
+.row .right {
+    text-align: right;
+}
+
+.row .total {
+    font-size: 1.4rem;
 }
 .col {
     font-size: 0.8rem;

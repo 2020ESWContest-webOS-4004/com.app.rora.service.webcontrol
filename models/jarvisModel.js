@@ -212,3 +212,28 @@ exports.updateShareHistoryList = (shareid, data, callback) => {
         }
     });
 };
+
+
+/*---------theft_accident---------*/
+exports.getTheftAccidentList = (callback) => {
+    let sql = 'SELECT * FROM theft_accident';
+    conn.query(sql, function(error, result, fields) {
+        if(!error) {
+            callback(JSON.parse(JSON.stringify(result)));
+        } else{
+            callback(error);
+        }
+    });
+};
+
+/*---------traffic_accident---------*/
+exports.getTrafficAccidentList = (callback) => {
+    let sql = 'SELECT * FROM traffic_accident';
+    conn.query(sql, function(error, result, fields) {
+        if(!error) {
+            callback(JSON.parse(JSON.stringify(result)));
+        } else{
+            callback(error);
+        }
+    });
+};

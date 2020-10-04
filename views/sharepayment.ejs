@@ -41,21 +41,22 @@
                 <img src="/media/route_image.png">
             </div>
             <div id="payment_info_right" class="col info">
+                <form id="form" action="/share/payment/success" method="post">
                 <div class="info_card">
                     <div class="row info_title">
                         사용 내역
                     </div>
                     <div class="row info_pay">
                         <div class="col">사용시간</div>
-                        <div class="col"><%=data.diff_time%></div>
+                        <div class="col right"><%=data.diff_time%></div>
                     </div>
                     <div class="row info_pay">
                         <div class="col">이동거리</div>
-                        <div class="col"><%=data.distance%></div>
+                        <div class="col right"><%=data.distance%>KM</div>
                     </div>
                     <div class="row info_pay">
                         <div class="col" id="start_location"></div>
-                        <div class="col" id="end_location"></div>
+                        <div class="col right" id="end_location"></div>
                     </div>
                 </div>
                 <div class="info_card">
@@ -64,11 +65,11 @@
                     </div>
                     <div class="row info_pay">
                         <div class="col">기본요금</div>
-                        <div class="col">5,000원</div>
+                        <div class="col right">5,000원</div>
                     </div>
                     <div class="row info_pay">
                         <div class="col">추가요금</div>
-                        <div class="col"><%=data.Surcharge%>원</div>
+                        <div class="col right"><%=data.Surcharge%>원(1km당 150원)</div>
                     </div>
                 </div>
 
@@ -78,11 +79,18 @@
                     </div>
                     <div class="row info_pay">
                         <div class="col">조회 포인트</div>
-                        <div class="col"><%=data.member_point%>포인트</div>
+                        <div class="col right"><%=data.member_point%>포인트</div>
+                        <input type="hidden" id="member_point" value="<%=data.member_point%>">
                     </div>
                     <div class="row info_pay">
                         <div class="col">사용할 포인트</div>
-                        <div class="col"><input type="text" size=5></div>
+                        <div class="col right"><input id="use_point_input"type="text" size=5>
+                        <input type="button" value="적용" onclick="pointUse()">
+                        <input type="hidden" id="use_point_hidden" name="use_point">
+                        </div>
+                    </div>
+                    <div class="row info_pay">
+                        <div class="col right">포인트는 100점 이상부터 사용가능합니다.</div>
                     </div>
                 </div>
                 <div class="info_card">
@@ -91,7 +99,7 @@
                     </div>
                     <div class="row info_pay">
                         <div class="col">카드 번호</div>
-                        <div class="col">카드교체 <i class="fas fa-angle-right"></i></div>
+                        <div class="col right">카드교체 <i class="fas fa-angle-right"></i></div>
                     </div>
                     <div class="row info_pay">
                         <div class="col">1111-1111-1111-1111</div>
@@ -111,48 +119,20 @@
                 </div>
                 <div id="map"></div>
 
-                <button id="RegistrationSubmit" class="btn btn-dark btn-lg btn-block mt-5" type="submit" form="license_form">면허등록</button>
+                <div id="finallyprice">총금액 : <%=data.totalprice%>원</div>
+                <input type="hidden" id="totalprice" value="<%=data.totalprice%>">
+                <button id="registrationsubmit" class="btn btn-dark btn-lg btn-block" type="submit">결제하기</button>
                 <input id="testinput1" type="hidden" value=<%=data%>>
                 <input id="testinput2" type="hidden" value=<%=data2%>>
+            </form>
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="/js/common.js"></script>
     <script type="text/javascript" src="/js/kakaoMap.js"></script>
+    <script type="text/javascript" src="/js/common.js"></script>
     <script>
 
         window.onload = print();
-        function print() {
-            var temp = JSON.parse(document.getElementById('testinput2').value);
-            //console.log(temp);
-            console.log(temp);
-
-            start_coordinate = JSON.parse(temp.start_coordinate);
-            end_coordinate =JSON.parse(temp.end_coordinate);
-
-            var coords1 = new kakao.maps.LatLng(start_coordinate.Ha, start_coordinate.Ga);
-            var coords2 = new kakao.maps.LatLng(start_coordinate.Ha, start_coordinate.Ga);
-
-            searchDetailAddrFromCoords(coords1, function(result, status) {
-                if(result[0].road_address) {
-                    document.getElementById('start_location').innerText = result[0].road_address.address_name;
-                } else { 
-                    document.getElementById('start_location').innerText = result[0].address.address_name;
-                }
-                
-            })
-
-
-            searchDetailAddrFromCoords(coords2, function(result, status) {
-                if(result[0].road_address) {
-                    document.getElementById('end_location').innerText = result[0].road_address.address_name;
-                } else { 
-                    document.getElementById('end_location').innerText = result[0].address.address_name;
-                }
-                
-            })
-
-        }
 
     </script>
 </body>

@@ -142,7 +142,8 @@ router.get('/payment', function(req, res) {
                     end_time: end_time,
                     diff_time: jarvisController.getTimeStringSeconds((end_time - start_time) / 1000),
                     distance: distance,
-                    Surcharge: (distance * 150)
+                    Surcharge: jarvisController.numberWithCommas(distance * 150),
+                    totalprice: 5000 + (distance * 150)
                 };
 
                 var data2 = {
@@ -156,7 +157,7 @@ router.get('/payment', function(req, res) {
                     } else{
                         data.member_point = 0;
                     }
-                    
+                    //res.send([jarvis_session, data, data2, result_data]);
                     res.render('sharepayment', {session : jarvis_session, data:data, data2:JSON.stringify(data2)});
                 });
 
@@ -169,24 +170,62 @@ router.get('/payment', function(req, res) {
     }
 });
 
-router.get('/accident', (req, res) => {
-    let data=[];
-    for(let i=0; i<5; i++) {
-        data[i] = {
-            title   : '2020-10-0'+i,
-            content : `Eu enim ullamco mollit consequat eiusmod duis ad.
-            Ullamco deserunt incididunt ex ullamco laboris.
-            Ipsum aliqua velit non tempor mollit in Lorem cillum pariatur consectetur qui dolore.
-            Velit mollit ea duis ea veniam anim officia.
-            Non aliquip incididunt ullamco commodo officia aliquip proident culpa fugiat mollit laborum quis minim exercitation.`            
-        }
+
+router.post('/payment/success', (req, res) => {
+    if (jarvis_session.shareid) {
+        let data = {
+            use_point : req.body.use_point
+        };
+        jarvisModel.getJarvisMember(jarvis_session.userid, result => {
+            data.jarvisMember = result[0];
+            jarvisModel.getCreditCardInfo(jarvis_session.userid, result => {
+                data.creditCardInfo = result[0];
+                jarvisModel.getDrivingLicenseInfo(jarvis_session.userid, result => {
+                    data.drivingLicenseInfo = result[0];
+                    jarvisModel.getShareHistory(jarvis_session.shareid, result => {
+                        let result_data = result[0];
+                        let distance = 27.2;
+                        let start_time = result_data.start_time;
+                        let end_time = result_data.end_time;
+                        let start_coordinate = result_data.start_coordinate.replace(/(\s*)/g, "");
+                        let end_coordinate = result_data.end_coordinate.replace(/(\s*)/g, "");
+
+                        let shareHistory_data = {
+                            start_time: start_time,
+                            end_time: end_time,
+                            diff_time: jarvisController.getTimeStringSeconds((end_time - start_time) / 1000),
+                            distance: distance,
+                            Surcharge: jarvisController.numberWithCommas(distance * 150),
+                            totalprice: jarvisController.numberWithCommas(5000 + (distance * 150) - Number(req.body.use_point))
+
+                        };
+                        data.shareHistory = shareHistory_data;
+                        jarvis_session.shareid = "";
+                        res.render('sharepaymentsuccess', {session:jarvis_session, data:data});
+                    })
+                })
+            })
+        })
+    } else {
+        res.redirect('/window');
     }
-    res.render('accidenthistory', {session:{userid:'scy', username:'미스터배'}, data:data});
 });
 
-router.get('/payment/success', (req, res) => {
-    
-    res.render('sharepaymentsuccess', {session:{userid:'scy', username:'미스터배'}});
+
+router.get('/accident', (req, res) => {
+    if (jarvis_session.userid) {
+        let data1 = {};
+        jarvisModel.getTrafficAccidentList(result => {
+            data1.trafficaccident = result;
+            jarvisModel.getTheftAccidentList(result => {
+                data1.theftaccident = result;
+                res.render('accidenthistory', { session: { userid: 'scy', username: '미스터배' }, data: data1 });
+            })
+        })
+    } else {
+        res.redirect('/window');
+
+    }
 });
 
 router.get('/lend', function(req, res){

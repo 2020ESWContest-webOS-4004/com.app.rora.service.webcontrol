@@ -33,78 +33,66 @@
     <div id="content">
         <h1>사고 이력</h1>
         <hr />
-        <div id="payment_info" class="row">
-            <div class="col info">
-                <div class="accordion" id="accordionExample">
-                    <%for(let i=0; i<data.length; i++){%>
-                        <div class="card">
-                            <div class="card-header" id="headingOne">
-                              <h2 class="mb-0">
-                                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse<%=i%>" aria-expanded="true" aria-controls="collapseOne">
-                                    <%=data[i].title%>
-                                </button>
-                              </h2>
-                            </div>
-                        
-                            <div id="collapse<%=i%>" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-                              <div class="card-body">
-                                <%=data[i].content%>
-                              </div>
-                            </div>
-                          </div>
-                    <%}%>
-                </div>
-            </div>
-            <div class="col info">
-                <div class="accordion" id="accordionExample">
-                    <div class="card">
-                      <div class="card-header" id="headingOne">
-                        <h2 class="mb-0">
-                          <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            Collapsible Group Item #1
-                          </button>
-                        </h2>
-                      </div>
-                  
-                      <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-                        <div class="card-body">
-                          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="card">
-                      <div class="card-header" id="headingTwo">
-                        <h2 class="mb-0">
-                          <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            Collapsible Group Item #2
-                          </button>
-                        </h2>
-                      </div>
-                      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                        <div class="card-body">
-                          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="card">
-                      <div class="card-header" id="headingThree">
-                        <h2 class="mb-0">
-                          <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                            Collapsible Group Item #3
-                          </button>
-                        </h2>
-                      </div>
-                      <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                        <div class="card-body">
-                          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-            </div>
+        <div id="accident_title" class="row">
+          <div class="col title traffic">교통 사고</div>
+          <div class="col title">도난 사고</div>
         </div>
+        <div id="accident_info" class="row">
+          <div class="col info traffic">
+            <div class="accordion" id="accordionExample">
+        
+              <%for(let i=0; i<data.trafficaccident.length; i++){%>
+                <div class="card">
+                  <div class="card-header" id="headingOne">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link btn-block text-left button_style" type="button" data-toggle="collapse"
+                        data-target="#collapsetraffic<%=i%>" aria-expanded="true" aria-controls="collapseOne">
+                        <%=data.trafficaccident[i].accident_time%>
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="collapsetraffic<%=i%>" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div class="card-body">
+                      <p>
+                        멤버ID : <%=data.trafficaccident[i].jarvis_member_id%> <br />
+                        차량번호 : <%=data.trafficaccident[i].car_number%> <br />
+                        사고장소 : <%=data.trafficaccident[i].accident_location%> <br />
+                        사고시간 : <%=data.trafficaccident[i].accident_time%> <br />
+                        의식상태 : <%=data.trafficaccident[i].consciousness%> <br />
+                      </p>
+                    </div>  
+                  </div>
+                </div>
+              <%}%>
+          </div>
+        </div>
+        <div class="col info">
+          <div class="accordion" id="accordionExample">
+      
+            <%for(let i=0; i<data.theftaccident.length; i++){%>
+              <div class="card">
+                <div class="card-header" id="headingOne">
+                  <h2 class="mb-0">
+                    <button class="btn btn-link btn-block text-left button_style" type="button" data-toggle="collapse"
+                      data-target="#collapsetheft<%=i%>" aria-expanded="true" aria-controls="collapseOne">
+                      <%=data.theftaccident[i].accident_time%>
+                    </button>
+                  </h2>
+                </div>
+                <div id="collapsetheft<%=i%>" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                  <div class="card-body">
+                    <p>
+                      멤버ID : <%=data.theftaccident[i].jarvis_member_id%> <br />
+                      차량번호 : <%=data.theftaccident[i].car_number%> <br />
+                      사고장소 : <%=data.theftaccident[i].accident_location%> <br />
+                      사고시간 : <%=data.theftaccident[i].accident_time%> <br />
+                    </p>
+                  </div>  
+                </div>
+              </div>
+            <%}%>
+        </div>
+      </div>
     </div>
     <script type="text/javascript" src="/js/common.js"></script>
 </body>
