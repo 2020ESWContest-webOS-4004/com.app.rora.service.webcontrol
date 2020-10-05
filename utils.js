@@ -348,7 +348,7 @@ function request_camera(socketio, socketio_client){
     tts("화면을 바라봐주세요");
     var data = {"status": "open"};
     socketio.emit("open_camera", data);   // webOS front에 카메라 인증요청
-    socketio_client.emit('face_test', {status: "open"});
+    //socketio_client.emit('face_test', {status: "open"});
 }
 
 // 웹소켓 생성
