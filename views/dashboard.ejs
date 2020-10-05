@@ -75,6 +75,11 @@
         else if (status == "no power")
           console.log("no power");
       });
+
+      socket.on("login_signal", (data) => {
+        console.log("[+] service login");
+        location.reload(true);
+      });
     </script>
   </head>
   <body>

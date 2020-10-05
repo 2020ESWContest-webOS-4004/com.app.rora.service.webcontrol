@@ -39,6 +39,11 @@
         console.log(data);
         face_auth_fail();
       });
+
+      socket.on("logout_signal", (data) => {
+        console.log("[+] service logout");
+        location.reload(true);
+      });
     </script>
   </head>
   <body>
