@@ -219,7 +219,7 @@ router.get('/accident', (req, res) => {
             data1.trafficaccident = result;
             jarvisModel.getTheftAccidentList(result => {
                 data1.theftaccident = result;
-                res.render('accidenthistory', { session: { userid: 'scy', username: '미스터배' }, data: data1 });
+                res.render('accidenthistory', { session: jarvis_session, data: data1 });
             })
         })
     } else {
