@@ -374,10 +374,10 @@ function init(service, http){
         });
 
         socket.on('auth-data', async (data) => {
-            //var auth_data = JSON.parse(data);
-            var auth_data = data;
+            var auth_data = JSON.parse(data);
+            //var auth_data = data; // test code
 
-            await js_sleep(5000);
+            await js_sleep(500);
 
             if(auth_data.result == true){  // 얼굴 인증 성공
                 
