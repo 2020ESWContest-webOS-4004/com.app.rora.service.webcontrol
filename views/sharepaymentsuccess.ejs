@@ -38,7 +38,9 @@
                 <div class="payment_success">
                     <h4><span style="color: blue;">결제가 성공적으로 완료</span>되었습니다.</h4>
                     <h5>JARVIS를 사용해주셔서 감사합니다.</h5>
-                    <p>사용 일자 : 2020-07-12</p>
+                    <p>사용 일자 : <%var d = new Date();%>
+                        <%var c_date = d.getFullYear() + "년 " + ( d.getMonth() + 1 ) + "월 " + d.getDate() + "일"%>
+                        <%=c_date%></p>
                     <a type="button" class="btn btn-primary" href="/share">계속 사용하기 ></a>
                 </div>
             </div>
