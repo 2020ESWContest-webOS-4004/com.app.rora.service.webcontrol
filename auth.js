@@ -27,6 +27,7 @@ var dbOptions = {
 // face 인증 후 커스텀 세션을 활용한 로그인 처리 함수
 function jarvis_login(auth_data){
     var results;
+    var socketio = utils.io;
     conn = mysql.createConnection(dbOptions);
 
     conn.connect();
@@ -46,17 +47,24 @@ function jarvis_login(auth_data){
         }
     });
     conn.end();
+
+    socketio.emit('login_signal', {});
 }
 
 // 커스텀세션을 활용한 로그아웃 로직
 function jarvis_logout(){
+    var socketio = utils.io;
+
     utils.tts("서비스 로그아웃");
+
     auth_session.userid = "";
     auth_session.username = "";
     auth_session.car_owned = "";
     if(auth_session.shareid) auth_session.shareid = "";
 
     utils.set_auth("");
+
+    socketio.emit('logout_signal', {});
 }
 
 exports.dbOptions = dbOptions;

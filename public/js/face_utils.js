@@ -1,6 +1,6 @@
 function opencamera(){
-    document.getElementById("face-auth-camera").src = "https://algorithmxlab.com/wp-content/uploads/2019/11/Facial-Recognition-All-you-Need-to-Know.jpg";
-    //document.getElementById("face-auth-camera").src = "http://192.168.1.7:5000/video_feed";
+    //document.getElementById("face-auth-camera").src = "https://algorithmxlab.com/wp-content/uploads/2019/11/Facial-Recognition-All-you-Need-to-Know.jpg";
+    document.getElementById("face-auth-camera").src = "http://192.168.1.15:5000/video_feed";
     document.getElementById("face-auth-text-span").innerHTML = '얼굴 인식 중...';
     document.getElementById("reservation-result-area").style="display:none";
 }
