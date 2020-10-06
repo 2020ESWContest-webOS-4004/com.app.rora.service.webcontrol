@@ -1,0 +1,70 @@
+/* The side navigation menu */
+.sidenav {
+  height: 100%; /* 100% Full-height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  z-index: 3; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  background-color: rgb(226, 226, 226); /* Black*/
+  overflow-y: hidden; /* Disable horizontal scroll */
+  padding-top: 60px; /* Place content 60px from the top */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+/* The navigation menu links */
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 1rem;
+  color:  rgb(30, 36, 59);
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav .navigator {
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
+
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+  color:  rgb(59, 30, 30);
+  background-color: rgb(153, 153, 153);
+}
+
+/* Position and style the close button (top right corner) */
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+#floating_sidebar {
+  position: absolute;
+  left: 3%;
+  top: 13%;
+  z-index: 2;
+  background: white;
+  padding:15px 15px;
+  border-radius: 50%;
+  box-shadow: 4px 4px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+}
+
+#floating_sidebar_button {
+  position: absolute;
+  left: 3%;
+  top: 5%;
+  z-index: 2;
+  background-color: white;
+  padding:15px 15px;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+}
+
+

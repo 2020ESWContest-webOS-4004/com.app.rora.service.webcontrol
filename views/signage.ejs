@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>signage</title>
+
+        <!-- reset CSS -->
+        <link rel="stylesheet" type="text/css" href="/css/reset.css">
+
+        <!--BootStrapCDN-->
+        <!-- CSS only -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+        <!-- JS, Popper.js, and jQuery -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+        <!--카카오 맵-->
+        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1d0a159da55940360f13d50b0203bb38&libraries=services,clusterer,drawing"></script>
+        
+        <!--Font Awesome-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+
+        <!--Custom CSS-->
+        <link rel="stylesheet" type="text/css" href="/css/sidemenu2.css">
+        <link rel="stylesheet" type="text/css" href="/css/carshare2.css">
+        <link rel="stylesheet" type="text/css" href="/css/infowindow.css">
+        <link rel="stylesheet" type="text/css" href="/css/search.css">
+        <link rel="stylesheet" href="/css/font.css">
+        
+    </head>
+
+    <body>
+        <div id="app">
+            
+            <div id="mySidenav" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">X</a>
+                <a href="/share/license" class="navigator">면허등록</a>
+                <a href="/share/card" class="navigator">카드등록</a>
+                <a href="#" class="navigator">이용안내</a>
+                <a href="/share/accident" class="navigator">사고이력</a>
+            </div>
+            <i id="floating_sidebar_button" class="fas fa-bars" onclick="openNav()"></i>                
+            <div id="content">
+                <div id="map">
+                    
+                    <div id="rent_request">
+                        <button type="button" onclick="window.location = '/signage/call';">호출하기</button>
+                    </div>
+                    <div id="search">
+                        <div id="search_bar" class="input-group md-form form-sm form-2 pl-0">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="search_bar_title">주소검색</span>
+                            </div>
+                            <input id="address_input" class="form-control my-0 py-1 amber-border" type="text" placeholder="Search"
+                                aria-label="Search" autocomplete="off">
+                    
+                    
+                            <div class="input-group-append">
+                                <span class="input-group-text amber lighten-3" id="basic-text1">
+                                    <i class="fas fa-search text-grey" aria-hidden="true"></i></span>
+                            </div>
+                        </div>
+                    
+                    
+                        <div id="search_result_box">
+                            <h5>주소 검색 결과</h5>
+                            <div id="address_search_result_print">
+                            </div>
+                    
+                            <h5>단어 검색 결과</h5>
+                            <div id="keyword_search_result_print">
+                            </div>
+                        </div>
+                    </div>          
+                </div>
+            </div>
+        </div>
+        <!--Custom JS-->
+        <script type="text/javascript" src="/js/kakaoMap2.js"></script>
+        <script type="text/javascript" src="/js/carshare2.js"></script>
+        <script type="text/javascript" src="/js/sidemenu.js"></script>
+        <script type="text/javascript" src="/js/common.js"></script>
+       
+    </body>
+</html>

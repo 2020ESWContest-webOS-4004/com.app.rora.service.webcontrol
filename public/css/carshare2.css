@@ -1,0 +1,165 @@
+input[type="text"]:focus {
+    border-color: rgba(205, 201, 255, 0.8);
+    box-shadow: 0 1px 1px rgba(136, 163, 250, 0.075) inset, 0 0 8px rgba(54, 23, 229, 0.6);
+    outline: 0 none;    
+}
+
+html { width: 100%; height: 100%;} 
+body { width: 100%; height: 100%;} 
+#app { width: 100%; height: 100%;} 
+
+#content {
+    height: 100%;
+    display: flex;
+}
+#map { 
+    position: relative;
+    width: 100%;
+    height: 100%;
+    /*원래는 border-right: 1px solid gray; */
+}
+
+#rent {
+    display: none;
+    width: 100%;
+    max-width: 50%;
+    
+}
+#rent_ready {
+    /*원래는 display: flex*/
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto; 
+    
+}
+.share_card {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    border: 0.5px solid rgba(131, 131, 131, 0.527);
+    background-image: linear-gradient(white,gainsboro);
+    padding: 1rem;
+}
+
+.share_card .share_card_img {
+    float: left;
+    width: 145px;
+    height: 100px;
+    margin-right: 1rem;
+    object-fit:contain;
+}
+
+.share_card .warning_title {
+    color: red;
+}
+
+.share_card .warning_message {
+    color: gray;
+    font-size: 0.8rem;
+    margin-bottom: 0;
+}
+
+.share_card .success_title {
+    color: green;
+}
+.share_card .success_message {
+    color : gray;
+    font-size : 1rem;
+}
+
+
+.share_card .go_info_register {
+    position: absolute;
+    bottom: 10%;
+    right: 7%;
+    color: gray;   
+}
+.share_card a{
+    color: gray;
+    text-decoration: none;
+}
+.share_card a:hover{
+    color: gray;
+    text-decoration: none;
+}
+
+.share_card a:active{
+    color: gray;
+    text-decoration: none;
+}
+
+#share_start {
+    width: 100%; 
+    height: 10%;
+    color: white;
+    background-color: rgb(30, 36, 59);
+    border: 0;
+}
+#share_start:disabled {
+    width: 100%; 
+    height: 10%;
+    color: rgb(187,187,187);
+    background-color: rgba(30, 36, 59, 0.7);
+    border: 0;
+
+}
+
+#result {
+    margin-top: 2rem;
+}
+nav {
+    background-color : rgb(30, 36, 59);
+    height: 10%;
+}
+
+nav ul{
+    margin-left: 2rem;
+}
+
+#rent_request {
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform:translateX(-50%);
+    width: 300px;
+    height: 50px;
+    background-color: white;
+    z-index: 2;
+}
+
+#rent_request button {
+    border: none;
+    width : 100%;
+    height: 100%;
+    background-color: rgb(30, 36, 59);
+    color: white;
+}
+
+
+.btn-floating {
+    color: #fff;
+    padding: 0;
+    width: 55.5px; height: 55.5px;
+    display: inline-block;
+    outline: 0;
+    border: none;
+    text-decoration: none;
+    background: #2196F3;
+    text-align: center;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    z-index: 2;
+}
+.btn-floating:hover {
+    background: #42A5F5;
+}
+.btn-floating div {
+    font-size: 1.8em;
+    padding: 0;
+    margin: .22em 0 0 0;
+}
+
+#basic-text1 {
+    cursor: pointer;
+}

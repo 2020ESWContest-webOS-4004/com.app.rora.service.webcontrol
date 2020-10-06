@@ -1,0 +1,68 @@
+<html>
+
+<head>
+    <title>결제 완료</title>
+
+    <!-- reset CSS -->
+    <link rel="stylesheet" type="text/css" href="/css/reset.css">
+
+    <!-- BootStrapCDN -->
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <!-- JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="/css/sidemenu.css">
+    <link rel="stylesheet" type="text/css" href="/css/common.css">
+    <link rel="stylesheet" type="text/css" href="/css/topbar.css">
+    <link rel="stylesheet" href="/css/font.css">
+    <style>
+        html{
+            width: 100%;
+            height: 100%;
+        }
+        #topbar-navbar {
+            background-color: rgb(82, 76, 102);
+        }
+
+    </style>
+</head>
+
+<body>        
+    <%- include('./lib/navigation_bar') -%>
+
+    <i id="floating_sidebar" class="fas fa-arrow-left" onclick="goBack()"></i>
+
+    <div id="content">
+        <h1>호출 완료</h1>
+        <hr />
+        <div id="success_info" class="row">
+            <div id="success_info_left" class="col info">
+                <div class="payment_success">
+                    <h4><span style="color: blue;">커넥티드카 호출</span>이 완료되었습니다.</h4>
+                    <h5>JARVIS를 사용해주셔서 감사합니다.</h5>
+                    <p>
+                        <%var d = new Date();%>
+                        <%var c_date = d.getFullYear() + "년 " + ( d.getMonth() + 1 ) + "월 " + d.getDate() + "일"%>
+                        <%=c_date%>
+                    </p>
+                    <a type="button" class="btn btn-primary" href="/signage">재호출하기 ></a>
+                </div>
+            </div>
+        </div>    
+        <hr />
+
+        
+                
+    </div>
+    <script type="text/javascript" src="/js/common.js"></script>
+</body>
+
+</html>
