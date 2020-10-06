@@ -13,4 +13,16 @@ router.get('/smarthome', function(req, res){
     }
 });
 
+router.get('/signage', function(req, res) {
+    res.render('signage', { session: jarvis_session });
+ })
+
+ router.post('/signage/call', function(req, res) {
+    if(req.body) {
+       res.render('signagecall', { session: jarvis_session, data:req.body });
+    } else {
+       res.redirect('/iot/signage');
+    }
+ })
+
 module.exports = router;

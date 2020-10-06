@@ -48,12 +48,13 @@
                 <div class="payment_success">
                     <h4><span style="color: blue;">커넥티드카 호출</span>이 완료되었습니다.</h4>
                     <h5>JARVIS를 사용해주셔서 감사합니다.</h5>
-                    <p>
+                    <h6>호출 위치 : <span style="color: blue;"><%=data.addressName%></span></h5>                    
+                    <h6>호출 날짜 : 
                         <%var d = new Date();%>
                         <%var c_date = d.getFullYear() + "년 " + ( d.getMonth() + 1 ) + "월 " + d.getDate() + "일"%>
                         <%=c_date%>
-                    </p>
-                    <a type="button" class="btn btn-primary" href="/signage">재호출하기 ></a>
+                    <h6>
+                    <a type="button" class="btn btn-primary" href="/iot/signage">재호출하기 ></a>
                 </div>
             </div>
         </div>    

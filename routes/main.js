@@ -48,12 +48,4 @@ module.exports = function (app, utils) {
       auth_lib.jarvis_logout();
       res.redirect('dashboard');
    });
-
-   app.get('/signage', function(req, res) {
-      res.render('signage', { session: jarvis_session });
-   })
-
-   app.get('/signage/call', function(req, res) {
-      res.render('signagecall', { session: jarvis_session });
-   })
 }

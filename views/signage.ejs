@@ -46,7 +46,7 @@
                 <div id="map">
                     
                     <div id="rent_request">
-                        <button type="button" onclick="window.location = '/signage/call';">호출하기</button>
+                        <button type="button" onclick="signage_call()">호출하기</button>
                     </div>
                     <div id="search">
                         <div id="search_bar" class="input-group md-form form-sm form-2 pl-0">
@@ -82,6 +82,26 @@
         <script type="text/javascript" src="/js/carshare2.js"></script>
         <script type="text/javascript" src="/js/sidemenu.js"></script>
         <script type="text/javascript" src="/js/common.js"></script>
-       
+        <script>
+            function signage_call() {
+            
+            method = "POST";
+            path = "/iot/signage/call";
+
+            var form = document.createElement("form");
+            form.setAttribute("method", method);
+            form.setAttribute("action", path);
+
+            var hiddenField = document.createElement("input");
+            hiddenField.setAttribute("type", "hidden");
+            hiddenField.setAttribute("name", "addressName");
+            hiddenField.setAttribute("value", getAddressName());
+
+            form.appendChild(hiddenField);
+            
+            document.body.appendChild(form);
+            form.submit();          
+            }   
+        </script>
     </body>
 </html>

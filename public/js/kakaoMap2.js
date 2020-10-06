@@ -260,3 +260,9 @@ function addMapEventAll() {
     kakao.maps.event.addListener(map, 'center_changed', setMarkerAndInfowindow);
     console.log('재등록 완료');
 }
+
+
+function getAddressName() {
+    console.log(addressName + '이다.')
+    return addressName;
+}
