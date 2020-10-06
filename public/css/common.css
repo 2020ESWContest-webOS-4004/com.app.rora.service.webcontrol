@@ -129,6 +129,14 @@ body { width: 100%; height: 100%;}
     border-top-left-radius: 0;
 }
 
+#RegistrationSubmit {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    position: fixed;
+    width: 825px;
+    bottom: 0;
+}
+
 .bottom_button {
     width: 100%; 
     position : fixed;
